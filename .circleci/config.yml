@@ -10,3 +10,7 @@ jobs:
       - run:
           name: "Hugo"
           command: HUGO_ENV=production hugo -v -s ~/repo/
+      - add_ssh_keys
+      - deploy:
+        name: "Deployment"
+        command: ./.circleci/deploy.sh
