@@ -15,4 +15,8 @@ jobs:
       - add_ssh_keys
       - deploy:
           name: "Deployment"
-          command: .circleci/deploy.sh
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+              chmod +x ./circleci/deploy.sh
+              .circleci/deploy.sh
+            fi
