@@ -1,5 +1,5 @@
 ---
-title: "Boom Productions Inc."
+title: "Work"
 date: 2015-08-01T12:00:00+01:00
 sitemap:
     changefreq: weekly
