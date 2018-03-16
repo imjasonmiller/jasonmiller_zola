@@ -1,0 +1,11 @@
+version: 2
+jobs:
+  build:
+    - image: cibuilds/hugo:0.31.1
+    - image: circleci/node:8.7.0
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - run:
+        name: "Hugo"
+        command: HUGO_ENV=production hugo -v -s ~repo/src/
