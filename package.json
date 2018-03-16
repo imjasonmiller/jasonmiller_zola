@@ -1,0 +1,34 @@
+{
+  "name": "jasonmiller",
+  "version": "1.0.0",
+  "description": "Website of Jason Miller",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "sass": "node-sass -q src/css/main.scss | postcss --no-map --use autoprefixer cssnano -o static/static/css/main.css",
+    "clean": "rimraf public",
+    "babel": "babel public/static --out-dir public/static --presets=@babel/preset-env",
+    "minify": "html-minifier --help",
+    "minify-xml": "html-minifier --file-ext xml --collapse-whitespace --input-dir public --output-dir public",
+    "minify-html": "html-minifier --file-ext html --collapse-whitespace --minify-css 1 --minify-js 1 --input-dir public --output-dir public"
+  },
+  "browserslist": [
+    "last 2 versions"
+  ],
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "autoprefixer": "^7.2.3",
+    "cssnano": "^3.10.0",
+    "html-minifier": "^3.5.7",
+    "node-sass": "^4.7.2",
+    "postcss-cli": "^4.1.1",
+    "rimraf": "^2.6.2"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.0.0-beta.35",
+    "@babel/core": "^7.0.0-beta.35",
+    "@babel/preset-env": "^7.0.0-beta.35"
+  }
+}

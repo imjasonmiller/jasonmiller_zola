@@ -1,0 +1,152 @@
+.post {
+  width: 970px;
+  max-width: 100%;
+  margin: 120px auto 0;
+  background: $color-post-background;
+  color: #444;
+  padding: 0;
+}
+
+/* Prevent margin collapse at the end of <article /> */
+.post::before,
+.post::after {
+content: '';
+clear: both;
+display: table;  
+}
+
+.post h2,
+.post h3 {
+  color: $color-text-black;
+  font: 900 1.75em $font-family-head;
+  margin: 0 0 .5em;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;    
+}
+
+.post h2::after,
+.post h3::after, {
+  content: '';
+  display: block;
+  width: 2em;
+  height: 0.2em;
+  background: $color-text-black;
+  margin: .5em 0 0;    
+}
+
+p,
+.post > ul {
+  font: 400 1.125em/2em $font-family-body;
+  margin: 0 0 2em;
+}
+
+.post > p,
+.post > h2,
+.post > h3,
+.post > ul,
+.post > .post__columns {
+  padding: 0 26px;
+}
+
+.post > p code {
+  font: 1em/1.5 'Lucida Console', Monaco, monospace;
+  padding: 0 .25em;
+  border-bottom: 1px solid #eee;
+  display: inline-block;
+}
+
+.post > p.note {
+  padding: 1em 26px;
+  background: #FFF9E4;
+}
+
+.post > ul {
+  list-style: square inside;
+}
+
+.post a {
+  font-weight: 700;
+  color: $color-text-black;
+}
+
+.post a:hover,
+.post a:active,
+.post a:visited {
+  color: $color-text-basis;
+}
+
+.post img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.post__columns {
+  position: relative;
+  margin-bottom: 2em;
+}
+
+.post__columns p {
+  margin: 0 0 1em;
+  padding: 0;
+  text-align: justify;
+  break-inside: avoid;
+}
+
+.post__media {
+  width: 100%;
+  margin: 0 0 2em;
+  overflow: hidden;
+}
+
+.post__canvas {
+  display: block;
+}
+
+.post__image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.post__video {
+  /*
+  Padding controls the height as it is relative the width,
+  this allows the video to scale up and down properly.
+  See the include /helpers/video.html for more.
+  */
+  display: inline-block;    
+  position: relative;
+  width: 100%;
+  height: 0;
+  margin: 0 0 2em;
+}
+
+.post__video iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+@media only screen and (min-width: 1024px) {
+  
+  .post > p,
+  .post > h2,
+  .post > h3,
+  .post > ul,
+  .post > .post__columns {    
+      padding: 0 83px;
+  }
+
+  .post > p.note {
+      padding: 1em 83px;
+  }    
+ 
+  .post__columns {
+      columns: 2;
+      column-gap: 2em;
+  }
+
+}

@@ -1,0 +1,31 @@
+{{ define "main" }}
+
+<main role="main"> 
+
+  <article class="post" itemscope itemtype="http://schema.org/Article" itemprop="articleBody">
+  
+      <header class="post__header post__header--work">
+          
+          <h2 itemprop="name">{{ .Title }}</h2>
+      
+          <div class="post__columns">
+
+              {{ $markdown := .Params.intro | markdownify }}
+    
+              {{ if not ( strings.Contains $markdown "<p>" ) }}
+                <p>{{ $markdown }}</p>
+              {{ else }}
+                {{ $markdown }}
+              {{ end }}
+              
+          </div>
+      
+      </header>  
+      
+      {{ .Content }}
+      
+  </article>
+  
+</main>
+
+{{ end }}

@@ -1,0 +1,39 @@
+.highlight {
+  margin: 0 26px 2em;
+  color: #181818;
+}
+  
+.highlight .gutter {
+  opacity: 0.1;
+  /* Prevent user from copying line numbers */
+  -webkit-user-select: none;
+  pointer-events: none;
+}
+
+.highlight pre code {
+  display: block;
+  white-space: pre;
+  overflow-x: auto;
+  word-wrap: normal;
+  font: 1.125em 'Lucida Console', Monaco, monospace;
+  line-height: 1.5;
+  padding: 1em;
+  background: #FBFBFB;   
+}
+
+code::-webkit-scrollbar-thumb {
+  background: #333;
+}
+code::-webkit-scrollbar-track {
+  background: rgba(0,0,0,0.05);
+}
+
+.highlight .code {
+  padding-left: 2em;
+}
+
+@media only screen and (min-width: 1024px) {
+  .highlight {
+      margin: 0 83px 2em;
+  }    
+}

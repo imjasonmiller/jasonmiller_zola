@@ -1,0 +1,200 @@
+.boom-logo {
+    display: block;
+    width: 100%;
+    cursor: pointer;
+}
+.grid__line--x,
+.grid__line--y {
+    fill: none;
+    stroke: #DDD;
+    stroke-width: 1.5937;
+    stroke-miterlimit: 10;
+    transition: none;
+}
+
+.grid__line--x {
+    transform: scaleX(0);
+    transform-origin: 0% 50%;
+}
+
+.grid__line--y {
+    transform: scaleY(0);
+    transform-origin: 50% 0%;
+}
+
+.boom-logo__boom,
+.boom-logo__prod {
+    opacity: 0;    
+}
+
+.boom-logo--active .grid__line--x {
+    transition: transform 1s ease;
+    transform: scaleX(1);
+}
+
+.boom-logo--active .grid__line--y {
+    transition: transform 1s ease;
+    transform: scaleY(1);
+}
+
+.boom-logo--active .boom-logo__boom {
+    transition: opacity 1s ease 2s;
+    opacity: 1;
+}
+
+.boom-logo--active .boom-logo__prod {
+    transition: opacity 1s ease 4s;
+    opacity: 1;
+}
+
+.boom-color,
+.boom-devices {
+    position: relative;
+    width: 100%;
+}
+
+.boom-devices__animation {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    height: 100%;
+    left: 0;
+    background: #fff;
+    overflow: hidden;
+}
+
+.boom-color__laptop {
+    position: absolute;
+    top: 17.6%;
+    left: 21.2%;
+    width: 57.8%;
+    height: 61.5%;
+    background: #fff;
+    overflow: hidden;
+}
+
+.boom-color__content {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 200%;
+    opacity: 0;
+	background: url('/static/work/boom-productions-inc/content_1024.jpg') no-repeat top center/contain #fff;  
+}
+
+.boom-color--active .boom-color__content {
+    animation: boom-color__fade-in 2s ease forwards, boom-color__scroller 10s 1s infinite cubic-bezier(0.455, 0.03, 0.515, 0.955);
+}
+
+@keyframes boom-color__fade-in {
+    0%, 50% { opacity: 0; }
+    100% { opacity : 1; }
+}
+
+@keyframes boom-color__scroller {
+  20% { transform: translateY(0%); }
+  30% { transform: translateY(-30%); }
+  60% { transform: translateY(-30%); }
+  70% { transform: translateY(0%); }
+}
+
+.boom-color__cursor {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    background: url('/static/work/boom-productions-inc/cursor.png') no-repeat center center;
+    background-size: 2.5%;
+    transform: translateX(-20%) translateY(-20%);    
+}
+
+.boom-color--active .boom-color__cursor {
+    animation: boom-color__fade-in 4s ease forwards, boom-color__cursor 10s 1s infinite ease;
+}
+
+.boom-color__hover { 
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	transition: opacity .5s ease; 
+    background: url('/static/work/boom-productions-inc/hover_1024.jpg') no-repeat top center/contain;	
+}
+
+.boom-color--active .boom-color__hover {
+    animation: boom-color__hover 10s 1s infinite ease;
+}
+
+@keyframes boom-color__cursor {
+  20% { transform: translateX(-20%) translateY(-20%); }
+  30% { transform: translateX(0) translateY(0); }
+  60% { transform: translateX(0) translateY(0); }
+  70% { transform: translateX(-20%) translateY(-20%); }
+}
+
+@keyframes boom-color__hover {
+  30% { opacity: 0; }
+  35% { opacity: 1; }
+  65% { opacity: 1; }
+  70% { opacity: 0; }
+}
+
+.boom-devices__laptop {
+    position: absolute;
+    top: 15%;
+    left: 18%;
+    width: 68%;
+    height: 72%;
+    background: url('/static/work/boom-productions-inc/laptop_1024.png') no-repeat center center/contain;
+    opacity: 0;
+    transform-origin: 50% 100%;
+}
+
+.boom-devices--active .boom-devices__laptop {
+    animation: boom-devices__laptop 2s 2s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+
+.boom-devices__mobile {
+    position: absolute;
+    top: 30%;
+    left: 11%;
+    width: 18%;
+    height: 60%;
+    background: url('/static/work/boom-productions-inc/mobile_1024.png') no-repeat center center/contain;
+    opacity: 0;
+}
+
+.boom-devices--active .boom-devices__mobile {
+    animation: boom-devices__mobile 3s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+
+.boom-devices__tablet {
+    position: absolute;
+    top: 43%;
+    right: 7%;
+    width: 40%;
+    height: 50%;
+    background: url('/static/work/boom-productions-inc/tablet_1024.png') no-repeat center center/contain;
+    opacity: 0;
+}
+
+.boom-devices--active .boom-devices__tablet {
+    animation: boom-devices__tablet 3s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+
+@keyframes boom-devices__laptop {
+	from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes boom-devices__mobile {
+	from { opacity: 0; transform: translateX(-150%); } to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes boom-devices__tablet {
+	from { opacity: 0; transform: translateX(150%); } to { opacity: 1; transform: translateX(0); }
+}

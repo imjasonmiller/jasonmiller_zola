@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="{{ .Site.Data.settings.author }}">
+    
+    {{ if .Description }}
+        <meta name="description" content="{{ .Description }}" />
+    {{ else }}
+        <meta name="description" content="{{ .Site.Data.settings.intro }}">
+    {{ end }}
+    
+    {{ if .Title }}
+      <title>{{ .Site.Data.Settings.Author }} — {{ .Title }}</title>
+    {{ else }}
+      <title>{{ .Site.Data.Settings.Author }}</title>
+    {{ end }}
+
+    <link rel="canonical" href="{{.Site.Data.settings.url}}{{ .URL }}"> 
+    
+    {{/* Facebook Open Graph */}}
+    
+    {{ if .Title }}
+        <meta property="og:type" content="article">
+    {{ else }}
+        <meta property="og:type" content="website">
+    {{ end }}
+    
+    {{ if .Title }}
+        <meta property="og:title" content="{{ .Title }}">
+    {{ else }}
+        <meta property="og:title" content="Work of Jason Miller">
+    {{ end }}
+    
+    {{ if .Description }}
+        <meta property="og:description" content="{{ .Description }}" />
+    {{ else }}
+        <meta property="og:description" content="{{ .Site.Data.Settings.Intro }}">
+    {{ end }}
+    
+    {{ if .URL }}
+        <meta property="og:url" content="{{ .URL | absURL }}">
+    {{ end }}
+    
+    {{ if .Params.image }}
+        <meta property="og:image" content="{{ .Site.Data.Settings.URL }}/static/img/work/{{ .Slug }}/{{ .Params.Image }}">
+    {{ else }}
+        <meta property="og:image" content="{{ .Site.Data.Settings.URL }}/static/img/share-default.jpg">
+    {{ end }}
+    
+    {{ if .Params.categories }}
+        <meta property="article:section" content="{{ .Params.categories }}">
+    {{ end }} 
+    
+    {{/* Twitter Card */}}
+    
+    {{ if .Params.image }}
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:image" content="{{ .Site.Data.Settings.URL }}/{{ .Slug }}/static/img/{{ .Params.image }}"> 
+    {{ else }}
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:image" content="{{ .Site.Data.Settings.URL }}/static/img/share-default.jpg">
+    {{ end }}
+    
+    <meta name="twitter:site" content="@imjasonmiller">
+    <meta name="twitter:creator" content="@imjasonmiller">
+    
+    {{ if .Title }}
+        <meta name="twitter:title" content="{{ .Title }}">
+    {{ else }}
+        <meta name="twitter:title" content="Work of Jason Miller">
+    {{ end }}
+    
+    {{ if .Description }}
+        <meta name="twitter:description" content="{{ .Description }}">
+    {{ else }}
+        <meta name="twitter:description" content="{{ .Site.Data.settings.intro }}">
+    {{ end }}
+    
+    {{/* Include Font styles for faster loading */}}
+    
+    <style>
+        @font-face {
+        font-family: 'Open Sans';
+        font-style: normal;
+        font-weight: 400;
+        src: url('/static/fonts/open-sans-v15-latin-regular.eot'); /* IE9 Compat Modes */
+        src: local('Open Sans'), local('OpenSans'),
+            url('/static/fonts/open-sans-v15-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+            url('/static/fonts/open-sans-v15-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+            url('/static/fonts/open-sans-v15-latin-regular.woff') format('woff'), /* Modern Browsers */
+            url('/static/fonts/open-sans-v15-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+            url('/static/fonts/open-sans-v15-latin-regular.svg#OpenSans') format('svg'); /* Legacy iOS */
+        }
+
+        @font-face {
+        font-family: 'Open Sans';
+        font-style: normal;
+        font-weight: 700;
+        src: url('/static/fonts/open-sans-v15-latin-700.eot'); /* IE9 Compat Modes */
+        src: local('Open Sans Bold'), local('OpenSans-Bold'),
+            url('/static/fonts/open-sans-v15-latin-700.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+            url('/static/fonts/open-sans-v15-latin-700.woff2') format('woff2'), /* Super Modern Browsers */
+            url('/static/fonts/open-sans-v15-latin-700.woff') format('woff'), /* Modern Browsers */
+            url('/static/fonts/open-sans-v15-latin-700.ttf') format('truetype'), /* Safari, Android, iOS */
+            url('/static/fonts/open-sans-v15-latin-700.svg#OpenSans') format('svg'); /* Legacy iOS */
+        }
+
+        @font-face {
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 900;
+        src: url('/static/fonts/roboto-v18-latin-900.eot'); /* IE9 Compat Modes */
+        src: local('Roboto Black'), local('Roboto-Black'),
+            url('/static/fonts/roboto-v18-latin-900.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+            url('/static/fonts/roboto-v18-latin-900.woff2') format('woff2'), /* Super Modern Browsers */
+            url('/static/fonts/roboto-v18-latin-900.woff') format('woff'), /* Modern Browsers */
+            url('/static/fonts/roboto-v18-latin-900.ttf') format('truetype'), /* Safari, Android, iOS */
+            url('/static/fonts/roboto-v18-latin-900.svg#Roboto') format('svg'); /* Legacy iOS */
+        }
+    </style>
+    
+    <link rel="stylesheet" href="/static/css/main.css"> 
+
+    {{ partial "helpers/inject.html" (dict "context" . "Elem" "head" ) }}
+
+</head>
+
+<body>
+
+    {{ partial "header.html" . }} 
+
+    {{ block "main" . }}
+
+    {{ end}}
+
+    {{ partial "footer.html" . }} 
+
+    <script type="text/javascript">
+        var header = document.body.querySelector('.header');
+        var button = document.body.querySelector('.nav-btn');
+            
+        function handleClick () {
+            if (header.classList.contains('header--opened')) {
+                header.classList.add('header--closed');
+                header.classList.remove('header--opened');
+            } else {
+                header.classList.add('header--opened');
+                header.classList.remove('header--closed');
+            }
+        }
+            
+        button.addEventListener('click', handleClick, false);
+    </script>
+
+    <script type="text/javascript" src="/static/js/particles.js"></script>
+    
+    <!-- Google Analytics -->
+    {{ template "_internal/google_analytics_async.html" . }}    
+    <!-- End Google Analytics -->
+
+    {{ partial "helpers/inject.html" (dict "context" . "Elem" "body" ) }}
+
+</body>
+
+</html>

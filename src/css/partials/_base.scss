@@ -1,0 +1,12 @@
+body {
+  font: 75% $font-family-body;
+  color: $color-text-white;
+  background: $color-page-background;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  text-decoration-skip: ink;
+}
+
+strong, b {
+  font-weight: 700;
+}

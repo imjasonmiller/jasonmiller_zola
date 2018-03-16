@@ -1,0 +1,57 @@
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+{{- range $post := where $.Site.RegularPages "Section" "in" (slice "blog" "work") }}
+
+  <url>
+
+    <loc>{{- safeHTML ( $post.Permalink ) -}}</loc>
+
+    <lastmod>{{- safeHTML ( $post.Lastmod ) -}}</lastmod>
+
+    {{ if $post.Params.changefreq }} 
+      <changefreq>{{- safeHTML ( $post.Params.changefreq ) -}}</changefreq>
+    {{ else }}
+      <changefreq>weekly</changefreq>
+    {{ end }}
+
+    {{ if $post.Params.priority }}
+      <priority>{{- safeHTML ( $post.Params.priority ) -}}</priority>
+    {{ else }}
+      <priority>0.5</priority>
+    {{ end }}
+
+  </url>
+
+{{ end -}}
+
+{{- range .Site.Sections }}
+
+  <url>
+
+    <loc>{{- .Permalink -}}</loc>
+    <lastmod>{{- safeHTML ( .Lastmod ) -}}</lastmod>
+
+    {{ if .Params.changefreq }} 
+      <changefreq>{{- safeHTML ( .Params.changefreq ) -}}</changefreq>
+    {{ else }}
+      <changefreq>weekly</changefreq>
+    {{ end }}
+
+    {{ if .Params.priority }}
+      <priority>{{- safeHTML ( .Params.priority ) -}}</priority>
+    {{ else }}
+      <priority>1.0</priority>
+    {{ end }}
+
+  </url>
+
+{{ end -}}
+
+  <url>
+    <loc>{{ .Site.BaseURL }}</loc>
+    <lastmod>{{- safeHTML ( .Site.LastChange ) -}}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+</urlset>

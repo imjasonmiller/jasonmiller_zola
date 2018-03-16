@@ -1,0 +1,1 @@
+The output of `npm run sass` and `npm run babel` is a reflection of the `src/` folder structure.

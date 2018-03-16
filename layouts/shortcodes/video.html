@@ -1,0 +1,50 @@
+{{ $.Scratch.Add "width" ( default "1024" ( .Get "width" ) )}}
+
+{{ $.Scratch.Add "height" ( default "576" ( .Get "height" ) )}}
+
+{{/* Calculate correct padding ratio for video with ( height / width * 100 ) + "%" */}}
+
+{{ $ratio := mul ( float ( div ( float ( $.Scratch.Get "height" ) ) ( float ( $.Scratch.Get "width" ) ) ) ) 100 }}
+
+{{ $.Scratch.Add "aspectRatio" ( printf "%.2f%%" $ratio ) }}
+
+{{ if .Get "youtube" }}
+
+  {{ $.Scratch.Add "controls" ( default "1" ( .Get "controls" ) )}}
+
+  <div class="post__video" style="padding-bottom: {{ $.Scratch.Get `aspectRatio` }}">
+
+    <iframe
+      width="{{ $.Scratch.Get `width` }}"
+      height="{{ $.Scratch.Get `height` }}"
+      src="https://www.youtube.com/embed/{{ .Get `youtube` }}?rel=0&amp;controls={{ $.Scratch.Get `controls` }}&amp;showinfo=0"
+      frameborder="0"
+      gesture="media"
+      allow="encrypted-media"
+      allowfullscreen>
+    </iframe>
+
+  </div>
+
+{{ end }}
+
+{{ if .Get "vimeo" }}
+
+  {{ $.Scratch.Add "autoplay" ( default "0" ( .Get "autoplay" ) )}}
+  {{ $.Scratch.Add "loop" ( default "0" ( .Get "loop" ) )}}
+
+  <div class="post__video" style="padding-bottom: {{ $.Scratch.Get `aspectRatio` }}">
+
+    <iframe 
+      src="https://player.vimeo.com/video/{{ .Get `vimeo` }}?autoplay={{ $.Scratch.Get `autoplay` }}&loop={{ $.Scratch.Get `loop` }}&color=ffffff&title=0&byline=0&portrait=0"
+      width="{{ $.Scratch.Get `width` }}"
+      height="{{ $.Scratch.Get `height` }}"
+      frameborder="0"
+      webkitallowfullscreen
+      mozallowfullscreen
+      allowfullscreen>
+    </iframe>
+    
+  </div>
+
+{{ end }}

@@ -1,0 +1,24 @@
+{{ define "main" }}
+
+    <article class="post post--image">
+
+        <figure class="post__media">
+            <canvas id="post__three-root" class="post__canvas" width="970" height="545"></canvas>
+        </figure>
+
+        <h2>404, page not found</h2>
+
+        {{ .Content }}
+
+        <div class="post__columns">
+            <p>It seems the page you were looking for could not be found. If you believe this was an error on my part (oops),
+            you can always contact me by <a href="mailto:contact@jasonmiller.nl">mail</a> and I will look into it. Thank you.</p>
+        </div>
+
+    </article>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r73/three.min.js"></script>
+    <script type="text/javascript" src="/static/js/404.js"></script>
+
+    
+{{ end }}

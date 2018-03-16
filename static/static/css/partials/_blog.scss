@@ -1,0 +1,118 @@
+.post--blog {
+  display: flex;
+  flex-direction: column;
+}
+
+.blog__intro, 
+.blog__posts {
+  padding: 26px 26px 2em;
+  width: 100%;
+}
+
+.blog__intro,
+.post__header--blog {
+  color: $color-text-white;
+  background: $color-post-background-invert;
+}
+.blog__intro h2,
+.post__header--blog h2 {
+  position: relative;
+  color: $color-text-white;
+}
+
+.blog__intro h2::after,
+.post__header--blog h2::after {
+  background: $color-text-white;    
+}
+
+.post__time {
+  display: block;
+  color: $color-text-black;
+  font-weight: 700;
+  text-transform: uppercase;      
+}
+
+.post__time--invert {
+  color: $color-text-white;
+}
+
+.blog-post a:link,
+.blog-post a:hover,
+.blog-post a:active, 
+.blog-post a:visited {
+  text-decoration: none;
+  color: $color-text-black;
+}
+
+.blog-post__link {
+  display: block;
+}
+
+.post__header {
+  position: relative;
+  padding: 26px 26px 0;
+  margin-bottom: 2em;
+  overflow: hidden; /* Possibly merge this with blog overview black container */   
+}
+
+.blog-post__wireframe {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+.blog-post__wireframe path {
+  fill:none;
+  stroke-width:1.5;
+  stroke:#333;
+}
+
+
+blockquote {
+  position: relative;
+  float: right;
+  border: 2px solid #f1f1f1;
+  border-right: 0;
+  margin: 2em 0 2em 2em;
+  padding: 1em;
+  font: 400 1.5em/1.5 $font-family-body;
+  width: auto;    
+}
+
+blockquote::before {
+  content: '\201C';
+  display: block; 
+  position: absolute;
+  top: -0.5em;
+  left: -0.25em;
+  height: 1em;
+  width: 1em;
+  font: 700 4em/1.5 $font-family-head;
+}
+
+blockquote p {
+  margin: 0;    
+}
+
+@media only screen and (min-width: 1024px) {
+  
+  .post--blog {
+      flex-direction: row;
+  }
+  
+  .post__header {
+      padding: 83px 83px 0;   
+  }    
+  
+  .blog__intro, 
+  .blog__posts {
+      width: 50%;
+      padding: 83px 83px 2em;
+  }
+  
+  blockquote {
+      width: 300px;
+  }
+  
+}

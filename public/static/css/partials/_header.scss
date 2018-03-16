@@ -1,0 +1,148 @@
+.header {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 120px;
+  padding: 0;
+  z-index: 1;
+  transform: translateZ(0);
+}
+
+.header::before {
+  content: '';
+  display: block;
+  position: absolute;
+  background: $color-page-background;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.logo {
+  display: block;
+  position: absolute;
+  width: 70px;
+  height: 70px;
+  margin: auto;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.logo__link {
+  display: block;
+}
+
+.nav {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: left;
+  font: 900 1.125em 'Roboto', sans-serif;
+  line-height: 60px;
+  z-index: -1;
+}
+
+.nav__list {
+  position: absolute;
+  top: 120px;
+  width: 100%;
+  background: $color-page-background;
+  list-style: none;
+  transition: transform 0.75s cubic-bezier(0.23, 1, 0.32, 1), visibility 0.75s linear;
+  transform: translateY(-100%);
+  visibility: hidden;
+}
+
+.header--opened .nav__list {
+  transform: translateY(0);
+  visibility: visible;
+}
+
+.header--closed .nav__list {
+  transform: translateY(-100%);
+  visibility: hidden;
+}
+
+.nav__item {
+  float: none;    
+}
+
+.nav__link {
+  color: $color-text-basis;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  padding: 0 2em;
+  transition: color 0.5s ease;
+  box-sizing: border-box;
+}
+
+.nav__link:hover,
+.nav__link--active {
+  color: $color-text-white;
+}
+
+@media only screen and (min-width: 1024px) {
+  
+  .header {
+      position: fixed;
+      padding: 0 2em;
+      z-index: 1;
+  } 
+
+  .header::before {
+      opacity: 0.5;
+      transition: opacity 1s cubic-bezier(0.19, 1, 0.22, 1);    
+  }
+
+  .header:hover::before {
+      opacity: 0.8;
+  }
+  
+  .header--closed .nav__list {
+      visibility: visible;
+      transform: translateY(0);
+  }
+  
+  .logo {
+      left: auto;
+      right: auto;
+      z-index: 2;
+  }
+  
+  .nav {
+      text-align: right;
+      line-height: 120px;
+      z-index: auto;
+  }
+  
+  .nav__list {
+      position: static;
+      float: right;
+      width: auto;
+      background: none;
+      transform: translateY(0);
+      visibility: visible;
+  }
+  
+  .nav__item {
+      float: left;
+  }
+  
+  .nav__item::after {
+      content: '/';
+      color: $color-text-basis;
+  }
+
+  .nav__item:last-child::after {
+      content: '';
+  }
+  
+  .nav__link {
+      padding: 0 1em;
+  }
+  
+}

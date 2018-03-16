@@ -1,0 +1,17 @@
+/*  Horizontal and vertical scrollbar size */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+/* Track */
+::-webkit-scrollbar-track {
+  background: rgba(0,0,0, 0.25);
+}
+/* Handle */
+::-webkit-scrollbar-thumb { 
+  background: #333;
+}
+/* Handle hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #444;
+}

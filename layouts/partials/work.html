@@ -1,0 +1,39 @@
+<main role="main"> 
+    
+    <ul class="work">
+
+        {{ range $section := where $.Site.RegularPages "Section" "work"}} 
+
+            <li class="work__item">
+
+                <a class="work__link" href="{{ $section.RelPermalink }}">
+
+                    <figure class="work__thumb">
+
+                        {{ range $files := readDir ( printf "static/static/work/%s/" $section.Params.slug ) }}
+
+                            {{ if in $files.Name "thumb-lg"}}
+
+                                <img class="work__image" width="640" height="320" src="{{ printf "/static/work/%s/%s" $section.Params.slug $files.Name }}" alt="thumbnail" title="">
+
+                            {{ end }}
+
+                        {{ end }}
+
+                        <figcaption class="work__caption">
+
+                            <h2 class="work__title">{{ $section.Title }}</h2>
+
+                        </figcaption>
+
+                    </figure>
+
+                </a>
+
+            </li>
+
+        {{ end }}
+
+    </ul>
+    
+</main>
