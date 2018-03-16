@@ -9,4 +9,4 @@ jobs:
       - checkout
       - run:
           name: "Hugo"
-          command: HUGO_ENV=production hugo -v -s ~repo/src/
+          command: HUGO_ENV=production hugo -v -s ~/repo/src/
