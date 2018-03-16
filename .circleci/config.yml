@@ -1,6 +1,7 @@
 version: 2
 jobs:
   build:
+    docker:
     - image: cibuilds/hugo:0.31.1
     - image: circleci/node:8.7.0
     working_directory: ~/repo
