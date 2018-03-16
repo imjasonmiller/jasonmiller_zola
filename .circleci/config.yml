@@ -11,9 +11,6 @@ jobs:
           name: "Hugo"
           command: HUGO_ENV=production hugo -v -s ~/repo/
       - add_ssh_keys
-      - run:
-          name: Install deployment dependencies
-          command: sudo apt install rsync
       - deploy:
           name: "Deployment"
-          command: ./.circleci/deploy.sh
+          command: .circleci/deploy.sh
