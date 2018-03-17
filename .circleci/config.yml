@@ -2,19 +2,18 @@ version: 2
 jobs:
   build:
     docker:
-    - image: cibuilds/hugo:0.31.1
-    - image: circleci/node:8.7.0
-
+      - image: circleci/node:8.7.0
     working_directory: ~/repo
-
     steps:
       - checkout
-      - run: npm install
       - run:
-          name: "Compile and minify CSS"
+          name: Install hugo
+          command: wget https://github.com/gohugoio/hugo/releases/download/v0.31.1/hugo_0.31.1_Linux-64bit.deb -O /tmp/hugo.deb && sudo dpkg -i /tmp/hugo.deb
+      - run:
+          name: Compile and minify CSS
           command: npm run sass
       - run:
-          name: "Hugo"
+          name: Build site
           command: HUGO_ENV=production hugo -v -s ~/repo/
       - run:
           name: "Transpile JS"
