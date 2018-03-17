@@ -25,6 +25,7 @@ jobs:
           name: "Minify XML and HTML"
           command: npm run minify
       - add_ssh_keys
+      - run: sudo apt install rsync
       - deploy:
           name: "Deployment"
           command: |
