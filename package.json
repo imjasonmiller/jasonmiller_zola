@@ -8,7 +8,7 @@
     "sass": "node-sass -q src/css/main.scss | postcss --no-map --use autoprefixer cssnano -o static/static/css/main.css",
     "clean": "rimraf public",
     "babel": "babel public/static --out-dir public/static --presets=@babel/preset-env",
-    "minify": "html-minifier --help",
+    "minify": "npm run minify-xml && npm run minify-html",
     "minify-xml": "html-minifier --file-ext xml --collapse-whitespace --input-dir public --output-dir public",
     "minify-html": "html-minifier --file-ext html --collapse-whitespace --minify-css 1 --minify-js 1 --input-dir public --output-dir public"
   },

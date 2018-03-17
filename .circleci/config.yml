@@ -9,9 +9,19 @@ jobs:
 
     steps:
       - checkout
+      - run: npm install
+      - run:
+          name: "Compile and minify CSS"
+          command: npm run sass
       - run:
           name: "Hugo"
           command: HUGO_ENV=production hugo -v -s ~/repo/
+      - run:
+          name: "Transpile JS"
+          command: npm run babel
+      - run:
+          name: "Minify XML and HTML"
+          command: npm run minify
       - add_ssh_keys
       - deploy:
           name: "Deployment"
