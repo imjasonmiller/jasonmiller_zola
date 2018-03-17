@@ -10,6 +10,9 @@ jobs:
           name: Install hugo
           command: wget https://github.com/gohugoio/hugo/releases/download/v0.31.1/hugo_0.31.1_Linux-64bit.deb -O /tmp/hugo.deb && sudo dpkg -i /tmp/hugo.deb
       - run:
+          name: Install npm packages
+          command: npm install
+      - run:
           name: Compile and minify CSS
           command: npm run sass
       - run:
