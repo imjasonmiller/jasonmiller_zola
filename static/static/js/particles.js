@@ -96,7 +96,7 @@ class ParticleCanvas {
 
   updateParticles() {
     // Clear the canvas
-    this.ctx.clearRect(0, 0, this.conf.width, this.conf.height)
+    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
 
     // Add new particles for those that went out of bounds
     this.createParticles()
