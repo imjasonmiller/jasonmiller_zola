@@ -11,7 +11,7 @@
     "minify": "npm run minify-xml && npm run minify-html",
     "minify-xml": "html-minifier --file-ext xml --collapse-whitespace --input-dir public --output-dir public",
     "minify-html": "html-minifier --file-ext html --collapse-whitespace --minify-css 1 --minify-js 1 --input-dir public --output-dir public",
-    "uglify": "find ./public -type f -name *.js -exec uglifyjs --compress --mangle --output {} -- {} ;"
+    "uglify": "find ./public -type f -name *.js -exec uglifyjs --compress --mangle --output {} -- {} \\;"
   },
   "browserslist": [
     "last 2 versions"
