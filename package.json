@@ -10,7 +10,8 @@
     "babel": "babel public/static --out-dir public/static --presets=@babel/preset-env",
     "minify": "npm run minify-xml && npm run minify-html",
     "minify-xml": "html-minifier --file-ext xml --collapse-whitespace --input-dir public --output-dir public",
-    "minify-html": "html-minifier --file-ext html --collapse-whitespace --minify-css 1 --minify-js 1 --input-dir public --output-dir public"
+    "minify-html": "html-minifier --file-ext html --collapse-whitespace --minify-css 1 --minify-js 1 --input-dir public --output-dir public",
+    "uglify": "find ./public -type f -name *.js -exec uglifyjs --compress --mangle --output {} -- {} ;"
   },
   "browserslist": [
     "last 2 versions"
@@ -24,7 +25,8 @@
     "html-minifier": "^3.5.7",
     "node-sass": "^4.7.2",
     "postcss-cli": "^4.1.1",
-    "rimraf": "^2.6.2"
+    "rimraf": "^2.6.2",
+    "uglify-js": "^3.3.16"
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0-beta.35",
