@@ -24,6 +24,9 @@ jobs:
       - run:
           name: "Minify XML and HTML"
           command: npm run minify
+      - run:
+          name: "Uglify JavaScript"
+          command: npm run uglify
       - add_ssh_keys
       - run: sudo apt install rsync
       - deploy:
