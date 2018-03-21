@@ -23,7 +23,51 @@
       </header>  
       
       {{ .Content }}
-      
+
+      <h3>Share</h3>
+
+      <ul class="post__share">
+
+        <li>
+
+          <a class="post__share--twitter" href="https://twitter.com/share?text={{ $.Title }}%20by%20Jason%20Miller&url={{ .Permalink }}" target="_blank">
+
+            <figure>
+                <img src="/static/img/icon-twitter.svg">
+                <figcaption>Twitter</figcaption>
+            </figure>
+
+          </a>
+
+        </li>
+
+        <li>
+
+          <a class="post__share--facebook" href="https://www.facebook.com/sharer/sharer.php?u={{ .Permalink }}" target="_blank">
+
+            <figure>
+                <img src="/static/img/icon-facebook.svg">
+                <figcaption>Facebook</figcaption>
+            </figure>
+
+          </a>
+
+        </li>
+
+        <li>
+            
+          <a class="post__share--whatsapp" href="https://web.whatsapp.com/send?text={{ $.Title }}%20by%20Jason%20Miller%20{{ .Permalink }}" target="_blank">
+            <figure>
+                <img src="/static/img/icon-whatsapp.svg">
+                <figcaption>WhatsApp</figcaption>
+            </figure>
+
+          </a>
+
+        </li>
+
+      </ul>     
+     
   </article>
   
 </main>

@@ -5,12 +5,12 @@
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="author" content="{{ .Site.Data.settings.author }}">
+    <meta name="author" content="{{ .Site.Data.Settings.Author }}">
     
-    {{ if .Description }}
-        <meta name="description" content="{{ .Description }}" />
+    {{ if .Params.description }}
+        <meta name="description" content="{{ .Params.description }}" />
     {{ else }}
-        <meta name="description" content="{{ .Site.Data.settings.intro }}">
+        <meta name="description" content="{{ .Site.Data.Settings.Intro }}">
     {{ end }}
     
     {{ if .Title }}
@@ -46,20 +46,20 @@
     {{ end }}
     
     {{ if .Params.image }}
-        <meta property="og:image" content="{{ .Site.Data.Settings.URL }}/static/img/work/{{ .Slug }}/{{ .Params.Image }}">
+        <meta property="og:image" content="{{ .Site.Data.Settings.URL }}/static/work/{{ .Slug }}/{{ .Params.image }}">
     {{ else }}
         <meta property="og:image" content="{{ .Site.Data.Settings.URL }}/static/img/share-default.jpg">
     {{ end }}
     
     {{ if .Params.categories }}
-        <meta property="article:section" content="{{ .Params.categories }}">
+        <meta property="article:section" content="{{ delimit .Params.categories ", " }}">
     {{ end }} 
     
     {{/* Twitter Card */}}
     
     {{ if .Params.image }}
         <meta name="twitter:card" content="summary_large_image">
-        <meta name="twitter:image" content="{{ .Site.Data.Settings.URL }}/{{ .Slug }}/static/img/{{ .Params.image }}"> 
+        <meta name="twitter:image" content="{{ .Site.Data.Settings.URL }}/static/work/{{ .Slug }}/{{ .Params.image }}"> 
     {{ else }}
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:image" content="{{ .Site.Data.Settings.URL }}/static/img/share-default.jpg">
@@ -142,6 +142,8 @@
     <script type="text/javascript">
         var header = document.body.querySelector('.header');
         var button = document.body.querySelector('.nav-btn');
+
+        var whatsApp = document.body.querySelector('.post__share--whatsapp')
             
         function handleClick () {
             if (header.classList.contains('header--opened')) {
@@ -154,6 +156,14 @@
         }
             
         button.addEventListener('click', handleClick, false);
+        
+        // For a better experience, the WhatsApp href is switched for mobile devices
+        if (whatsApp) {
+            if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+                const currentHref = whatsApp.getAttribute("href")
+                whatsApp.setAttribute("href", currentHref.replace("https://web.whatsapp.com/", "whatsapp://"))
+            }
+        }
     </script>
 
     <script type="text/javascript" src="/static/js/particles.js"></script>
