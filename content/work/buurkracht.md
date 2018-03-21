@@ -9,7 +9,7 @@ intro: |
     Buurkracht is an energy initiative that brings neighborhoods together in order to save energy. I ended up making a low-fidelity prototype that was supposed to encourage children to learn more about saving energy. The prototype did great, but the teacher did mention it might be too _complex and costly_ to make. This sparked my interest and encouraged me to learn about what turning it into a high-fidelity prototype would entail.
     
     I ended up learning a lot about Webpack, React, WebGL, Canvas, Node and many, many other things. In the end, time, being part of the cost, did prove to be a limiting factor, but I gained a lot of knowledge I did not posses beforehand. 
-image: thumb-lg.png
+image: thumb-lg.jpg
 tags:
     - buurkracht
     - webgl

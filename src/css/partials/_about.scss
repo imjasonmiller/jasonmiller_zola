@@ -150,3 +150,27 @@ p,
   }
 
 }
+
+ul.post__share {
+  list-style: none;
+}
+
+ul.post__share li {
+  margin: 0 0 1em 0;
+  cursor: pointer;
+}
+
+ul.post__share li a {
+  text-decoration: none;
+}
+
+ul.post__share figure {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-gap: 1em;
+}
+
+ul.post__share img {
+  width: 2em;
+  opacity: 0.1;
+}
