@@ -152,25 +152,34 @@ p,
 }
 
 ul.post__share {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, calc(3em + 6px));
+  grid-gap: .75em;
   list-style: none;
 }
 
-ul.post__share li {
-  margin: 0 0 1em 0;
+ul.post__share li a {
+  display: block;
+  border: 3px solid #f1f1f1;
   cursor: pointer;
 }
 
-ul.post__share li a {
-  text-decoration: none;
-}
-
-ul.post__share figure {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  grid-gap: 1em;
-}
-
-ul.post__share img {
+ul.post__share svg {
+  display: block;
   width: 2em;
-  opacity: 0.1;
+  padding: .5em;
+  fill: #adadad;
+  transition: fill .25s;
+}
+
+.post__share--twitter:hover svg {
+  fill: #00aced;
+}
+
+.post__share--facebook:hover svg {
+  fill: #3b5998
+}
+
+.post__share--whatsapp:hover svg {
+  fill: #25d366
 }
