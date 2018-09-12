@@ -1,0 +1,44 @@
+{
+  "name": "jasonmiller.nl",
+  "version": "1.0.0",
+  "description": "Website of Jason Miller",
+  "main": "index.js",
+  "scripts": {
+    "start": "gulp server",
+    "build": "gulp build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "imjasonmiller",
+  "license": "ISC",
+  "babel": {
+    "presets": [
+      "@babel/preset-env"
+    ]
+  },
+  "prettier": {
+    "singleQuote": false,
+    "trailingComma": "all",
+    "semi": false,
+    "printWidth": 80,
+    "tabWidth": 2,
+    "useTabs": false,
+    "bracketSpacing": true
+  },
+  "devDependencies": {
+    "@babel/core": "^7.0.0-rc.1",
+    "@babel/preset-env": "^7.0.0-rc.1",
+    "@babel/register": "^7.0.0-rc.1",
+    "babel-loader": "^8.0.0-beta.4",
+    "postcss-cli": "^6.0.0",
+    "webpack": "^4.16.5"
+  },
+  "dependencies": {
+    "@imjasonmiller/scroll-io": "0.0.0",
+    "browser-sync": "^2.24.6",
+    "gulp": "^4.0.0",
+    "intersection-observer": "^0.5.0",
+    "popmotion": "^8.3.3",
+    "three": "^0.95.0",
+    "three.meshline": "^1.1.0"
+  }
+}

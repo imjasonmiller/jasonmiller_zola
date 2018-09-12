@@ -1,0 +1,100 @@
+.media-border {
+  position: absolute;
+
+  top: 1em;
+
+  width: 100%;
+  height: 100%;
+
+  pointer-events: none;
+
+  &.media-border--left {
+    left: 1em;
+  }
+
+  &.media-border--right {
+    right: 1em;
+  }
+}
+
+.media-border__line {
+  position: absolute;
+
+  transition: transform 250ms linear;
+
+  background: rgba(255, 255, 255, 0.25);
+
+  // prettier-ignore
+  $borders: (
+    ( id: top,    origin: left    ),
+    ( id: right,  origin: top     ),
+    ( id: bottom, origin: right   ),
+    ( id: left,   origin: bottom  )
+  );
+
+  // Border size and animation time
+  $size: 1px;
+  $time: 1000;
+
+  $step: $time / length($borders);
+
+  @for $i from 0 to length($borders) {
+    $border: nth($borders, $i + 1);
+
+    &.media-border__line--#{map-get($border, id)} {
+      transition-delay: #{$step * $i}ms;
+      transform-origin: map-get($border, origin);
+
+      #{map-get($border, id)}: 0;
+      #{map-get($border, origin)}: $size;
+
+      @if map-get($border, id) == top or map-get($border, id) == bottom {
+        width: calc(100% - #{$size});
+        height: $size;
+      } @else {
+        width: $size;
+        height: calc(100% - #{$size});
+      }
+
+      &.media-border__line--hidden {
+        transition-delay: #{$time - $step * $i - $step}ms;
+
+        @if map-get($border, id) == top or map-get($border, id) == bottom {
+          transform: scaleX(0);
+        } @else {
+          transform: scaleY(0);
+        }
+      }
+    }
+  }
+}
+
+.media-border__play {
+  width: 3em;
+  margin: auto;
+
+  grid-area: mid-mid;
+  stroke: $fontColorLight;
+  stroke-width: 5;
+  fill: none;
+  stroke-dasharray: 323.61;
+}
+
+.article__video__image:hover .media-border__play path {
+  animation: playHover 1s $easeInOutQuart forwards;
+}
+
+@keyframes playHide {
+  to {
+    stroke-dashoffset: calc(323.61);
+  }
+}
+
+@keyframes playHover {
+  from {
+    stroke-dashoffset: 0;
+  }
+  to {
+    stroke-dashoffset: calc(323.61 * 2);
+  }
+}

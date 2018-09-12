@@ -1,0 +1,33 @@
+<header class="header" role="banner">
+
+  <h1 class="logo">
+
+      <a class="logo__link" href="/" title="Return to the home page"></a>
+
+  </h1>
+
+  <nav class="nav" role="navigation">
+
+    <ul class="nav__list">
+
+    {{ $currentPage := . }}          
+
+    {{ range .Site.Menus.main }}
+
+      <li class="nav__item">
+
+        <a
+          href="{{ .URL }}"
+          class="nav__link {{if or ($currentPage.IsMenuCurrent "main" .) ($currentPage.HasMenuCurrent "main" .) }}nav__link--active{{end}}">
+          {{ .Name }}
+        </a>
+
+      </li>
+
+    {{ end }}
+
+    </ul>
+
+  </nav>
+
+</header>

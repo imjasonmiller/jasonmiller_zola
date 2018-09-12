@@ -1,0 +1,7 @@
+{{ $.Scratch.Add "size" ( default "md" ( .Get "size" ) ) }}
+
+<div class="article__grid-{{ $.Scratch.Get `size` }}">
+
+  {{ .Inner }}
+
+</div>

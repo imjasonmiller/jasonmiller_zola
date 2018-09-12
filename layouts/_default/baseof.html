@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.LanguageCode }}">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  {{ if .Title }}
+    <title>{{ .Site.Title }} -  {{ .Title }} </title>
+  {{ else }}
+    <title>{{ .Site.Title }}</title>
+  {{ end }}
+
+  <!-- https://developer.mozilla.org/en-US/docs/Web/HTML/Preloading_content -->
+  <link rel="preload" href="/fonts/DIN-Bold.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/CircularStd-Book.woff2" as="font"  type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/CircularStd-Bold.woff2" as="font"  type="font/woff2" crossorigin>
+
+  {{ $cssOptsMain := (dict "enableSourceMap" true) }}
+  {{ $styleMain := resources.Get "css/main.scss" | toCSS $cssOptsMain | postCSS | minify | fingerprint }}
+
+  <link rel="stylesheet" href="{{ $styleMain.RelPermalink }}">
+
+  {{ if and (fileExists ( printf "assets\\css\\%smain.scss" .Page.Dir ) ) .IsPage }}
+
+    {{ $stylePage := resources.Get ( printf "css\\%smain.scss" .Page.Dir ) | toCSS $cssOptsMain | postCSS | minify | fingerprint }}
+
+    <link rel="stylesheet" href="{{ $stylePage.RelPermalink }}">
+
+  {{ end }}
+  
+  <script type="text/javascript" src="/js/main.js"></script>
+
+</head>
+<body>
+
+  {{ if .IsHome }}
+
+  <!-- <div class="particles"></div> -->
+
+  {{ end }}
+
+  {{ partial "header.html" . }}
+
+  <main class="main">
+
+    {{ block "main" . }}{{ end }}
+
+  </main>
+
+  {{ partial "footer.html" . }}
+
+  {{ if and (fileExists ( printf "assets\\js\\%smain.js" .Page.Dir ) ) .IsPage }}
+
+    <script type="text/javascript" src="/{{ printf "js%smain.js" .Page.URL }}"></script>
+
+  {{ end }}
+  
+</body>
+</html>

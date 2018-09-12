@@ -1,0 +1,226 @@
+@import "_variables";
+@import "_scrollbar";
+@import "_selection";
+
+@import "_header";
+@import "_footer";
+@import "_feature";
+@import "_post";
+
+@import "_media-border";
+
+@font-face {
+  font-family: DIN;
+  font-weight: $font-weight-bold;
+  font-style: normal;
+  src: url("/fonts/DIN-Bold.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: Circular;
+  font-weight: $font-weight-regular;
+  font-style: normal;
+  src: url("/fonts/CircularStd-Book.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: Circular;
+  font-weight: $font-weight-bold;
+  font-style: normal;
+  src: url("/fonts/CircularStd-Bold.woff2") format("woff2");
+}
+
+html {
+  height: 100%;
+
+  background: $backgroundBorderColor;
+}
+
+html,
+body {
+  min-height: 100%;
+  margin: 0;
+}
+
+body {
+  font: {
+    weight: $font-weight-regular;
+    size: 1.125em;
+    family: $body-font-family;
+  }
+  line-height: $line-height;
+
+  box-sizing: border-box;
+  margin: 0.5em;
+
+  @include xl {
+    margin: 1em;
+  }
+
+  color: $fontColorDark;
+  background: $backgroundColor;
+
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h2 {
+  font: {
+    weight: $font-weight-bold;
+    size: 1.5em;
+    family: $head-font-family;
+  }
+  line-height: $line-height;
+
+  @include lg {
+    font-size: 2em;
+  }
+
+  // margin: -0.42em 0 0.5em; // Figure out why the cap height doesn't meet the container
+  margin: 0 0 0.5em; // Figure out why the cap height doesn't meet the container
+
+  color: $fontColorLight;
+}
+
+h3 {
+  font: {
+    weight: $font-weight-bold;
+    size: 1.25em;
+    family: $head-font-family;
+  }
+  line-height: $line-height;
+
+  margin: 0 0 0.5em;
+
+  color: $fontColorLight;
+
+  @include md {
+    font-size: 1.5em;
+  }
+}
+
+a {
+  color: $fontColorDark;
+  text-decoration: underline;
+}
+
+a:hover {
+  color: $fontColorLight;
+}
+
+main {
+  display: grid;
+
+  width: 100%;
+  max-width: 1340px;
+  margin: 0 auto;
+  padding: 0 1em;
+
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 1em;
+
+  box-sizing: border-box;
+
+  @include sm {
+    grid-template-columns: repeat(10, 1fr);
+  }
+
+  @include md {
+    grid-template-columns: repeat(12, 1fr);
+  }
+
+  @include lg {
+    grid-template-columns: repeat(14, 1fr);
+  }
+
+  @include xl {
+    padding: 0 2em;
+
+    grid-template-columns: repeat(16, 1fr);
+    grid-gap: 2em;
+  }
+}
+
+main > p {
+  grid-column: 4 / span 10;
+}
+
+p {
+  margin: 0 0 1.5em;
+}
+
+figure {
+  margin: 0;
+}
+
+.intro {
+  grid-column: 1 / -1;
+
+  @include md {
+    grid-column: 1/ 10;
+  }
+
+  @include lg {
+    grid-column: 1 / span 7;
+  }
+
+  @include xl {
+    grid-column: 1 / span 7;
+    margin-bottom: 6em;
+  }
+}
+
+.intro__greeting {
+  font: {
+    size: 1.25em;
+    weight: 700;
+  }
+
+  @include md {
+    font-size: 1.375em;
+  }
+
+  @include xl {
+    font-size: 1.5em;
+  }
+
+  display: block;
+
+  color: $fontColorLight;
+}
+
+.intro__title {
+  display: inline-block;
+
+  font: {
+    size: 2em;
+  }
+
+  background: linear-gradient(120deg, #fc3a75 0%, #9934db 50%, #58bafc 100%);
+  background-repeat: no-repeat;
+  background-size: 100% 0.25em;
+  background-position: 0 85%;
+
+  @include md {
+    font-size: 3em;
+  }
+
+  @include xl {
+    font-size: 4em;
+  }
+}
+
+.hr__particles {
+  position: relative;
+
+  height: 0;
+  margin: 0 0 1em 0;
+  padding: 0 0 20% 0;
+
+  grid-column: 1 / -1;
+
+  @include xl {
+    margin: 0 0 4em 0;
+  }
+}

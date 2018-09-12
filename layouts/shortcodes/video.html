@@ -1,0 +1,57 @@
+{{ $.Scratch.Add "width" ( default "1280" ( .Get "width" ) )}}
+
+{{ $.Scratch.Add "height" ( default "720" ( .Get "height" ) )}}
+
+{{/* Calculate correct padding ratio for video with ( height / width * 100 ) + "%" */}}
+
+{{ $ratio := mul ( float ( div ( float ( $.Scratch.Get "height" ) ) ( float ( $.Scratch.Get "width" ) ) ) ) 100 }}
+
+{{ $.Scratch.Add "ratio" ( printf "%.2f%%" $ratio ) }}
+
+
+{{ if .Get "vimeo" }}
+  <!-- @css-ignore -->
+  <figure class="article__video" data-id="{{ .Get "vimeo" }}" style="padding-bottom: {{ $.Scratch.Get `ratio` }};">
+
+    <div class="article__video__frame"></div>
+    <div class="article__video__image">
+      <img src="https://orig00.deviantart.net/6323/f/2017/190/e/2/20170707_rover_2560_001_by_macrebisz-dbfocxw.jpg">
+
+      <div class="article__video__swipe"></div>
+      
+      {{ if isset .Params "border" }}
+
+      {{ if (eq (.Get `border`) "left") }}
+    
+        <div class="media-border media-border--left">
+    
+      {{ end }}
+    
+      {{ if (eq (.Get `border`) "right") }}
+    
+        <div class="media-border media-border--right">
+    
+      {{ end }}
+    
+          <div class="media-border__line media-border__line--top"></div>
+    
+          <div class="media-border__line media-border__line--right"></div>
+
+          <div class="media-border__play"><svg viewBox="0 0 108 108">
+
+            <path d="m4,4l100,50l-100,50z"></path>
+
+          </svg></div>
+    
+          <div class="media-border__line media-border__line--bottom"></div>
+    
+          <div class="media-border__line media-border__line--left"></div>
+    
+      </div>
+    
+      {{ end }}
+
+    </div>
+  </figure>
+
+{{ end }}
