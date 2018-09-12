@@ -1,29 +1,26 @@
 import gulp from "gulp"
-import { execFile } from "child_process"
+import { execFile, spawn } from "child_process"
 import webpack from "webpack"
 import webpackConfig from "./webpack.config.js"
 import BrowserSync from "browser-sync"
 
 const browserSync = BrowserSync.create()
 
-const hugoArgsDefault = ["--destination", "./dist", "--minify"]
+const hugoArgsDefault = ["--destination", "./dist", "--minify", "--verbose"]
 const hugoArgsPreview = ["--buildDrafts", "--buildFuture"]
 
 const hugoBuild = (done, options, env = "development") => {
   process.env.NODE_ENV = env
 
-  console.log(process.env.NODE_ENV)
-
   const args = options ? hugoArgsDefault.concat(options) : hugoArgsDefault
 
-  return execFile("hugo", args, error => {
-    if (error) {
-      console.log(error)
-      browserSync.notify("Hugo build failed")
-      done("Hugo build failed")
-    } else {
+  return spawn("hugo", args, { stdio: inherit }).on("close", code => {
+    if (code === 0) {
       browserSync.reload()
       done()
+    } else {
+      browserSync.notify("Hugo build failed")
+      done("Hugo build failed")
     }
   })
 }
