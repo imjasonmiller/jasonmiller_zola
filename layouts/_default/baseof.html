@@ -48,8 +48,8 @@
   </main>
 
   {{ partial "footer.html" . }}
-
-  {{ if and (fileExists ( printf "assets\\js\\%smain.js" .Page.Dir ) ) .IsPage }}
+  
+  {{ if and (fileExists ( replace ( printf "assets/js/%smain.js" .Page.Dir ) "\\" "/" ) ) .IsPage }}
 
     <script type="text/javascript" src="/{{ printf "js%smain.js" .Page.URL }}"></script>
 
