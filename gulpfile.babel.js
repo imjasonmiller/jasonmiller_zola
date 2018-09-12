@@ -12,12 +12,15 @@ const hugoArgsPreview = ["--buildDrafts", "--buildFuture"]
 const hugoBuild = (done, options, env = "development") => {
   process.env.NODE_ENV = env
 
+  console.log(process.env.NODE_ENV)
+
   const args = options ? hugoArgsDefault.concat(options) : hugoArgsDefault
 
   return execFile("hugo", args, error => {
     if (error) {
+      console.log(error)
       browserSync.notify("Hugo build failed")
-      done()
+      done("Hugo build failed")
     } else {
       browserSync.reload()
       done()
