@@ -7,8 +7,7 @@ jobs:
     steps:
       - checkout
       - run:
-          command: wget -q -O libstdc++6
-    http://security.ubuntu.com/ubuntu/pool/main/g/gcc-5/libstdc++6_5.4.0-6ubuntu1~16.04.10_amd64.deb && dpkg --force-all -i libstdc++6
+          command: wget -q -O libstdc++6 http://security.ubuntu.com/ubuntu/pool/main/g/gcc-5/libstdc++6_5.4.0-6ubuntu1~16.04.10_amd64.deb && dpkg --force-all -i libstdc++6
       - run:
           name: Install hugo
           command: wget https://github.com/gohugoio/hugo/releases/download/v0.47.1/hugo_extended_0.47.1_Linux-64bit.deb -O /tmp/hugo.deb && sudo dpkg -i /tmp/hugo.deb
