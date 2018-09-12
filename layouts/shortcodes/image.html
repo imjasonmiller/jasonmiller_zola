@@ -1,0 +1,31 @@
+<figure class="article__figure">
+
+  <img class="article__figure__img" src="{{ .Get `src` }}">
+
+  {{ if isset .Params "border" }}
+
+  {{ if (eq (.Get `border`) "left") }}
+
+    <div class="media-border media-border--left">
+
+  {{ end }}
+
+  {{ if (eq (.Get `border`) "right") }}
+
+    <div class="media-border media-border--right">
+
+  {{ end }}
+
+      <div class="media-border__line media-border__line--top"></div>
+
+      <div class="media-border__line media-border__line--right"></div>
+
+      <div class="media-border__line media-border__line--bottom"></div>
+
+      <div class="media-border__line media-border__line--left"></div>
+
+  </div>
+
+  {{ end }}
+
+</figure>

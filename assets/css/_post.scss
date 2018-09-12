@@ -1,0 +1,228 @@
+.article {
+  display: grid;
+
+  grid-column: 1/ -1;
+  grid-template-columns: inherit;
+  grid-gap: 0 1.5em;
+
+  @include xl {
+    grid-template-columns: inherit;
+  }
+}
+
+.article h2 {
+  display: inline-block;
+
+  grid-column: 5 / span 8;
+
+  background: linear-gradient(120deg, #fc3a75 0%, #9934db 50%, #58bafc 100%);
+  background-repeat: no-repeat;
+  background-size: 100% 0.25em;
+  background-position: 0 85%;
+
+  @include xl {
+    font-size: 3em;
+  }
+}
+
+.article p {
+  grid-column: 5 / span 8;
+}
+
+// Blockquote <svg> triangle
+%svgTriangle {
+  position: absolute;
+
+  display: block;
+
+  width: 1.5em;
+  height: 1.125em; // This is made up, fix the aspect ratio and get the correct width-height
+
+  content: "";
+  pointer-events: none;
+
+  opacity: 0.25;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130 100"><path fill="none" stroke="#fff" stroke-width="2.5" d="m130,50l-86.66,-50l0,100z"></path></svg>');
+}
+
+.article blockquote {
+  margin: 0 0 1.5em;
+
+  grid-column: 13 / span 3;
+
+  & p {
+    position: relative;
+
+    margin: 0 1.5em;
+
+    &:first-child::after {
+      @extend %svgTriangle;
+      right: -1.125em;
+      bottom: 0.125em;
+    }
+
+    // Mirror the triangle
+    &:last-child::before {
+      @extend %svgTriangle;
+      top: 0.125em;
+      right: auto;
+      left: -1.5em;
+
+      transform: scaleX(-1);
+    }
+  }
+}
+
+.article pre {
+  overflow-x: auto;
+
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0 0 1.5em 0;
+  padding: 1em;
+
+  text-align: justify;
+
+  background: #181818;
+}
+
+.article pre code {
+  font: {
+    family: $mono-font-family;
+    size: 0.75em;
+    weight: 400;
+  }
+  line-height: $line-height;
+}
+
+.article p code {
+  font: {
+    family: $mono-font-family;
+    size: 0.875em;
+    weight: 400;
+  }
+  line-height: $line-height;
+  border-bottom: 1px solid $backgroundBorderColor;
+}
+
+.article__figure {
+  position: relative;
+
+  margin: 0 0 2em 0;
+}
+
+.article__figure__img {
+  display: inline-block;
+
+  width: 100%;
+
+  vertical-align: text-top;
+}
+
+.article__video {
+  position: relative;
+
+  height: 0;
+  margin: 0 0 2em 0;
+  padding: 0 0 56.25% 0;
+}
+
+.article__video__frame iframe {
+  position: absolute;
+
+  width: 100%;
+  height: 100%;
+}
+
+.article__video__image {
+  position: relative;
+
+  cursor: pointer;
+
+  & img {
+    display: block;
+    width: 100%;
+  }
+}
+
+.article__video__swipe {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+
+  transition: transform 0.5s 1s;
+  transform: scaleX(0);
+  transform-origin: left;
+
+  background: $backgroundColor;
+}
+
+.article__grid-sm-left,
+.article__grid-sm-right,
+.article__grid-md,
+.article__grid-lg {
+  width: 100%;
+}
+
+.article__grid-sm-left {
+  grid-column: 5/9;
+}
+
+.article__grid-sm-right {
+  grid-column: 9/13;
+}
+
+.article__grid-md {
+  grid-column: 5/13;
+}
+
+.article__grid-lg {
+  grid-column: 1/17;
+}
+
+.article__grid-xl {
+  width: calc(100vw - 3em);
+
+  grid-column: 1/17;
+  justify-self: center;
+}
+
+.article__intro {
+  position: relative;
+
+  grid-column: 1 / -1;
+
+  @include md {
+    grid-column: 1 / 10;
+  }
+
+  @include lg {
+    grid-column: 1 / 9;
+  }
+
+  @include xl {
+    grid-column: 1 / span 8;
+  }
+}
+
+.article > hr {
+  display: block;
+
+  width: 100%;
+  height: 1px;
+  margin-bottom: 3em;
+
+  content: "";
+
+  border: 0;
+  background: $backgroundBorderColor;
+
+  grid-column: 1 / -1;
+
+  @include lg {
+    margin-bottom: 6em;
+  }
+}

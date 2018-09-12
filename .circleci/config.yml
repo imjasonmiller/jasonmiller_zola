@@ -8,25 +8,13 @@ jobs:
       - checkout
       - run:
           name: Install hugo
-          command: wget https://github.com/gohugoio/hugo/releases/download/v0.31.1/hugo_0.31.1_Linux-64bit.deb -O /tmp/hugo.deb && sudo dpkg -i /tmp/hugo.deb
+          command: wget https://github.com/gohugoio/hugo/releases/download/v0.48/hugo_extended_0.48_Linux-64bit.deb -O /tmp/hugo.deb && sudo dpkg -i /tmp/hugo.deb
       - run:
           name: Install npm packages
           command: npm install
       - run:
-          name: Compile and minify CSS
-          command: npm run sass
-      - run:
           name: Build site
-          command: HUGO_ENV=production hugo -v -s ~/repo/
-      - run:
-          name: "Transpile JS"
-          command: npm run babel
-      - run:
-          name: "Minify XML and HTML"
-          command: npm run minify
-      - run:
-          name: "Uglify JavaScript"
-          command: npm run uglify
+          command: npm run build
       - add_ssh_keys
       - run: sudo apt install rsync
       - deploy:

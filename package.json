@@ -1,36 +1,44 @@
 {
-  "name": "jasonmiller",
+  "name": "jasonmiller.nl",
   "version": "1.0.0",
   "description": "Website of Jason Miller",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "sass": "node-sass -q src/css/main.scss | postcss --no-map --use autoprefixer cssnano -o static/static/css/main.css",
-    "clean": "rimraf public",
-    "babel": "babel public/static --out-dir public/static --presets=@babel/preset-env",
-    "minify": "npm run minify-xml && npm run minify-html",
-    "minify-xml": "html-minifier --file-ext xml --collapse-whitespace --input-dir public --output-dir public",
-    "minify-html": "html-minifier --file-ext html --collapse-whitespace --minify-css 1 --minify-js 1 --input-dir public --output-dir public",
-    "uglify": "find ./public -type f -name *.js -exec uglifyjs --compress --mangle --output {} -- {} \\;"
+    "start": "gulp server",
+    "build": "gulp build",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "browserslist": [
-    "last 2 versions"
-  ],
-  "keywords": [],
-  "author": "",
+  "author": "imjasonmiller",
   "license": "ISC",
-  "dependencies": {
-    "autoprefixer": "^7.2.3",
-    "cssnano": "^3.10.0",
-    "html-minifier": "^3.5.7",
-    "node-sass": "^4.7.2",
-    "postcss-cli": "^4.1.1",
-    "rimraf": "^2.6.2",
-    "uglify-js": "^3.3.16"
+  "babel": {
+    "presets": [
+      "@babel/preset-env"
+    ]
+  },
+  "prettier": {
+    "singleQuote": false,
+    "trailingComma": "all",
+    "semi": false,
+    "printWidth": 80,
+    "tabWidth": 2,
+    "useTabs": false,
+    "bracketSpacing": true
   },
   "devDependencies": {
-    "@babel/cli": "^7.0.0-beta.35",
-    "@babel/core": "^7.0.0-beta.35",
-    "@babel/preset-env": "^7.0.0-beta.35"
+    "@babel/core": "^7.0.0-rc.1",
+    "@babel/preset-env": "^7.0.0-rc.1",
+    "@babel/register": "^7.0.0-rc.1",
+    "babel-loader": "^8.0.0-beta.4",
+    "postcss-cli": "^6.0.0",
+    "webpack": "^4.16.5"
+  },
+  "dependencies": {
+    "@imjasonmiller/scroll-io": "0.0.0",
+    "browser-sync": "^2.24.6",
+    "gulp": "^4.0.0",
+    "intersection-observer": "^0.5.0",
+    "popmotion": "^8.3.3",
+    "three": "^0.95.0",
+    "three.meshline": "^1.1.0"
   }
 }

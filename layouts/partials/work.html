@@ -1,39 +1,131 @@
-<main role="main"> 
-    
-    <ul class="work">
+<section class="intro">
+    <span class="intro__greeting">Good <span class="intro__greeting__time">day</span>, I am</span>
 
-        {{ range $section := where $.Site.RegularPages "Section" "work"}} 
+    <h2 class="intro__title">Jason Miller</h2>
 
-            <li class="work__item">
+    <div>
+        <p>An interactive developer based in The Netherlands that loves to combine code and motion. I have previously worked in television as a video-editor/compositor.</p>
+        <p>I am currently available for hire. <a href="mailto:hello@jasonmiller.nl">Let's talk.</a></p>
+    </div>
 
-                <a class="work__link" href="{{ $section.RelPermalink }}">
+</section>
 
-                    <figure class="work__thumb">
+{{ range $index, $section := where $.Site.RegularPages "Section" "work"}} 
 
-                        {{ range $files := readDir ( printf "static/static/work/%s/" $section.Params.slug ) }}
+    {{ if eq (mod $index 2) 0 }}
 
-                            {{ if in $files.Name "thumb-lg"}}
+        <figure class="feature feature--left">
 
-                                <img class="work__image" width="640" height="320" src="{{ printf "/static/work/%s/%s" $section.Params.slug $files.Name }}" alt="thumbnail" title="">
+            <div>
 
-                            {{ end }}
+                {{ with .Resources.Match "img/thumb*.{png,jpg}" }}
 
-                        {{ end }}
+                    {{ range . }}
 
-                        <figcaption class="work__caption">
+                    <div class="feature__image">
 
-                            <h2 class="work__title">{{ $section.Title }}</h2>
+                        <img src="{{ .RelPermalink }}">
 
-                        </figcaption>
+                        <div class="feature__swipe"></div>
 
-                    </figure>
+                    </div>
 
+                    {{ end }}
+                    
+                {{ end }}
+        
+                <div class="media-border media-border--left">
+        
+                    <div class="media-border__line media-border__line--top media-border__line--hidden"></div>
+        
+                    <div class="media-border__line media-border__line--right media-border__line--hidden"></div>
+        
+                    <div class="media-border__line media-border__line--bottom media-border__line--hidden"></div>
+        
+                    <div class="media-border__line media-border__line--left media-border__line--hidden"></div>
+        
+                </div>
+        
+            </div>
+
+            <figcaption class="feature__caption">
+        
+                    <h2>{{ $section.Title }}</h2>
+        
+                    <p>A prototype for an energy initiative that brings neighborhoods together in order to promote renewable energy.</p>
+        
+                    <a href="{{ $section.RelPermalink }}" class="feature__link">
+                        Case study
+        
+                        <svg viewBox="0 0 130 100" class="feature__link__arrow">
+        
+                            <path d="m130,50l-86.66,-50l0,100z"></path>
+        
+                        </svg>
+        
+                    </a>
+        
+            </figcaption>
+
+        </figure>
+
+    {{ else }}
+
+        <figure class="feature feature--right">
+
+            <div>
+
+                {{ with .Resources.Match "img/thumb*.{png,jpg}" }}
+
+                    {{ range . }}
+
+                    <div class="feature__image">
+
+                        <img src="{{ .RelPermalink }}">
+
+                        <div class="feature__swipe"></div>
+
+                    </div>
+
+                    {{ end }}
+                    
+                {{ end }}
+        
+                <div class="media-border media-border--right">
+        
+                    <div class="media-border__line media-border__line--top media-border__line--hidden"></div>
+        
+                    <div class="media-border__line media-border__line--right media-border__line--hidden"></div>
+        
+                    <div class="media-border__line media-border__line--bottom media-border__line--hidden"></div>
+        
+                    <div class="media-border__line media-border__line--left media-border__line--hidden"></div>
+        
+                </div>
+        
+            </div>
+        
+            <figcaption class="feature__caption">
+        
+                <h2>{{ $section.Title }}</h2>
+        
+                <p>Intrepid reporter Tintin and Captain Haddock set off on a treasure hunt for a sunken ship commanded by Haddock's ancestor.</p>
+        
+                <a href="{{ $section.RelPermalink }}" class="feature__link">
+                    Case study
+        
+                    <svg viewBox="0 0 130 100" class="feature__link__arrow">
+        
+                        <path d="m130,50l-86.66,-50l0,100z"></path>
+        
+                    </svg>
+        
                 </a>
+        
+            </figcaption>
+            
+        </figure> 
 
-            </li>
+    {{ end }}
 
-        {{ end }}
-
-    </ul>
-    
-</main>
+{{ end }}

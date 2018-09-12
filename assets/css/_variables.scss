@@ -1,0 +1,60 @@
+// Page colors
+$backgroundColor: #111;
+$backgroundBorderColor: #1a1a1a;
+
+// Font colors
+$fontColorDark: #646464;
+$fontColorLight: #f1f1f1;
+
+// Text selection colors
+$selectionColor: #b1b1b1;
+$selectionBackground: #414040;
+
+// Breakpoints
+$screen-sm: 480px;
+$screen-md: 720px;
+$screen-lg: 960px;
+$screen-xl: 1280px;
+
+// Small devices
+@mixin sm {
+  @media (min-width: #{$screen-sm}) {
+    @content;
+  }
+}
+
+// Medium devices
+@mixin md {
+  @media (min-width: #{$screen-md}) {
+    @content;
+  }
+}
+
+// Large devices
+@mixin lg {
+  @media (min-width: #{$screen-lg}) {
+    @content;
+  }
+}
+
+// Extra large devices
+@mixin xl {
+  @media (min-width: #{$screen-xl}) {
+    @content;
+  }
+}
+
+// Typography
+$head-font-family: DIN, sans-serif;
+$body-font-family: Circular, sans-serif;
+$mono-font-family: Fira Code, monospace;
+
+$font-weight-regular: 400;
+$font-weight-bold: 700;
+
+$line-height: 1.5;
+
+// Easings
+$easeOutQuint: cubic-bezier(0.23, 1, 0.32, 1);
+$easeInOutBack: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+$easeInOutQuart: cubic-bezier(0.77, 0, 0.175, 1);

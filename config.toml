@@ -1,0 +1,40 @@
+baseURL = "https://jasonmiller.nl/"
+
+languageCode = "en-us"
+languageLang = "en"
+
+author = "Jason Miller"
+
+title = "Jason Miller"
+
+[[menu.main]]
+  identifier = "work"
+  name = "Work"
+  url = "/"
+  weight = "2"
+
+[[menu.main]]
+  parent = "work"
+  name = "Work"
+  url = "/work/"
+  weight = "1"
+
+[[menu.main]]
+  identifier = "journal"
+  name = "Journal"
+  url = "/journal/"
+  weight = "0"
+
+disableKinds = [
+  "RSS",
+  "sitemap",
+  "taxonomy",
+  "taxonomyTerm",
+]
+
+ignoreFiles = [
+  "README",
+  "node_modules",
+  "package.json",
+  "package-lock.json",
+]

@@ -1,179 +1,59 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="{{ .Site.LanguageCode }}">
 <head>
-    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="author" content="{{ .Site.Data.Settings.Author }}">
-    
-    {{ if .Params.description }}
-        <meta name="description" content="{{ .Params.description }}" />
-    {{ else }}
-        <meta name="description" content="{{ .Site.Data.Settings.Intro }}">
-    {{ end }}
-    
-    {{ if .Title }}
-      <title>{{ .Site.Data.Settings.Author }} — {{ .Title }}</title>
-    {{ else }}
-      <title>{{ .Site.Data.Settings.Author }}</title>
-    {{ end }}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="canonical" href="{{.Site.Data.settings.url}}{{ .URL }}"> 
-    
-    {{/* Facebook Open Graph */}}
-    
-    {{ if .Title }}
-        <meta property="og:type" content="article">
-    {{ else }}
-        <meta property="og:type" content="website">
-    {{ end }}
-    
-    {{ if .Title }}
-        <meta property="og:title" content="{{ .Title }}">
-    {{ else }}
-        <meta property="og:title" content="Work of Jason Miller">
-    {{ end }}
-    
-    {{ if .Description }}
-        <meta property="og:description" content="{{ .Description }}" />
-    {{ else }}
-        <meta property="og:description" content="{{ .Site.Data.Settings.Intro }}">
-    {{ end }}
-    
-    {{ if .URL }}
-        <meta property="og:url" content="{{ .URL | absURL }}">
-    {{ end }}
-    
-    {{ if .Params.image }}
-        <meta property="og:image" content="{{ .Site.Data.Settings.URL }}/static/work/{{ .Slug }}/{{ .Params.image }}">
-    {{ else }}
-        <meta property="og:image" content="{{ .Site.Data.Settings.URL }}/static/img/share-default.jpg">
-    {{ end }}
-    
-    {{ if .Params.categories }}
-        <meta property="article:section" content="{{ delimit .Params.categories ", " }}">
-    {{ end }} 
-    
-    {{/* Twitter Card */}}
-    
-    {{ if .Params.image }}
-        <meta name="twitter:card" content="summary_large_image">
-        <meta name="twitter:image" content="{{ .Site.Data.Settings.URL }}/static/work/{{ .Slug }}/{{ .Params.image }}"> 
-    {{ else }}
-        <meta name="twitter:card" content="summary_large_image">
-        <meta name="twitter:image" content="{{ .Site.Data.Settings.URL }}/static/img/share-default.jpg">
-    {{ end }}
-    
-    <meta name="twitter:site" content="@imjasonmiller">
-    <meta name="twitter:creator" content="@imjasonmiller">
-    
-    {{ if .Title }}
-        <meta name="twitter:title" content="{{ .Title }}">
-    {{ else }}
-        <meta name="twitter:title" content="Work of Jason Miller">
-    {{ end }}
-    
-    {{ if .Description }}
-        <meta name="twitter:description" content="{{ .Description }}">
-    {{ else }}
-        <meta name="twitter:description" content="{{ .Site.Data.settings.intro }}">
-    {{ end }}
-    
-    {{/* Include Font styles for faster loading */}}
-    
-    <style>
-        @font-face {
-        font-family: 'Open Sans';
-        font-style: normal;
-        font-weight: 400;
-        src: url('/static/fonts/open-sans-v15-latin-regular.eot'); /* IE9 Compat Modes */
-        src: local('Open Sans'), local('OpenSans'),
-            url('/static/fonts/open-sans-v15-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-            url('/static/fonts/open-sans-v15-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
-            url('/static/fonts/open-sans-v15-latin-regular.woff') format('woff'), /* Modern Browsers */
-            url('/static/fonts/open-sans-v15-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
-            url('/static/fonts/open-sans-v15-latin-regular.svg#OpenSans') format('svg'); /* Legacy iOS */
-        }
+  {{ if .Title }}
+    <title>{{ .Site.Title }} -  {{ .Title }} </title>
+  {{ else }}
+    <title>{{ .Site.Title }}</title>
+  {{ end }}
 
-        @font-face {
-        font-family: 'Open Sans';
-        font-style: normal;
-        font-weight: 700;
-        src: url('/static/fonts/open-sans-v15-latin-700.eot'); /* IE9 Compat Modes */
-        src: local('Open Sans Bold'), local('OpenSans-Bold'),
-            url('/static/fonts/open-sans-v15-latin-700.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-            url('/static/fonts/open-sans-v15-latin-700.woff2') format('woff2'), /* Super Modern Browsers */
-            url('/static/fonts/open-sans-v15-latin-700.woff') format('woff'), /* Modern Browsers */
-            url('/static/fonts/open-sans-v15-latin-700.ttf') format('truetype'), /* Safari, Android, iOS */
-            url('/static/fonts/open-sans-v15-latin-700.svg#OpenSans') format('svg'); /* Legacy iOS */
-        }
+  <!-- https://developer.mozilla.org/en-US/docs/Web/HTML/Preloading_content -->
+  <link rel="preload" href="/fonts/DIN-Bold.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/CircularStd-Book.woff2" as="font"  type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/CircularStd-Bold.woff2" as="font"  type="font/woff2" crossorigin>
 
-        @font-face {
-        font-family: 'Roboto';
-        font-style: normal;
-        font-weight: 900;
-        src: url('/static/fonts/roboto-v18-latin-900.eot'); /* IE9 Compat Modes */
-        src: local('Roboto Black'), local('Roboto-Black'),
-            url('/static/fonts/roboto-v18-latin-900.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-            url('/static/fonts/roboto-v18-latin-900.woff2') format('woff2'), /* Super Modern Browsers */
-            url('/static/fonts/roboto-v18-latin-900.woff') format('woff'), /* Modern Browsers */
-            url('/static/fonts/roboto-v18-latin-900.ttf') format('truetype'), /* Safari, Android, iOS */
-            url('/static/fonts/roboto-v18-latin-900.svg#Roboto') format('svg'); /* Legacy iOS */
-        }
-    </style>
-    
-    <link rel="stylesheet" href="/static/css/main.css"> 
+  {{ $cssOptsMain := (dict "enableSourceMap" true) }}
+  {{ $styleMain := resources.Get "css/main.scss" | toCSS $cssOptsMain | postCSS | minify | fingerprint }}
 
-    {{ partial "helpers/inject.html" (dict "context" . "Elem" "head" ) }}
+  <link rel="stylesheet" href="{{ $styleMain.RelPermalink }}">
+
+  {{ if and (fileExists ( printf "assets\\css\\%smain.scss" .Page.Dir ) ) .IsPage }}
+
+    {{ $stylePage := resources.Get ( printf "css\\%smain.scss" .Page.Dir ) | toCSS $cssOptsMain | postCSS | minify | fingerprint }}
+
+    <link rel="stylesheet" href="{{ $stylePage.RelPermalink }}">
+
+  {{ end }}
+  
+  <script type="text/javascript" src="/js/main.js"></script>
 
 </head>
-
 <body>
 
-    {{ partial "header.html" . }} 
+  {{ if .IsHome }}
 
-    {{ block "main" . }}
+  <!-- <div class="particles"></div> -->
 
-    {{ end}}
+  {{ end }}
 
-    {{ partial "footer.html" . }} 
+  {{ partial "header.html" . }}
 
-    <script type="text/javascript">
-        var header = document.body.querySelector('.header');
-        var button = document.body.querySelector('.nav-btn');
+  <main class="main">
 
-        var whatsApp = document.body.querySelector('.post__share--whatsapp')
-            
-        function handleClick () {
-            if (header.classList.contains('header--opened')) {
-                header.classList.add('header--closed');
-                header.classList.remove('header--opened');
-            } else {
-                header.classList.add('header--opened');
-                header.classList.remove('header--closed');
-            }
-        }
-            
-        button.addEventListener('click', handleClick, false);
-        
-        // For a better experience, the WhatsApp href is switched for mobile devices
-        if (whatsApp) {
-            if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
-                const currentHref = whatsApp.getAttribute("href")
-                whatsApp.setAttribute("href", currentHref.replace("https://web.whatsapp.com/", "whatsapp://"))
-            }
-        }
-    </script>
+    {{ block "main" . }}{{ end }}
 
-    <script type="text/javascript" src="/static/js/particles.js"></script>
-    
-    <!-- Google Analytics -->
-    {{ template "_internal/google_analytics_async.html" . }}    
-    <!-- End Google Analytics -->
+  </main>
 
-    {{ partial "helpers/inject.html" (dict "context" . "Elem" "body" ) }}
+  {{ partial "footer.html" . }}
 
+  {{ if and (fileExists ( printf "assets\\js\\%smain.js" .Page.Dir ) ) .IsPage }}
+
+    <script type="text/javascript" src="/{{ printf "js%smain.js" .Page.URL }}"></script>
+
+  {{ end }}
+  
 </body>
-
 </html>
