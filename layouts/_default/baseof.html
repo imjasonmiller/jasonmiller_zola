@@ -20,9 +20,9 @@
 
   <link rel="stylesheet" href="{{ $styleMain.RelPermalink }}">
 
-  {{ if and (fileExists ( printf "assets\\css\\%smain.scss" .Page.Dir ) ) .IsPage }}
+  {{ if and (fileExists ( replace ( printf "assets/css/%smain.scss" .Page.Dir ) "\\" "/" ) ) .IsPage }}
 
-    {{ $stylePage := resources.Get ( printf "css\\%smain.scss" .Page.Dir ) | toCSS $cssOptsMain | postCSS | minify | fingerprint }}
+    {{ $stylePage := resources.Get ( replace ( printf "css/%smain.scss" .Page.Dir ) "\\" "/" ) | toCSS $cssOptsMain | postCSS | minify | fingerprint }}
 
     <link rel="stylesheet" href="{{ $stylePage.RelPermalink }}">
 
@@ -32,6 +32,8 @@
 
 </head>
 <body>
+
+  {{ replace ( printf "css/%smain.scss" .Page.Dir ) "\\" "/" }}
 
   {{ if .IsHome }}
 
