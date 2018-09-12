@@ -1,13 +1,15 @@
 ### Hugo with Webpack 📦 and Gulp 🥤
 
-```
-npm install      🎉
+#### Install
 
-npm run start    start the dev server
-npm run build    build for production
+```shell
+$ npm install      # 🎉
+
+$ npm run start    # start the dev server
+$ npm run build    # build for production
 ```
 
-### Todo
+#### Todo
 
 - [ ] Refactor long list of groups in the `LogoAnimation` class.
 - [ ] Move typograhpy to a different `.scss` file.

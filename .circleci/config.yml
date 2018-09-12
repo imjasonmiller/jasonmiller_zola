@@ -10,12 +10,14 @@ jobs:
       - run:
           name: Install hugo
           command: wget https://github.com/gohugoio/hugo/releases/download/v0.47.1/hugo_extended_0.47.1_Linux-64bit.deb -O /tmp/hugo.deb && sudo dpkg -i /tmp/hugo.deb
-      - run:
-          name: Install npm packages
-          command: npm install
-      - run:
-          name: Build site
-          command: npm run build
+      - restore_cache:
+          key: npm-cache-{{ .Branch }}-{{ checksum "package.json" }}
+      - run: npm install
+      - save_cache:
+          key: npm-cache-{{ .Branch }}-{{ checksum "package.json" }}
+          paths:
+            - node_modules
+      - run: npm run build
       - add_ssh_keys
       - run: wget -q -O libpopt0 http://security.ubuntu.com/ubuntu/pool/main/p/popt/libpopt0_1.16-8ubuntu1_amd64.deb && sudo dpkg --force-all -i libpopt0
       - run: wget -q -O rsync http://security.ubuntu.com/ubuntu/pool/main/r/rsync/rsync_3.1.1-3ubuntu1.2_amd64.deb && sudo dpkg --force-all -i rsync

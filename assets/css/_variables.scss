@@ -7,8 +7,8 @@ $fontColorDark: #646464;
 $fontColorLight: #f1f1f1;
 
 // Text selection colors
-$selectionColor: #b1b1b1;
-$selectionBackground: #414040;
+$selectionColor: $fontColorLight;
+$selectionBackground: #90f;
 
 // Breakpoints
 $screen-sm: 480px;
