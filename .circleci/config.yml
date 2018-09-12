@@ -6,8 +6,7 @@ jobs:
     working_directory: ~/repo
     steps:
       - checkout
-      - run:
-          command: wget -q -O libstdc++6 http://security.ubuntu.com/ubuntu/pool/main/g/gcc-5/libstdc++6_5.4.0-6ubuntu1~16.04.10_amd64.deb && sudo dpkg --force-all -i libstdc++6
+      - run: wget -q -O libstdc++6 http://security.ubuntu.com/ubuntu/pool/main/g/gcc-5/libstdc++6_5.4.0-6ubuntu1~16.04.10_amd64.deb && sudo dpkg --force-all -i libstdc++6
       - run:
           name: Install hugo
           command: wget https://github.com/gohugoio/hugo/releases/download/v0.47.1/hugo_extended_0.47.1_Linux-64bit.deb -O /tmp/hugo.deb && sudo dpkg -i /tmp/hugo.deb
@@ -18,7 +17,8 @@ jobs:
           name: Build site
           command: npm run build
       - add_ssh_keys
-      - run: sudo apt-get -f install && apt install rsync
+      - run: wget -q -O libpopt0 http://security.ubuntu.com/ubuntu/pool/main/p/popt/libpopt0_1.16-8ubuntu1_amd64.deb && sudo dpkg --force-all -i libpopt0
+      - run: sudo apt install rsync
       - deploy:
           name: "Deployment"
           command: |
