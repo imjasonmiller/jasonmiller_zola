@@ -18,7 +18,7 @@ jobs:
           command: npm run build
       - add_ssh_keys
       - run: wget -q -O libpopt0 http://security.ubuntu.com/ubuntu/pool/main/p/popt/libpopt0_1.16-8ubuntu1_amd64.deb && sudo dpkg --force-all -i libpopt0
-      - run: sudo apt install rsync
+      - run: wget -q -O rsync http://security.ubuntu.com/ubuntu/pool/main/r/rsync/rsync_3.1.1-3ubuntu1.2_amd64.deb && sudo dpkg --force-all -i rsync
       - deploy:
           name: "Deployment"
           command: |
