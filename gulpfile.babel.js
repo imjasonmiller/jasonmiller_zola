@@ -27,6 +27,23 @@ const hugoBuild = (done, options, env = "development") => {
   })
 }
 
+const webpackBuild = (done, env = "development") => {
+  webpack(webpackConfig(env), (err, stats) => {
+    if (err) throw new Error(err)
+
+    console.log(
+      "[webpack]",
+      stats.toString({
+        colors: true,
+        progress: true,
+      }),
+    )
+
+    browserSync.reload()
+    done()
+  })
+}
+
 const initServer = () => {
   browserSync.init({
     server: {
@@ -68,26 +85,9 @@ gulp.task("images", () =>
     .pipe(browserSync.stream()),
 )
 
-// JavaScript
-gulp.task("js", done => {
-  webpack(webpackConfig(), (err, stats) => {
-    if (err) throw new Error(err)
-
-    console.log(
-      "[webpack]",
-      stats.toString({
-        colors: true,
-        progress: true,
-      }),
-    )
-
-    browserSync.reload()
-    done()
-  })
-})
-
 // Development
 gulp.task("hugo", hugoBuild)
+gulp.task("js", done => webpackBuild(done))
 
 // Development server
 gulp.task(
@@ -96,13 +96,10 @@ gulp.task(
 )
 
 // Production
+gulp.task("hugo-prod", done => hugoBuild(done, [], "production"))
+gulp.task("js-prod", done => webpackBuild(done, "production"))
+
 gulp.task(
   "build",
-  gulp.series(
-    done => hugoBuild(done, [], "production"),
-    "js",
-    "images",
-    "fonts",
-    "favicon",
-  ),
+  gulp.series("hugo-prod", "js-prod", "images", "fonts", "favicon"),
 )
