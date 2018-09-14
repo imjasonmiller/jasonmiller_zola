@@ -20,21 +20,18 @@
 
         <div>
 
-            {{ with .Resources.Match "img/thumb*.{png,jpg}" }}
+            {{ $image := .Resources.GetMatch "img/thumb*.{png,jpg}" }}
 
-                {{ range . }}
+            {{ $image_720 := ( $image.Resize "720x q90 Lanczos" ).RelPermalink }}
+            {{ $image_1080 := ( $image.Resize "720x q90 Lanczos" ).RelPermalink }}
+            
+            <div class="feature__image">
 
-                <div class="feature__image">
+                <img srcset='{{ $image_720 }} 720w, {{ $image_1080 }} 1080w' src="{{ $image.RelPermalink }}">
 
-                    <img src="{{ .RelPermalink }}">
+                <div class="feature__swipe"></div>
 
-                    <div class="feature__swipe"></div>
-
-                </div>
-
-                {{ end }}
-                
-            {{ end }}
+            </div>
     
             <div class="media-border media-border--{{ $align }}">
     
@@ -62,7 +59,6 @@
                 {{ $text }}
             {{ end }}
 
-    
             <a href="{{ $case.RelPermalink }}" class="feature__link">
                 Case study
     

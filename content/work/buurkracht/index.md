@@ -1,9 +1,9 @@
----
-title: "Buurkracht"
-date: 2018-08-25T18:53:51+02:00
-description: A prototype for an energy initiative that brings neighborhoods together in order to promote renewable energy.
-draft: false
----
++++
+title = "Buurkracht"
+date = 2018-08-25T16:53:51.000Z
+description = "A prototype for an energy initiative that brings neighborhoods together in order to promote renewable energy."
+draft = false
++++
 
 <div class="article__intro">
 
