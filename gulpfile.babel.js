@@ -16,11 +16,9 @@ const hugoBuild = (done, options, env = "development") => {
 
   return spawn("hugo", args, { stdio: "inherit" }).on("close", code => {
     if (code === 0) {
-      console.log("Code 0")
       browserSync.reload()
       done()
     } else {
-      console.log("Code !== 0")
       browserSync.notify("Hugo build failed")
       done("Hugo build failed")
     }

@@ -4,16 +4,16 @@ import { easing, everyFrame, timeline } from "popmotion"
 
 class Logo {
   constructor(container) {
-    this.scene = new THREE.Scene()
+    this.scene = new Scene()
     const ratio = container.offsetWidth / container.offsetHeight
-    const d = 3.5 // 4.5
+    const d = 3.5
 
     // prettier-ignore
-    this.camera = new THREE.OrthographicCamera(-d * ratio, d * ratio, d, -d,  1, 1000)
+    this.camera = new OrthographicCamera(-d * ratio, d * ratio, d, -d,  1, 1000)
     this.camera.position.set(d, d, d)
     this.camera.lookAt(this.scene.position)
 
-    this.renderer = new THREE.WebGLRenderer({
+    this.renderer = new WebGLRenderer({
       alpha: true,
       antialias: true,
     })
@@ -23,13 +23,10 @@ class Logo {
     container.appendChild(this.renderer.domElement)
 
     this.lineMat = new MeshLineMaterial({
-      color: new THREE.Color(0xf1f1f1),
+      color: new Color(0xf1f1f1),
       lineWidth: 0.01875,
       sizeAttenuation: 1,
-      resolution: new THREE.Vector2(
-        container.offsetWidth,
-        container.offsetHeight,
-      ),
+      resolution: new Vector2(container.offsetWidth, container.offsetHeight),
     })
 
     // prettier-ignore
@@ -65,7 +62,7 @@ class Logo {
     // Offset the center line by 1
     this.line0.position.set(0, 1, 0)
 
-    this.group1 = new THREE.Group()
+    this.group1 = new Group()
     this.group1.position.set(-1, 0, 0)
 
     this.rect0 = this.rect.clone()
@@ -81,7 +78,7 @@ class Logo {
     this.rect2.position.set(1, 0, 0)
     this.rect2.rotation.set(0, Math.PI, 0)
 
-    this.group2 = new THREE.Group()
+    this.group2 = new Group()
     this.group2.add(this.rect2)
     this.group2.position.set(-2, 0, 0)
     this.group2.rotation.set(0, 0, -Math.PI / 2)
@@ -89,11 +86,11 @@ class Logo {
     this.rect5 = this.rect.clone()
     this.rect5.position.set(0, 0, -1)
 
-    this.group5 = new THREE.Group()
+    this.group5 = new Group()
     this.group5.position.set(0, 0, -1)
     this.group5.add(this.rect5)
 
-    this.group3 = new THREE.Group()
+    this.group3 = new Group()
     this.group3.position.set(-1, 0, 0)
 
     this.rect3 = this.rectOpen.clone()
@@ -109,7 +106,7 @@ class Logo {
     this.rect6.position.set(0, 0, 1)
     this.rect6.rotation.set(0, Math.PI / 2, 0)
 
-    this.group6 = new THREE.Group()
+    this.group6 = new Group()
     this.group6.position.set(0, 0, -2)
     this.group6.rotation.set(Math.PI / 2, 0, 0)
 
@@ -119,7 +116,7 @@ class Logo {
     this.rect4 = this.rect.clone()
     this.rect4.position.set(-1, 0, 0)
 
-    this.group4 = new THREE.Group()
+    this.group4 = new Group()
     this.group4.position.set(2, 0, 0)
 
     this.group4.add(this.rect4)
@@ -131,7 +128,7 @@ class Logo {
     this.rect7.position.set(0, 0, 1)
     this.rect7.rotation.set(0, -Math.PI / 2, 0)
 
-    this.group7 = new THREE.Group()
+    this.group7 = new Group()
     this.group7.position.set(0, 0, 2)
 
     this.group7.add(this.rect7)
@@ -166,13 +163,13 @@ class Logo {
   }
 
   drawGrid() {
-    const gridGeo = new THREE.PlaneBufferGeometry(8, 8, 4, 4)
-    const gridMat = new THREE.MeshBasicMaterial({
+    const gridGeo = new PlaneBufferGeometry(8, 8, 4, 4)
+    const gridMat = new MeshBasicMaterial({
       color: 0x323232,
       wireframe: true,
     })
 
-    const grid = new THREE.Mesh(gridGeo, gridMat)
+    const grid = new Mesh(gridGeo, gridMat)
     grid.rotation.x = Math.PI / 2
     grid.position.set(-4, -4, -4)
 
@@ -184,7 +181,7 @@ class Logo {
     const line = new MeshLine()
     line.setGeometry(vertices)
 
-    const mesh = new THREE.Mesh(line.geometry, this.lineMat)
+    const mesh = new Mesh(line.geometry, this.lineMat)
     mesh.rotation.order = "YXZ"
 
     return mesh
