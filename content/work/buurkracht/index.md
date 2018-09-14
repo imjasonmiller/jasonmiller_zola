@@ -1,6 +1,7 @@
 ---
 title: "Buurkracht"
 date: 2018-08-25T18:53:51+02:00
+description: A prototype for an energy initiative that brings neighborhoods together in order to promote renewable energy.
 draft: false
 ---
 

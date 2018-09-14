@@ -1,6 +1,7 @@
 ---
 title: "European Union Datathon"
 date: 2018-08-25T18:53:51+02:00
+description: Improving transparency with regard to the meetings of commissioners by making use of the open data provided by the European Union.
 draft: false
 ---
 

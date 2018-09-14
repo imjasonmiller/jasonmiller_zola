@@ -12,122 +12,70 @@
 
 <hr>
 
-{{ range $index, $section := where $.Site.RegularPages "Section" "work"}} 
+{{ range $index, $case := where $.Site.RegularPages "Section" "work"}} 
 
-    {{ if eq (mod $index 2) 0 }}
+    {{ $align := cond ( eq ( mod $index 2) 0 ) "left" "right" }}
 
-        <figure class="feature feature--left">
+    <figure class="feature feature--{{ $align }}">
 
-            <div>
+        <div>
 
-                {{ with .Resources.Match "img/thumb*.{png,jpg}" }}
+            {{ with .Resources.Match "img/thumb*.{png,jpg}" }}
 
-                    {{ range . }}
+                {{ range . }}
 
-                    <div class="feature__image">
+                <div class="feature__image">
 
-                        <img src="{{ .RelPermalink }}">
+                    <img src="{{ .RelPermalink }}">
 
-                        <div class="feature__swipe"></div>
+                    <div class="feature__swipe"></div>
 
-                    </div>
-
-                    {{ end }}
-                    
-                {{ end }}
-        
-                <div class="media-border media-border--left">
-        
-                    <div class="media-border__line media-border__line--top media-border__line--hidden"></div>
-        
-                    <div class="media-border__line media-border__line--right media-border__line--hidden"></div>
-        
-                    <div class="media-border__line media-border__line--bottom media-border__line--hidden"></div>
-        
-                    <div class="media-border__line media-border__line--left media-border__line--hidden"></div>
-        
                 </div>
-        
-            </div>
 
-            <figcaption class="feature__caption">
-        
-                    <h2>{{ $section.Title }}</h2>
-        
-                    <p>A prototype for an energy initiative that brings neighborhoods together in order to promote renewable energy.</p>
-        
-                    <a href="{{ $section.RelPermalink }}" class="feature__link">
-                        Case study
-        
-                        <svg viewBox="0 0 130 100" class="feature__link__arrow">
-        
-                            <path d="m130,50l-86.66,-50l0,100z"></path>
-        
-                        </svg>
-        
-                    </a>
-        
-            </figcaption>
-
-        </figure>
-
-    {{ else }}
-
-        <figure class="feature feature--right">
-
-            <div>
-
-                {{ with .Resources.Match "img/thumb*.{png,jpg}" }}
-
-                    {{ range . }}
-
-                    <div class="feature__image">
-
-                        <img src="{{ .RelPermalink }}">
-
-                        <div class="feature__swipe"></div>
-
-                    </div>
-
-                    {{ end }}
-                    
                 {{ end }}
-        
-                <div class="media-border media-border--right">
-        
-                    <div class="media-border__line media-border__line--top media-border__line--hidden"></div>
-        
-                    <div class="media-border__line media-border__line--right media-border__line--hidden"></div>
-        
-                    <div class="media-border__line media-border__line--bottom media-border__line--hidden"></div>
-        
-                    <div class="media-border__line media-border__line--left media-border__line--hidden"></div>
-        
-                </div>
-        
+                
+            {{ end }}
+    
+            <div class="media-border media-border--{{ $align }}">
+    
+                <div class="media-border__line media-border__line--top media-border__line--hidden"></div>
+    
+                <div class="media-border__line media-border__line--right media-border__line--hidden"></div>
+    
+                <div class="media-border__line media-border__line--bottom media-border__line--hidden"></div>
+    
+                <div class="media-border__line media-border__line--left media-border__line--hidden"></div>
+    
             </div>
-        
-            <figcaption class="feature__caption">
-        
-                <h2>{{ $section.Title }}</h2>
-        
-                <p>Improving transparency with regard to the meetings of commissioners by making use of the open data provided by the European Union.</p>
-        
-                <a href="{{ $section.RelPermalink }}" class="feature__link">
-                    Case study
-        
-                    <svg viewBox="0 0 130 100" class="feature__link__arrow">
-        
-                        <path d="m130,50l-86.66,-50l0,100z"></path>
-        
-                    </svg>
-        
-                </a>
-        
-            </figcaption>
-            
-        </figure> 
+    
+        </div>
+    
+        <figcaption class="feature__caption">
+    
+            <h2>{{ $case.Title }}</h2>
 
-    {{ end }}
+            {{ $text := $case.Description | markdownify }}
+
+            {{ if not ( strings.Contains $text "<p>" ) }}
+                <p>{{ $text }}</p>
+            {{ else }}
+                {{ $text }}
+            {{ end }}
+
+    
+            <a href="{{ $case.RelPermalink }}" class="feature__link">
+                Case study
+    
+                <svg viewBox="0 0 130 100" class="feature__link__arrow">
+    
+                    <path d="m130,50l-86.66,-50l0,100z"></path>
+    
+                </svg>
+    
+            </a>
+    
+        </figcaption>
+        
+    </figure> 
 
 {{ end }}
