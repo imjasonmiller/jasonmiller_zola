@@ -1,7 +1,6 @@
-import webpack from "webpack"
-import path from "path"
-
-import glob from "glob"
+const webpack = require("webpack")
+const path = require("path")
+const glob = require("glob")
 
 const getEntries = pattern => {
   const entries = {}
@@ -38,4 +37,4 @@ const config = (mode = "development") => ({
   },
 })
 
-export default config
+module.exports = config
