@@ -4,11 +4,11 @@
 
     <li itemprop="email">
 
-      <a class="footer__link" href="mailto:hello@jasonmiller.nl">
+      <a class="footer__link" href="mailto:{{ .Site.Params.email }}">
 
         <img src="/img/footer__icon__email.svg" alt="" class="footer__icon">
 
-        Contact@jasonmiller.nl
+        {{ .Site.Params.email }}
 
       </a>
 
@@ -16,7 +16,7 @@
 
     <li>
 
-      <a class="footer__link" href="https://github.com/imjasonmiller/" target="_blank" rel="noopenner noreferrer">
+      <a class="footer__link" href="{{ .Site.Params.github }}" target="_blank" rel="noopenner noreferrer">
 
         <img src="/img/footer__icon__github.svg" alt="" class="footer__icon">  
 
@@ -28,7 +28,7 @@
 
     <li>
 
-      <a class="footer__link" href="https://twitter.com/imjasonmiller" target="_blank" rel="noopenner noreferrer">
+      <a class="footer__link" href="{{ .Site.Params.twitter }}" target="_blank" rel="noopenner noreferrer">
 
         <img src="/img/footer__icon__twitter.svg" alt="" class="footer__icon">
 
@@ -40,7 +40,7 @@
 
     <li>
 
-      <a class="footer__link" href="https://dribbble.com/imjasonmiller" target="_blank" rel="noopenner noreferrer">
+      <a class="footer__link" href="{{ .Site.Params.dribbble }}" target="_blank" rel="noopenner noreferrer">
 
         <img src="/img/footer__icon__dribbble.svg" alt="" class="footer__icon">
 

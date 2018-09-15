@@ -4,8 +4,13 @@ languageCode = "en-us"
 languageLang = "en"
 
 author = "Jason Miller"
-
 title = "Jason Miller"
+
+[params]
+  email = "contact@jasonmiller.nl"
+  dribbble = "https://dribbble.com/imjasonmiller"
+  twitter = "https://twitter.com/imjasonmiller"
+  github = "https://github.com/imjasonmiller"
 
 [[menu.main]]
   identifier = "work"

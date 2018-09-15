@@ -2,7 +2,7 @@ const webpack = require("webpack")
 const path = require("path")
 const glob = require("glob")
 
-// Add entries for each page's custom script
+// Add entries for each page bundle's custom script
 const getEntries = pattern => {
   const entries = {}
 
