@@ -23,7 +23,7 @@
             {{ $image := .Resources.GetMatch "img/thumb*.{png,jpg}" }}
 
             {{ $image_720 := ( $image.Resize "720x q90 Lanczos" ).RelPermalink }}
-            {{ $image_1080 := ( $image.Resize "720x q90 Lanczos" ).RelPermalink }}
+            {{ $image_1080 := ( $image.Resize "1080x q90 Lanczos" ).RelPermalink }}
             
             <div class="feature__image">
 
