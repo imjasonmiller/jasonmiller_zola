@@ -22,7 +22,7 @@
 
   transition: transform #{$border-anim}ms $easeOutQuint;
 
-  background: rgba(255, 255, 255, 0.25);
+  background: rgba($color-secondary, 0.25);
 
   // prettier-ignore
   $borders: (
@@ -73,7 +73,7 @@
   margin: auto;
 
   grid-area: mid-mid;
-  stroke: $color-light;
+  stroke: $color-primary;
   stroke-width: 5;
   fill: none;
   stroke-dasharray: 323.61;

@@ -9,7 +9,10 @@
   flex-direction: column;
 
   margin: 0;
-  padding: 1em 0;
+  padding: {
+    top: 1em;
+    bottom: 1em;
+  }
 
   list-style: none;
 
@@ -33,15 +36,11 @@
   align-items: center;
 }
 
-.footer__link:hover .footer__icon {
-  opacity: 1;
-}
-
 .footer__icon {
   width: 2em;
-  margin: 0 0.5em 0 0;
+  height: 2em;
 
-  transition: opacity 0.2s;
-
-  opacity: 0.4;
+  margin: {
+    right: 0.5em;
+  }
 }

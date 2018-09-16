@@ -120,7 +120,7 @@ figure {
 
   display: block;
 
-  color: $color-light;
+  color: $color-primary;
 
   @include md {
     font: {
@@ -182,7 +182,7 @@ figure {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: $color-dark;
+  background: $color-secondary;
 
   &:hover {
     @extend ::-webkit-scrollbar-thumb;

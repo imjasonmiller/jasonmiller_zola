@@ -81,6 +81,8 @@
   & img {
     display: block;
     width: 100%;
+    box-shadow: -5px 10px 50px 0 rgba(95, 95, 95, 0.1);
+    border-radius: 1em;
   }
 
   &.visible {
@@ -100,17 +102,15 @@
 .result {
   grid-column: 1 / -1;
   display: grid;
-  margin-bottom: 1.5em;
   grid-template-columns: inherit;
 
   @include xl {
-    margin-bottom: 4em;
     grid-column: 1 / 17;
     grid-gap: 2em 2em;
   }
 }
 
-.result__line {
+.result__img {
   position: relative;
 
   & img {
@@ -120,7 +120,6 @@
 }
 
 .result__img {
-  margin-bottom: 1.5em;
   grid-column: 1 / 17;
 }
 
@@ -136,16 +135,11 @@
   }
 }
 
-.result__full {
+.result__anim {
   position: absolute;
   top: 0;
   opacity: 0;
-  transition: opacity 4s $easeInOutQuart 0.5s;
-
-  & img {
-    display: block;
-    width: 100%;
-  }
+  transition: opacity 1s $easeInOutQuart 0.5s;
 
   &.visible {
     opacity: 1;
@@ -175,6 +169,7 @@
 
   background: #fff;
   border-radius: 1em;
+  box-shadow: -5px 10px 50px 0px rgba($color-secondary, 0.1);
 
   overflow: hidden;
 }

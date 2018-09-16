@@ -23,7 +23,7 @@ class Logo {
     container.appendChild(this.renderer.domElement)
 
     this.lineMat = new MeshLineMaterial({
-      color: new THREE.Color(0xf1f1f1),
+      color: new THREE.Color(0xfefefe),
       lineWidth: 0.025,
       sizeAttenuation: 1,
       resolution: new THREE.Vector2(
@@ -168,7 +168,7 @@ class Logo {
   drawGrid() {
     const gridGeo = new THREE.PlaneBufferGeometry(8, 8, 4, 4)
     const gridMat = new THREE.MeshBasicMaterial({
-      color: 0x323232,
+      color: 0x252525,
       wireframe: true,
     })
 

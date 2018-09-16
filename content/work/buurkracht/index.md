@@ -144,12 +144,9 @@ This meant that internationalization became an easy task with the help of `react
 </div>
 
 <div class="result">
-<div class="result__img">
-  <div class="result__line">
-    <img src="img/webgl-result-line.png">
-      <div class="result__full">
-        <img src="img/webgl-result-full.jpg">
-    </div>
+  <div class="result__img">
+    <img src="img/webgl-result-one-dark.jpg">
+    <img class="result__anim" src="img/webgl-result-two-dark.jpg">
   </div>
 </div>
 

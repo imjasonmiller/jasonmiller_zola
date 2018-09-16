@@ -1,9 +1,12 @@
-// Page colors
-$color-background: #0d0d0d;
-$color-background-border: #1a1a1a;
-
-$color-light: #f1f1f1;
+// $color-light: #1a1a1a;
 $color-dark: #5f5f5f;
+
+$color-primary: #fefefe;
+$color-secondary: #646464;
+
+// Page colors
+$color-background: #0d0d0d; // #fefefe
+$color-background-border: #1a1a1a; // efefef
 
 // Typography
 $font-family-head: DIN, sans-serif;
@@ -13,12 +16,12 @@ $font-family-mono: Fira Code, monospace;
 $font-weight-regular: 400;
 $font-weight-bold: 700;
 
-$font-color-head: $color-light;
-$font-color-body: $color-dark;
+$font-color-head: $color-primary;
+$font-color-body: $color-secondary;
 
 $base-line-height: 1.5;
 
-$color-selection: $color-light;
+$color-selection: #fff;
 $color-selection-background: #90f;
 
 // Easings

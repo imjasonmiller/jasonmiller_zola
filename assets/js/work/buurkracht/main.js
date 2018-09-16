@@ -45,7 +45,7 @@ const avatarScroll = new ScrollIO({
 })
 
 // Cache selector
-const elemResult = document.querySelector(".result__full")
+const elemResult = document.querySelector(".result__anim")
 
 const handleResultIntersect = ({ state, scroll }) => {
   if (!display.result && state === "enter") {

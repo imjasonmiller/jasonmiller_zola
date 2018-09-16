@@ -139,14 +139,14 @@
   color: $font-color-head;
 }
 
-.feature__link:hover .feature__link__arrow {
+.feature__link:hover .feature__link-arrow {
   transform: translateX(50%);
 }
 
-.feature__link__arrow {
+.feature__link-arrow {
   width: 1.2em;
   fill: none;
-  stroke: #fff;
+  stroke: currentColor;
   vertical-align: middle;
   transition: transform 0.5s $easeInOutBack;
   stroke-width: 10;
