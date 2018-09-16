@@ -47,9 +47,9 @@ window.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  const x = new ScrollIO({
+  const logoIntersect = new ScrollIO({
     elements: container,
-    threshold: { steps: 0, min: 0.75, max: 1 },
+    threshold: { min: 0.75 },
     onIntersect: handleLogoIntersect,
   })
 
@@ -79,7 +79,7 @@ window.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  const y = new ScrollIO({
+  const featureIntersect = new ScrollIO({
     elements: ".feature",
     threshold: { steps: 50 },
     onIntersect: handleFeatureIntersect,

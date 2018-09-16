@@ -1,0 +1,83 @@
+@font-face {
+  font-family: DIN;
+  font-weight: $font-weight-bold;
+  font-style: normal;
+  src: url("/fonts/DIN-Bold.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: Circular;
+  font-weight: $font-weight-regular;
+  font-style: normal;
+  src: url("/fonts/CircularStd-Book.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: Circular;
+  font-weight: $font-weight-bold;
+  font-style: normal;
+  src: url("/fonts/CircularStd-Bold.woff2") format("woff2");
+}
+
+h1,
+h2,
+h3 {
+  font: {
+    family: $font-family-head;
+  }
+
+  line-height: $base-line-height;
+
+  color: $font-color-head;
+}
+
+h2 {
+  font: {
+    size: 1.5em;
+  }
+
+  @include lg {
+    font-size: 2em;
+  }
+
+  margin: 0 0 0.25em;
+
+  color: $font-color-head;
+}
+
+h3 {
+  font: {
+    weight: $font-weight-bold;
+    size: 1.25em;
+    family: $font-family-head;
+  }
+  line-height: $base-line-height;
+
+  margin: 0 0 0.5em;
+
+  color: $font-color-head;
+
+  @include md {
+    font-size: 1.5em;
+  }
+}
+
+p {
+  margin: 0 0 1em;
+}
+
+a {
+  color: $font-color-body;
+  text-decoration: underline;
+
+  &:hover {
+    color: $color-light;
+  }
+}
+
+.underline-gradient {
+  background: linear-gradient(120deg, #fc3a75 0%, #9934db 50%, #58bafc 100%);
+  background-repeat: no-repeat;
+  background-size: 100% 0.25em;
+  background-position: 0 90%;
+}

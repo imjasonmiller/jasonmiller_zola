@@ -1,26 +1,26 @@
 .media-border {
   position: absolute;
-
   top: 1em;
+  &.media-border--left {
+    left: 1em;
+  }
+  &.media-border--right {
+    right: 1em;
+  }
 
   width: 100%;
   height: 100%;
 
   pointer-events: none;
-
-  &.media-border--left {
-    left: 1em;
-  }
-
-  &.media-border--right {
-    right: 1em;
-  }
 }
 
 .media-border__line {
   position: absolute;
 
-  transition: transform 250ms linear;
+  $border-size: 1px;
+  $border-anim: 250;
+
+  transition: transform #{$border-anim}ms $easeOutQuint;
 
   background: rgba(255, 255, 255, 0.25);
 
@@ -32,28 +32,27 @@
     ( id: left,   origin: bottom  )
   );
 
-  // Border size and animation time
-  $size: 1px;
-  $time: 1000;
-
-  $step: $time / length($borders);
+  $time: $border-anim * 4;
+  $step: $border-anim;
 
   @for $i from 0 to length($borders) {
     $border: nth($borders, $i + 1);
 
     &.media-border__line--#{map-get($border, id)} {
-      transition-delay: #{$step * $i}ms;
       transform-origin: map-get($border, origin);
+      transition-delay: #{$step * $i}ms;
 
+      // Border positioning
       #{map-get($border, id)}: 0;
-      #{map-get($border, origin)}: $size;
+      #{map-get($border, origin)}: $border-size;
 
+      // Border sizing
       @if map-get($border, id) == top or map-get($border, id) == bottom {
-        width: calc(100% - #{$size});
-        height: $size;
+        width: calc(100% - #{$border-size});
+        height: $border-size;
       } @else {
-        width: $size;
-        height: calc(100% - #{$size});
+        width: $border-size;
+        height: calc(100% - #{$border-size});
       }
 
       &.media-border__line--hidden {
@@ -74,7 +73,7 @@
   margin: auto;
 
   grid-area: mid-mid;
-  stroke: $fontColorLight;
+  stroke: $color-light;
   stroke-width: 5;
   fill: none;
   stroke-dasharray: 323.61;

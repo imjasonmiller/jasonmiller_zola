@@ -1,39 +1,18 @@
-@import "_variables";
-@import "_scrollbar";
-@import "_selection";
+@import "variables";
+@import "mixins";
 
-@import "_header";
-@import "_footer";
-@import "_feature";
-@import "_post";
+@import "header";
+@import "footer";
+@import "feature";
+@import "article";
 
-@import "_media-border";
-
-@font-face {
-  font-family: DIN;
-  font-weight: $font-weight-bold;
-  font-style: normal;
-  src: url("/fonts/DIN-Bold.woff2") format("woff2");
-}
-
-@font-face {
-  font-family: Circular;
-  font-weight: $font-weight-regular;
-  font-style: normal;
-  src: url("/fonts/CircularStd-Book.woff2") format("woff2");
-}
-
-@font-face {
-  font-family: Circular;
-  font-weight: $font-weight-bold;
-  font-style: normal;
-  src: url("/fonts/CircularStd-Bold.woff2") format("woff2");
-}
+@import "typography";
+@import "media-border";
 
 html {
   height: 100%;
 
-  background: $backgroundBorderColor;
+  background: $color-background-border;
 }
 
 html,
@@ -46,72 +25,29 @@ body {
   font: {
     weight: $font-weight-regular;
     size: 1.125em;
-    family: $body-font-family;
+    family: $font-family-body;
   }
-  line-height: $line-height;
+  line-height: $base-line-height;
 
   box-sizing: border-box;
   margin: 0.5em;
 
-  @include xl {
-    margin: 1em;
-  }
-
-  color: $fontColorDark;
-  background: $backgroundColor;
+  color: $font-color-body;
+  background: $color-background;
 
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
 
-h2 {
-  font: {
-    weight: $font-weight-bold;
-    size: 1.5em;
-    family: $head-font-family;
+  @include xl {
+    margin: 1em;
   }
-  line-height: $line-height;
-
-  @include lg {
-    font-size: 2em;
-  }
-
-  // margin: -0.42em 0 0.5em; // Figure out why the cap height doesn't meet the container
-  margin: 0 0 0.5em; // Figure out why the cap height doesn't meet the container
-
-  color: $fontColorLight;
-}
-
-h3 {
-  font: {
-    weight: $font-weight-bold;
-    size: 1.25em;
-    family: $head-font-family;
-  }
-  line-height: $line-height;
-
-  margin: 0 0 0.5em;
-
-  color: $fontColorLight;
-
-  @include md {
-    font-size: 1.5em;
-  }
-}
-
-a {
-  color: $fontColorDark;
-  text-decoration: underline;
-}
-
-a:hover {
-  color: $fontColorLight;
 }
 
 main {
   display: grid;
 
+  box-sizing: border-box;
   width: 100%;
   max-width: 1340px;
   margin: 0 auto;
@@ -119,8 +55,6 @@ main {
 
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 1em;
-
-  box-sizing: border-box;
 
   @include sm {
     grid-template-columns: repeat(10, 1fr);
@@ -138,35 +72,23 @@ main {
     padding: 0 2em;
 
     grid-template-columns: repeat(16, 1fr);
-    grid-gap: 2em;
+    grid-gap: 0 2em;
   }
 }
 
-main > hr {
-  display: block;
-
+hr {
   width: 100%;
   height: 1px;
-  margin-bottom: 3em;
-
-  content: "";
+  margin: 4em 0;
 
   border: 0;
-  background: $backgroundBorderColor;
+  background: $color-background-border;
 
   grid-column: 1 / -1;
-
-  @include lg {
-    margin-bottom: 6em;
-  }
 }
 
 main > p {
   grid-column: 4 / span 10;
-}
-
-p {
-  margin: 0 0 1.5em;
 }
 
 figure {
@@ -186,7 +108,7 @@ figure {
 
   @include xl {
     grid-column: 1 / span 7;
-    margin-bottom: 6em;
+    margin-bottom: 1.5em;
   }
 }
 
@@ -196,37 +118,38 @@ figure {
     weight: 700;
   }
 
+  display: block;
+
+  color: $color-light;
+
   @include md {
-    font-size: 1.375em;
+    font: {
+      size: 1.375em;
+    }
   }
 
   @include xl {
-    font-size: 1.5em;
+    font: {
+      size: 1.5em;
+    }
   }
-
-  display: block;
-
-  color: $fontColorLight;
 }
 
 .intro__title {
-  display: inline-block;
-
   font: {
     size: 2em;
   }
 
-  background: linear-gradient(120deg, #fc3a75 0%, #9934db 50%, #58bafc 100%);
-  background-repeat: no-repeat;
-  background-size: 100% 0.25em;
-  background-position: 0 85%;
-
   @include md {
-    font-size: 3em;
+    font: {
+      size: 3em;
+    }
   }
 
   @include xl {
-    font-size: 4em;
+    font: {
+      size: 4em;
+    }
   }
 }
 
@@ -241,5 +164,27 @@ figure {
 
   @include xl {
     margin: 0 0 4em 0;
+  }
+}
+
+::selection {
+  color: $color-selection;
+  background: $color-selection-background;
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: $color-background-border;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $color-dark;
+
+  &:hover {
+    @extend ::-webkit-scrollbar-thumb;
   }
 }

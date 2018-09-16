@@ -15,11 +15,6 @@
 
   grid-column: 5 / span 8;
 
-  background: linear-gradient(120deg, #fc3a75 0%, #9934db 50%, #58bafc 100%);
-  background-repeat: no-repeat;
-  background-size: 100% 0.25em;
-  background-position: 0 85%;
-
   @include xl {
     font-size: 3em;
   }
@@ -88,21 +83,21 @@
 
 .article pre code {
   font: {
-    family: $mono-font-family;
+    family: $font-family-mono;
     size: 0.75em;
     weight: 400;
   }
-  line-height: $line-height;
+  line-height: $base-line-height;
 }
 
 .article p code {
   font: {
-    family: $mono-font-family;
+    family: $font-family-mono;
     size: 0.875em;
     weight: 400;
   }
-  line-height: $line-height;
-  border-bottom: 1px solid $backgroundBorderColor;
+  line-height: $base-line-height;
+  border-bottom: 1px solid $color-background-border;
 }
 
 .article__figure {
@@ -157,40 +152,10 @@
   transform: scaleX(0);
   transform-origin: left;
 
-  background: $backgroundColor;
+  background: $color-background;
 }
 
-.article__grid-sm-left,
-.article__grid-sm-right,
-.article__grid-md,
-.article__grid-lg {
-  width: 100%;
-}
-
-.article__grid-sm-left {
-  grid-column: 5/9;
-}
-
-.article__grid-sm-right {
-  grid-column: 9/13;
-}
-
-.article__grid-md {
-  grid-column: 5/13;
-}
-
-.article__grid-lg {
-  grid-column: 1/17;
-}
-
-.article__grid-xl {
-  width: calc(100vw - 3em);
-
-  grid-column: 1/17;
-  justify-self: center;
-}
-
-.article__intro {
+.article__introduction {
   position: relative;
 
   grid-column: 1 / -1;
@@ -205,24 +170,5 @@
 
   @include xl {
     grid-column: 1 / span 8;
-  }
-}
-
-.article > hr {
-  display: block;
-
-  width: 100%;
-  height: 1px;
-  margin-bottom: 3em;
-
-  content: "";
-
-  border: 0;
-  background: $backgroundBorderColor;
-
-  grid-column: 1 / -1;
-
-  @include lg {
-    margin-bottom: 6em;
   }
 }

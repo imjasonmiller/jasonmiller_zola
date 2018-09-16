@@ -24,7 +24,7 @@ class Logo {
 
     this.lineMat = new MeshLineMaterial({
       color: new THREE.Color(0xf1f1f1),
-      lineWidth: 0.01875,
+      lineWidth: 0.025,
       sizeAttenuation: 1,
       resolution: new THREE.Vector2(
         container.offsetWidth,

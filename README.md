@@ -23,7 +23,6 @@ This will start a server on [`127.0.0.1:8888`](http://127.0.0.1:8888/).
 #### Todo
 
 - [ ] Refactor long list of groups in the `LogoAnimation` class.
-- [ ] Move typograhpy to a different `.scss` file.
 - [ ] Reduce/concat the amount of media queries.
 - [ ] Set up a coherent margin/padding/grid system with variables (refactor styles).
 - [ ] Check if links/tap targets are of a correct size on smaller devices

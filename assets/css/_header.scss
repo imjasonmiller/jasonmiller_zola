@@ -4,9 +4,10 @@
   width: 100%;
   max-width: 1340px;
   margin: 0 auto 1em;
-  padding: 0 1em;
+  padding: 1em;
 
   grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, min-content);
   grid-gap: 1em;
 
   align-items: center;
@@ -23,11 +24,15 @@
 
   @include lg {
     grid-template-columns: repeat(14, 1fr);
+
+    &.header--stretch {
+      min-height: 75vh;
+    }
   }
 
   @include xl {
     margin: 0 auto 4em;
-    padding: 0 2em;
+    padding: 1em 2em;
 
     grid-template-columns: repeat(16, 1fr);
     grid-gap: 2em;
@@ -110,5 +115,5 @@
 }
 
 .nav__link--active {
-  color: $fontColorLight;
+  color: $color-light;
 }

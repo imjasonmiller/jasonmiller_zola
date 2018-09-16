@@ -1,4 +1,4 @@
-<header class="header" role="banner">
+<header class="header {{ if .IsHome }}header--stretch{{end}}" role="banner">
 
   <h1 class="logo">
 
@@ -29,5 +29,22 @@
     </ul>
 
   </nav>
+
+  {{ if .IsHome }}
+
+  <section class="intro">
+
+      <span class="intro__greeting">Good <span class="intro__greeting__time">day</span>, I’m</span>
+  
+      <h2 class="intro__title"><span class="underline-gradient">Jason Miller</span></h2>
+  
+      <div>
+          <p>An interactive developer based in The Netherlands that loves to combine code and motion. I have previously worked in television as a video-editor/compositor.</p>
+          <p>I am currently available for hire. <a href="mailto:contact@jasonmiller.nl">Let's talk.</a></p>
+      </div>
+  
+  </section>
+
+  {{ end }}
 
 </header>
