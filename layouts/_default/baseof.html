@@ -28,7 +28,7 @@
 
   {{ end }}
   
-  <script type="text/javascript" src="/js/vendor.js"></script>
+  <script defer type="text/javascript" src="/js/vendor.js"></script>
 
   <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{if .IsPage}}{{ .Summary }}{{ else }}{{ with .Site.Params.description }}{{ . }}{{ end }}{{ end }}{{ end }}">
 
