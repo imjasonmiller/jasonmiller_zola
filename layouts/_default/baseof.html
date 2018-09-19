@@ -32,6 +32,10 @@
 
   <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{if .IsPage}}{{ .Summary }}{{ else }}{{ with .Site.Params.description }}{{ . }}{{ end }}{{ end }}{{ end }}">
 
+  <meta name="theme-color" content="#1a1a1a">
+
+  <link rel="manifest" href="/manifest.json">
+
 </head>
 <body>
 

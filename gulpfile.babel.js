@@ -67,10 +67,10 @@ gulp.task("fonts", () =>
     .pipe(browserSync.stream()),
 )
 
-// Favicon
-gulp.task("favicon", () =>
+// Manifest
+gulp.task("manifest", () =>
   gulp
-    .src(["./assets/favicon.ico"])
+    .src(["./assets/favicon.ico", "./assets/manifest.json"])
     .pipe(gulp.dest("./dist/"))
     .pipe(browserSync.stream()),
 )
@@ -90,7 +90,7 @@ gulp.task("js", done => webpackBuild(done))
 // Development server
 gulp.task(
   "server",
-  gulp.series("hugo", "js", "images", "fonts", "favicon", initServer),
+  gulp.series("hugo", "js", "images", "fonts", "manifest", initServer),
 )
 
 // Production
@@ -99,5 +99,5 @@ gulp.task("js-prod", done => webpackBuild(done, "production"))
 
 gulp.task(
   "build",
-  gulp.series("hugo-prod", "js-prod", "images", "fonts", "favicon"),
+  gulp.series("hugo-prod", "js-prod", "images", "fonts", "manifest"),
 )
