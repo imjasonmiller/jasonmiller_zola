@@ -5,6 +5,18 @@ import ShapeParticles from "./ShapeParticles"
 import IntersectionObserver from "intersection-observer"
 import ScrollIO from "@imjasonmiller/scroll-io"
 
+// Check for Service Worker support
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker
+      .register("../serviceworker.js")
+      .then(reg => console.log("Service worker: Registered"))
+      .catch(err => console.log(`Service Worker: Error: ${err}`))
+  })
+
+  console.log(`[caches]: ${caches}`)
+}
+
 const greeting = document.querySelector(".intro__greeting__time")
 
 const hourToGreeting = () => {

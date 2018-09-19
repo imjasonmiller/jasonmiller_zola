@@ -54,7 +54,10 @@ const initServer = () => {
     ["./assets/css/**/*", "./content/**/*", "./data/**/*", "./layouts/**/*"],
     gulp.series("hugo"),
   )
-  gulp.watch(["./assets/js/**/*.js"], gulp.series("js"))
+  gulp.watch(
+    ["./assets/js/**/*.js", "./assets/serviceworker.js"],
+    gulp.series("js"),
+  )
   gulp.watch(["./assets/fonts/**/*"], gulp.series("fonts"))
   gulp.watch(["./assets/img/**/*"], gulp.series("images"))
 }
