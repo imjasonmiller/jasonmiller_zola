@@ -28,7 +28,7 @@ const common = [
   },
 ]
 
-const config = (mode = "development") => (
+const config = (mode = "development") => [
   {
     name: "main",
     mode,
@@ -78,7 +78,7 @@ const config = (mode = "development") => (
     module: {
       rules: [...common],
     },
-  }
-)
+  },
+]
 
 module.exports = config
