@@ -283,7 +283,7 @@ class Logo {
     return reverse(tracks)
   }
 
-  start(forward) {
+  anim(forward) {
     this.loop = everyFrame().start(() => {
       this.renderer.render(this.scene, this.camera)
     })

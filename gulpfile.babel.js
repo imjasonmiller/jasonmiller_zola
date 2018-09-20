@@ -46,6 +46,14 @@ const initServer = () => {
   browserSync.init({
     server: {
       baseDir: "./dist",
+      middleware: [
+        // Add Content-Security-Policy header http://www.w3.org/TR/CSP/
+        (req, res, next) => {
+          const csp = `default-src 'self'`
+          res.setHeader("Content-Security-Policy", csp)
+          next()
+        },
+      ],
     },
     open: false,
   })
