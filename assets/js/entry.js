@@ -43,12 +43,18 @@ const logo = () => {
   const elem = document.querySelector(".logo__link")
   const logo = new LogoAnimation(elem)
 
+  let hasLeft = false
+
   const handleIntersect = ({ scroll, state }) => {
     const scrollUpEnter = scroll === "up" && state === "enter"
     const scrollDownLeave = scroll === "down" && state === "leave"
 
-    if (scrollUpEnter) logo.anim(true)
-    if (scrollDownLeave) logo.anim(false)
+    if (scrollDownLeave) {
+      logo.anim(false)
+      hasLeft = true
+    } else if (scrollUpEnter && hasLeft) {
+      logo.anim(true)
+    }
   }
 
   const logoIO = new ScrollIO({
