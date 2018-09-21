@@ -79,12 +79,16 @@ main {
 hr {
   width: 100%;
   height: 1px;
-  margin: 4em 0;
+  margin: 1em 0;
 
   border: 0;
   background: $color-background-border;
 
   grid-column: 1 / -1;
+
+  @include md {
+    margin: 4em 0;
+  }
 }
 
 main > p {

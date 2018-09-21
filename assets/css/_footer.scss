@@ -1,6 +1,7 @@
 .footer {
   max-width: 1340px;
   margin: 0 auto;
+  padding: 0 1em;
 }
 
 .footer__list {
@@ -9,10 +10,7 @@
   flex-direction: column;
 
   margin: 0;
-  padding: {
-    top: 1em;
-    bottom: 1em;
-  }
+  padding: 1em;
 
   list-style: none;
 
