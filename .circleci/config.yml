@@ -18,6 +18,9 @@ jobs:
             - node_modules
       - run: npm run build
       - add_ssh_keys
+      - run:
+          name: Install rsync
+          command: sudo apt install rsync
       - deploy:
           name: "Deployment"
           command: |
