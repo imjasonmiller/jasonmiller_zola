@@ -59,7 +59,7 @@ const logo = () => {
 
   const logoIO = new ScrollIO({
     elements: elem,
-    threshold: { min: 0.75 },
+    threshold: { min: 0.75, steps: 0 },
     onIntersect: handleIntersect,
   })
 }
