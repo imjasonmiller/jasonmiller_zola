@@ -20,9 +20,9 @@
 
   <link rel="stylesheet" href="{{ $styleMain.RelPermalink }}">
 
-  {{ if and (fileExists ( replace ( printf "assets/css/%smain.scss" .Page.Dir ) "\\" "/" ) ) .IsPage }}
+  {{ if and (fileExists ( replace ( printf "assets/css/%smain.scss" .File.Dir ) "\\" "/" ) ) .IsPage }}
 
-    {{ $stylePage := resources.Get ( replace ( printf "css/%smain.scss" .Page.Dir ) "\\" "/" ) | toCSS $cssOptsMain | postCSS | minify | fingerprint }}
+    {{ $stylePage := resources.Get ( replace ( printf "css/%smain.scss" .File.Dir ) "\\" "/" ) | toCSS $cssOptsMain | postCSS | minify | fingerprint }}
 
     <link rel="stylesheet" href="{{ $stylePage.RelPermalink }}">
 
@@ -55,7 +55,7 @@
 
   {{ partial "footer.html" . }}
   
-  {{ if and (fileExists ( replace ( printf "assets/js/%smain.js" .Page.Dir ) "\\" "/" ) ) .IsPage }}
+  {{ if and (fileExists ( replace ( printf "assets/js/%smain.js" .File.Dir ) "\\" "/" ) ) .IsPage }}
 
     <script type="text/javascript" src="/{{ printf "js%smain.js" .Page.URL }}"></script>
 

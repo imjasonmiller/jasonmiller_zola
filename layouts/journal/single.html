@@ -1,0 +1,65 @@
+{{ define "main" }}
+
+<article class="article" itemscope itemtype="http://schema.org/BlogPosting">
+  {{ .Content }}
+
+  {{ if .Page.HasShortcode "video" }}
+
+  <script src="https://player.vimeo.com/api/player.js"></script>
+  <script type="text/javascript">
+    const options = {
+      id: 260314795,
+      width: 1280,
+      loop: true,
+      color: "f1f1f1",
+      portrait: false,
+      byline: false,
+      title: false,
+    }
+
+    const videos = document.querySelectorAll(".article__video")
+
+    const handler = ({ currentTarget: video }) => {
+      const id = video.getAttribute("data-id")
+      const player = new Vimeo.Player(
+        video.querySelector(".article__video__frame"),
+        { ...options, id },
+      )
+
+      const swipe = video.querySelector(".article__video__swipe")
+      const imgSrc = video.querySelector(".article__video__image img")
+      const imgWrap = video.querySelector(".article__video__image")
+      const iconPlay = video.querySelector(".article__video__image path")
+      const borders = video.querySelectorAll(".media-border__line")
+
+      // Hide borders and play icon
+      borders.forEach(border =>
+        border.classList.add("media-border__line--hidden"),
+      )
+      iconPlay.style.animation =
+        "playHide 1s cubic-bezier(0.77, 0, 0.175, 1) forwards"
+
+      // Uncover video with swipe
+      swipe.addEventListener("transitionend", () => {
+        imgSrc.style.visibility = "hidden"
+        imgWrap.style.pointerEvents = "none"
+        swipe.style.transformOrigin = "center right"
+        swipe.style.transitionDelay = "0ms"
+        swipe.style.transform = "scaleX(0)"
+        video.removeEventListener("click", handler)
+      })
+
+      // Cover image with swipe
+      swipe.style.transform = "scaleX(1)"
+
+      // Play video
+      player.play()
+    }
+
+    videos.forEach(video => video.addEventListener("click", handler))
+  </script>
+
+  {{ end }}
+</article>
+
+{{ end }}
