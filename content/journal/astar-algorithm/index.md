@@ -1,8 +1,9 @@
 +++
-title = "A algorithm"
-date = 2019-08-03T20:00:00.000Z
-description = "Implementing the A algorithm in JavaScript."
+title = "A-star search algorithm"
+date = 2019-08-02T18:53:51+02:00
+description = "Implementing the A-star search algorithm in TypeScript."
 draft = false
 +++
 
+# Implementing the A-star search algorithm in TypeScript
 Hello world
