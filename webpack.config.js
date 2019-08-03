@@ -26,6 +26,14 @@ const common = [
       presets: [["@babel/preset-env", { modules: false }]],
     },
   },
+  {
+    test: /\.tsx?$/,
+    use: "ts-loader",
+    include: [
+      path.join(__dirname, "assets", "js"),
+      path.join(__dirname, "serviceworker.ts"),
+    ],
+  },
 ]
 
 const config = (mode = "development") => [
@@ -61,6 +69,7 @@ const config = (mode = "development") => [
         },
       },
     },
+    resolve: { extensions: [".tsx", ".ts", ".js", ".json"] },
   },
   {
     name: "serviceworker",
@@ -78,6 +87,7 @@ const config = (mode = "development") => [
     module: {
       rules: [...common],
     },
+    resolve: { extensions: [".tsx", ".ts", ".js", ".json"] },
   },
 ]
 

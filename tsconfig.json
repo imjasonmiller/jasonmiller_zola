@@ -1,0 +1,26 @@
+{
+    "compilerOptions": {
+        "target": "es7",
+        "moduleResolution": "node",
+        "module": "commonjs",
+        "jsx": "preserve",
+        "esModuleInterop": true,
+        "sourceMap": true,
+        "allowJs": true,
+        "lib": [
+            "es6",
+            "dom"
+        ],
+        "rootDir": "assets",
+        "strict": true,
+        "noImplicitReturns": true,
+        "noImplicitAny": true
+    },
+    "include": [
+        "assets/**/*"
+    ],
+    "exclude": [
+        "node_modules",
+        "**/*.spec.ts"
+    ]
+}

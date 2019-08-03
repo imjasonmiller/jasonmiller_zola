@@ -20,14 +20,14 @@
 
   <link rel="stylesheet" href="{{ $styleMain.RelPermalink }}">
 
-  {{ if and (fileExists ( replace ( printf "assets/css/%smain.scss" .File.Dir ) "\\" "/" ) ) .IsPage }}
+  {{ if and (fileExists ( replace ( printf "assets/css/%smain.scss" .File.Dir  ) "\\" "/" ) ) .IsPage }}
 
-    {{ $stylePage := resources.Get ( replace ( printf "css/%smain.scss" .File.Dir ) "\\" "/" ) | toCSS $cssOptsMain | postCSS | minify | fingerprint }}
+    {{ $stylePage := resources.Get ( replace ( printf "css/%smain.scss" .File.Dir  ) "\\" "/" ) | toCSS $cssOptsMain | postCSS | minify | fingerprint }}
 
     <link rel="stylesheet" href="{{ $stylePage.RelPermalink }}">
 
   {{ end }}
-  
+
   <script defer type="text/javascript" src="/js/vendor.js"></script>
 
   <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{if .IsPage}}{{ .Summary }}{{ else }}{{ with .Site.Params.description }}{{ . }}{{ end }}{{ end }}{{ end }}">
@@ -57,7 +57,7 @@
   
   {{ if and (fileExists ( replace ( printf "assets/js/%smain.js" .File.Dir ) "\\" "/" ) ) .IsPage }}
 
-    <script type="text/javascript" src="/{{ printf "js%smain.js" .Page.URL }}"></script>
+    <script type="text/javascript" src="/{{ printf "js%smain.js" .RelPermalink }}"></script>
 
   {{ end }}
   
