@@ -3,6 +3,7 @@ import { execFile, spawn } from "child_process"
 import webpack from "webpack"
 import webpackConfig from "./webpack.config.js"
 import BrowserSync from "browser-sync"
+import { mathjaxify } from "gulp-mathjaxify"
 
 const browserSync = BrowserSync.create()
 
@@ -60,7 +61,7 @@ const initServer = () => {
 
   gulp.watch(
     ["./assets/css/**/*", "./content/**/*", "./data/**/*", "./layouts/**/*"],
-    gulp.series("hugo"),
+    gulp.series("hugo", "mathjax"),
   )
   gulp.watch(
     ["./assets/js/**/*.js", "./assets/serviceworker.js"],
@@ -94,6 +95,26 @@ gulp.task("images", () =>
     .pipe(browserSync.stream()),
 )
 
+// MathJax
+gulp.task("mathjax", () =>
+  gulp
+    .src(["./dist/**/*.html"])
+    .pipe(
+      mathjaxify(
+        {
+          format: ["TeX"],
+          singleDollars: true,
+        },
+        {
+          svg: true,
+          mml: true,
+          ex: 10,
+        },
+      ),
+    )
+    .pipe(gulp.dest("./dist/")),
+)
+
 // Development
 gulp.task("hugo", hugoBuild)
 gulp.task("js", done => webpackBuild(done))
@@ -101,7 +122,15 @@ gulp.task("js", done => webpackBuild(done))
 // Development server
 gulp.task(
   "server",
-  gulp.series("hugo", "js", "images", "fonts", "manifest", initServer),
+  gulp.series(
+    "hugo",
+    "mathjax",
+    "js",
+    "images",
+    "fonts",
+    "manifest",
+    initServer,
+  ),
 )
 
 // Production

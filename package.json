@@ -44,6 +44,7 @@
     "@imjasonmiller/scroll-io": "0.0.2",
     "browser-sync": "^2.26.7",
     "gulp": "^4.0.2",
+    "gulp-mathjaxify": "^1.0.0",
     "intersection-observer": "^0.5.1",
     "popmotion": "^8.7.0",
     "three": "^0.95.0",
