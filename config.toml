@@ -6,6 +6,15 @@ languageLang = "en"
 author = "Jason Miller"
 title = "Jason Miller"
 
+disableKinds = ["RSS", "sitemap", "taxonomy", "taxonomyTerm"]
+
+ignoreFiles = [
+  "README",
+  "node_modules",
+  "package.json",
+  "package-lock.json",
+]
+
 [params]
   email = "contact@jasonmiller.nl"
   dribbble = "https://dribbble.com/imjasonmiller"
@@ -29,17 +38,3 @@ title = "Jason Miller"
   name = "Journal"
   url = "/journal/"
   weight = "0"
-
-disableKinds = [
-  "RSS",
-  "sitemap",
-  "taxonomy",
-  "taxonomyTerm",
-]
-
-ignoreFiles = [
-  "README",
-  "node_modules",
-  "package.json",
-  "package-lock.json",
-]
