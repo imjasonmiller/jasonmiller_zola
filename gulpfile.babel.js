@@ -139,5 +139,5 @@ gulp.task("js-prod", done => webpackBuild(done, "production"))
 
 gulp.task(
   "build",
-  gulp.series("hugo-prod", "js-prod", "images", "fonts", "manifest"),
+  gulp.series("hugo-prod", "mathjax", "js-prod", "images", "fonts", "manifest"),
 )
