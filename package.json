@@ -11,6 +11,10 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "imjasonmiller",
+  "repository": {
+      "type": "git",
+      "url": "https://github.com/imjasonmiller/jasonmiller_hugo.git"
+  },
   "license": "ISC",
   "babel": {
     "presets": [
