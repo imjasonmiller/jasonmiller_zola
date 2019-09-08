@@ -12,8 +12,8 @@
   },
   "author": "imjasonmiller",
   "repository": {
-      "type": "git",
-      "url": "https://github.com/imjasonmiller/jasonmiller_hugo.git"
+    "type": "git",
+    "url": "https://github.com/imjasonmiller/jasonmiller_hugo.git"
   },
   "license": "ISC",
   "babel": {
@@ -31,18 +31,18 @@
     "bracketSpacing": true
   },
   "devDependencies": {
-    "@babel/core": "^7.5.5",
-    "@babel/preset-env": "^7.5.5",
-    "@babel/register": "^7.5.5",
-    "@typescript-eslint/parser": "^1.13.0",
+    "@babel/core": "^7.6.0",
+    "@babel/preset-env": "^7.6.0",
+    "@babel/register": "^7.6.0",
+    "@typescript-eslint/parser": "^2.1.0",
     "babel-loader": "^8.0.6",
-    "eslint": "^6.1.0",
+    "eslint": "^6.3.0",
     "postcss-cli": "^6.1.3",
     "ts-loader": "^6.0.4",
-    "typescript": "^3.5.3",
-    "webpack": "^4.38.0",
+    "typescript": "^3.6.2",
+    "webpack": "^4.39.3",
     "webpack-bundle-analyzer": "^3.4.1",
-    "webpack-cli": "^3.3.6"
+    "webpack-cli": "^3.3.8"
   },
   "dependencies": {
     "@imjasonmiller/scroll-io": "0.0.2",
