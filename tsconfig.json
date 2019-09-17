@@ -1,6 +1,6 @@
 {
     "compilerOptions": {
-        "target": "es7",
+        "target": "es2017",
         "moduleResolution": "node",
         "module": "commonjs",
         "jsx": "preserve",
@@ -8,7 +8,7 @@
         "sourceMap": true,
         "allowJs": true,
         "lib": [
-            "es6",
+            "esnext",
             "dom"
         ],
         "rootDir": "assets",

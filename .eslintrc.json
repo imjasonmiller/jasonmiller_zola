@@ -4,9 +4,11 @@
         "es6": true
     },
     "parser": "@typescript-eslint/parser",
-    "plugins": ["@typescript-eslint"],
+    "plugins": ["@typescript-eslint", "prettier"],
     "extends": [
-        "plugin:@typescript-eslint/recommended"
+        "plugin:@typescript-eslint/recommended",
+        "prettier",
+        "prettier/@typescript-eslint"
     ],
     "globals": {
         "Atomics": "readonly",
@@ -16,7 +18,5 @@
         "ecmaVersion": 2018,
         "sourceType": "module"
     },
-    "rules": {
-        "@typescript-eslint/no-angle-bracket-type-assertion": "warn"
-    }
+    "rules": {}
 }

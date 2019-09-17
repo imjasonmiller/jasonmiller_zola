@@ -68,7 +68,10 @@ const serve = () => {
     ["./assets/css/**/*", "./content/**/*", "./data/**/*", "./layouts/**/*"],
     series(buildHugo(), mathjax),
   )
-  watch(["./assets/js/**/*.js", "./assets/serviceworker.js"], buildWebpack())
+  watch(
+    ["./assets/js/**/*.{js,ts,tsx}", "./assets/serviceworker.js"],
+    buildWebpack(),
+  )
   watch(["./assets/fonts/**/*"], fonts)
   watch(["./assets/img/**/*"], images)
 }
