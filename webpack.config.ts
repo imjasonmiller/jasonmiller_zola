@@ -1,10 +1,10 @@
-const webpack = require("webpack")
-const path = require("path")
-const glob = require("glob")
+import path from "path"
+import glob from "glob"
+import { Configuration } from "webpack"
 
 // Add entries for each page bundle's custom script
-const getEntries = pattern => {
-    const entries = {}
+const getEntries = (pattern: string): { [key: string]: string } => {
+    const entries: { [key: string]: string } = {}
 
     glob.sync(pattern).forEach(file => {
         entries[file.replace("assets/js", "")] = path.join(__dirname, file)
@@ -36,7 +36,9 @@ const common = [
     },
 ]
 
-const config = (mode = "development") => [
+const config = (
+    mode: Configuration["mode"] = "development",
+): Configuration[] => [
     {
         name: "main",
         mode,
@@ -44,8 +46,8 @@ const config = (mode = "development") => [
         context: path.join(__dirname, "assets"),
         entry: {
             "main.js": "./js/entry.ts",
-            "vendor.js": ["three", "popmotion"],
-            ...getEntries("assets/js/work/**/*.js"),
+            "vendor.js": ["three"],
+            ...getEntries("assets/js/work/**/*.{js,ts}"),
         },
         output: {
             path: path.join(__dirname, "dist", "js"),
@@ -91,4 +93,4 @@ const config = (mode = "development") => [
     },
 ]
 
-module.exports = config
+export default config
