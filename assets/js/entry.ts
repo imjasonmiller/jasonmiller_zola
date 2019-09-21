@@ -16,16 +16,6 @@ const serviceWorker = (): void => {
     }
 }
 
-const greeting = (): void => {
-    const elem = document.querySelector(".intro__time")
-
-    if (elem !== null) {
-        const hour = new Date().getHours()
-        elem.textContent =
-            (hour < 12 && "morning") || (hour < 18 && "afternoon") || "evening"
-    }
-}
-
 const logo = (): void => {
     const logo = new LogoAnimation(document.querySelector(
         ".logo__link",
@@ -87,7 +77,6 @@ const features = (): void => {
 
 const main = (): void => {
     serviceWorker()
-    greeting()
     logo()
     features()
 }

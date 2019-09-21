@@ -1,27 +1,4 @@
 @font-face {
-<<<<<<< Updated upstream
-  font-family: DIN;
-  font-weight: $font-weight-bold;
-  font-style: normal;
-  font-display: swap;
-  src: url("/fonts/DIN-Bold.woff2") format("woff2");
-}
-
-@font-face {
-  font-family: Circular;
-  font-weight: $font-weight-regular;
-  font-style: normal;
-  font-display: swap;
-  src: url("/fonts/CircularStd-Book.woff2") format("woff2");
-}
-
-@font-face {
-  font-family: Circular;
-  font-weight: $font-weight-bold;
-  font-style: normal;
-  font-display: swap;
-  src: url("/fonts/CircularStd-Bold.woff2") format("woff2");
-=======
     font-family: Larsseit;
     font-weight: $font-weight-bold;
     font-style: normal;
@@ -40,7 +17,6 @@
     font-weight: $font-weight-bold;
     font-style: normal;
     src: url("/fonts/CircularStd-Bold.woff2") format("woff2");
->>>>>>> Stashed changes
 }
 
 h1,
@@ -98,4 +74,3 @@ a {
         color: $color-primary;
     }
 }
-
