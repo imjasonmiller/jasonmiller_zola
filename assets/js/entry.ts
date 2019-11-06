@@ -1,4 +1,5 @@
 import LogoAnimation from "./Logo"
+import { Player } from "./Video"
 /* eslint-disable */
 // @ts-ignore
 import IntersectionObserver from "intersection-observer"
@@ -13,6 +14,14 @@ const serviceWorker = (): void => {
                 .then(() => console.log("Service worker: Registered"))
                 .catch(err => console.log(`Service Worker: Error: ${err}`))
         })
+    }
+}
+
+const videos = (): void => {
+    const videos = document.querySelectorAll(".player")
+
+    if (videos) {
+        videos.forEach(video => new Player(video))
     }
 }
 
@@ -79,6 +88,7 @@ const main = (): void => {
     serviceWorker()
     logo()
     features()
+    videos()
 }
 
 main()

@@ -1,174 +1,215 @@
 .article {
-  display: grid;
+    display: grid;
 
-  grid-column: 1/ -1;
-  grid-template-columns: inherit;
-  grid-gap: 0 1.5em;
+    align-items: start;
 
-  @include xl {
+    grid-column: 1/ -1;
     grid-template-columns: inherit;
-  }
+
+    @include xl {
+        grid-template-columns: inherit;
+        grid-gap: 0 2em;
+    }
 }
 
 .article h2 {
-  display: inline;
+    display: inline;
 
-  grid-column: 5 / span 8;
+    grid-column: 5 / span 8;
 
-  @include xl {
-    font-size: 3em;
-  }
+    @include xl {
+        font-size: 3em;
+    }
 }
 
-.article p {
-  grid-column: 5 / span 8;
+.article > h3 {
+    display: inline;
+
+    grid-column: 1 / -1;
+
+    @include lg {
+        grid-column: 5 / span 8;
+    }
+}
+
+.article > p {
+    grid-column: 1 / -1;
+
+    @include lg {
+        grid-column: 5 / span 8;
+    }
 }
 
 // Blockquote <svg> triangle
 %svgTriangle {
-  position: absolute;
+    position: absolute;
 
-  display: block;
+    display: block;
 
-  width: 1.5em;
-  height: 1.125em; // This is made up, fix the aspect ratio and get the correct width-height
+    width: 1.5em;
+    height: 1.125em; // This is made up, fix the aspect ratio and get the correct width-height
 
-  content: "";
-  pointer-events: none;
+    content: "";
+    pointer-events: none;
 
-  opacity: 0.25;
-  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130 100"><path fill="none" stroke="#fff" stroke-width="2.5" d="m130,50l-86.66,-50l0,100z"></path></svg>');
+    opacity: 0.25;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130 100"><path fill="none" stroke="#fff" stroke-width="2.5" d="m130,50l-86.66,-50l0,100z"></path></svg>');
 }
 
 .article blockquote {
-  margin: 0 0 1.5em;
+    margin: 0 0 1.5em;
 
-  grid-column: 13 / span 3;
+    grid-column: 13 / span 3;
 
-  & p {
-    position: relative;
+    & p {
+        position: relative;
 
-    margin: 0 1.5em;
+        margin: 0 1.5em;
 
-    &:first-child::after {
-      @extend %svgTriangle;
-      right: -1.125em;
-      bottom: 0.125em;
+        &:first-child::after {
+            @extend %svgTriangle;
+            right: -1.125em;
+            bottom: 0.125em;
+        }
+
+        // Mirror the triangle
+        &:last-child::before {
+            @extend %svgTriangle;
+            top: 0.125em;
+            right: auto;
+            left: -1.5em;
+
+            transform: scaleX(-1);
+        }
     }
+}
 
-    // Mirror the triangle
-    &:last-child::before {
-      @extend %svgTriangle;
-      top: 0.125em;
-      right: auto;
-      left: -1.5em;
+.article > table {
+    grid-column: 1 / -1;
+    border: 1px solid #1a1a1a;
+    border-collapse: collapse;
 
-      transform: scaleX(-1);
+    margin-bottom: 1.5em;
+
+    @include xl {
+        grid-column: 5 / span 8;
     }
-  }
+}
+
+.article > table th {
+    background: #191919;
+    color: #7a7a7a;
+}
+
+.article > table th,
+.article > table td {
+    padding: 0.5em;
+    text-align: left;
+    vertical-align: top;
+    border: 1px solid #1a1a1a;
 }
 
 .article pre {
-  overflow-x: auto;
+    overflow-x: auto;
 
-  box-sizing: border-box;
-  width: 100%;
-  margin: 0 0 1.5em 0;
-  padding: 1em;
+    box-sizing: border-box;
+    width: 100%;
+    margin: 0 0 1.5em 0;
+    padding: 1em;
 
-  text-align: justify;
+    text-align: justify;
 
-  background: #181818;
+    background: #181818;
 }
 
 .article pre code {
-  font: {
-    family: $font-family-mono;
-    size: 0.75em;
-    weight: 400;
-  }
-  line-height: $base-line-height;
+    font: {
+        family: $font-family-mono;
+        size: 0.75em;
+        weight: 400;
+    }
+    line-height: $base-line-height;
 }
 
 .article p code {
-  font: {
-    family: $font-family-mono;
-    size: 0.875em;
-    weight: 400;
-  }
-  line-height: $base-line-height;
-  border-bottom: 1px solid $color-background-border;
+    font: {
+        family: $font-family-mono;
+        size: 0.875em;
+        weight: 400;
+    }
+    line-height: $base-line-height;
+    border-bottom: 1px solid $color-background-border;
 }
 
 .article__figure {
-  position: relative;
+    position: relative;
 
-  margin: 0 0 2em 0;
+    margin: 0 0 2em 0;
 }
 
 .article__figure__img {
-  display: inline-block;
+    display: inline-block;
 
-  width: 100%;
+    width: 100%;
 
-  vertical-align: text-top;
+    vertical-align: text-top;
 }
 
 .article__video {
-  position: relative;
+    position: relative;
 
-  height: 0;
-  margin: 0 0 2em 0;
-  padding: 0 0 56.25% 0;
+    height: 0;
+    margin: 0 0 2em 0;
+    padding: 0 0 56.25% 0;
 }
 
 .article__video__frame iframe {
-  position: absolute;
+    position: absolute;
 
-  width: 100%;
-  height: 100%;
+    width: 100%;
+    height: 100%;
 }
 
 .article__video__image {
-  position: relative;
+    position: relative;
 
-  cursor: pointer;
+    cursor: pointer;
 
-  & img {
-    display: block;
-    width: 100%;
-  }
+    & img {
+        display: block;
+        width: 100%;
+    }
 }
 
 .article__video__swipe {
-  position: absolute;
-  top: 0;
-  left: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
 
-  width: 100%;
-  height: 100%;
+    width: 100%;
+    height: 100%;
 
-  transition: transform 0.5s 1s;
-  transform: scaleX(0);
-  transform-origin: left;
+    transition: transform 0.5s 1s;
+    transform: scaleX(0);
+    transform-origin: left;
 
-  background: $color-background;
+    background: $color-background;
 }
 
 .article__introduction {
-  position: relative;
+    position: relative;
 
-  grid-column: 1 / -1;
+    grid-column: 1 / -1;
 
-  @include md {
-    grid-column: 1 / 10;
-  }
+    @include md {
+        grid-column: 1 / 10;
+    }
 
-  @include lg {
-    grid-column: 1 / 9;
-  }
+    @include lg {
+        grid-column: 1 / 9;
+    }
 
-  @include xl {
-    grid-column: 1 / span 8;
-  }
+    @include xl {
+        grid-column: 1 / span 8;
+    }
 }

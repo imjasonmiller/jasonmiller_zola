@@ -9,6 +9,12 @@
 @import "typography";
 @import "media-border";
 
+@import "video";
+
+* {
+    box-sizing: border-box;
+}
+
 html {
     height: 100%;
 

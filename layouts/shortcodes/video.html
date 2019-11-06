@@ -1,15 +1,48 @@
-{{ $.Scratch.Add "width" ( default "1280" ( .Get "width" ) )}}
+{{ if isset .Params "type" }}
 
-{{ $.Scratch.Add "height" ( default "720" ( .Get "height" ) )}}
+    {{ if (eq (.Get `type`) "local") }}
 
-{{/* Calculate correct padding ratio for video with ( height / width * 100 ) + "%" */}}
+    <div class="player">
+        <video class="player__video"
+            {{ with .Get "mute" }} muted {{ end }}
+            {{ with .Get "loop" }} loop {{ end }}
+            {{ with .Get "autoplay" }} autoplay {{ end }}
+            {{ with .Get "poster" }} poster="{{.}}" {{ end }}
+        >
+            {{ with .Get "webm" }} <source src="{{.}}" type="video/webm"> {{ end }}
+            {{ with .Get "mp4" }} <source src="{{.}}" type="video/mp4"> {{ end }}
+        </video>
+        <div class="player__control"> 
+            <svg class="player__control-play" viewBox="0 0 64 64">
+                <path class="play" d="M22 32V20L42 32L22 44Z" />
+                <path class="pause--l" d="M22.5,46V18" />
+                <path class="pause--r" d="M41.5,46V18" />
+            </svg>
+            <div class="player__progress">
+                <div class="player__progress-play"></div>
+                {{/* <div class="player__progress-load"></div> */}}
+            </div>
+        </div>
 
-{{ $ratio := mul ( float ( div ( float ( $.Scratch.Get "height" ) ) ( float ( $.Scratch.Get "width" ) ) ) ) 100 }}
+    </div>
 
-{{ $.Scratch.Add "ratio" ( printf "%.2f%%" $ratio ) }}
+    {{ end }}
+
+{{ end }}
 
 
 {{ if .Get "vimeo" }}
+
+    {{ $.Scratch.Add "width" ( default "1280" ( .Get "width" ) )}}
+
+    {{ $.Scratch.Add "height" ( default "720" ( .Get "height" ) )}}
+
+    {{/* Calculate correct padding ratio for video, height / width * 100 */}}
+
+    {{ $ratio := mul ( float ( div ( float ( $.Scratch.Get "height" ) ) ( float ( $.Scratch.Get "width" ) ) ) ) 100 }}
+
+    {{ $.Scratch.Add "ratio" ( printf "%.2f%%" $ratio ) }}
+
   <!-- @css-ignore -->
   <figure class="article__video" data-id="{{ .Get "vimeo" }}" style="padding-bottom: {{ $.Scratch.Get `ratio` }};">
 
