@@ -9,7 +9,8 @@
         "allowJs": true,
         "lib": [
             "esnext",
-            "dom"
+            "dom",
+            "webworker"
         ],
         "rootDir": "assets",
         "strict": true,
