@@ -103,7 +103,7 @@ const serve = (): void => {
         series(buildHugo(), mathjax),
     )
     watch(
-        ["./assets/js/**/*.{js,ts,tsx}", "./assets/serviceworker.js"],
+        ["./assets/js/**/*.{js,ts,tsx}", "./assets/serviceworker.{js,ts}"],
         buildWebpack(),
     )
     watch(["./assets/fonts/**/*"], fonts)

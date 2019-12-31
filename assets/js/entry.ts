@@ -10,9 +10,9 @@ const serviceWorker = (): void => {
     if ("serviceWorker" in navigator) {
         window.addEventListener("load", () => {
             navigator.serviceWorker
-                .register("../serviceworker.js")
-                .then(() => console.log("Service worker: Registered"))
-                .catch(err => console.log(`Service Worker: Error: ${err}`))
+                .register("/serviceworker.js")
+                .then(() => console.info("[sw] registered"))
+                .catch(err => console.error(`[sw] error: ${err}`))
         })
     }
 }
@@ -26,9 +26,9 @@ const videos = (): void => {
 }
 
 const logo = (): void => {
-    const logo = new LogoAnimation(document.querySelector(
-        ".logo__link",
-    ) as HTMLElement)
+    const logo = new LogoAnimation(
+        document.querySelector(".logo__link") as HTMLElement,
+    )
 
     let hasLeft = false
 

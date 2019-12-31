@@ -17,10 +17,7 @@ const common = [
     {
         test: /\.js$/,
         loader: "babel-loader",
-        include: [
-            path.join(__dirname, "assets", "js"),
-            path.join(__dirname, "serviceworker.js"),
-        ],
+        include: [path.join(__dirname, "assets", "js")],
         options: {
             cacheDirectory: true,
             presets: [["@babel/preset-env", { modules: false }]],
@@ -31,7 +28,7 @@ const common = [
         use: "ts-loader",
         include: [
             path.join(__dirname, "assets", "js"),
-            path.join(__dirname, "serviceworker.ts"),
+            path.join(__dirname, "assets", "serviceworker.ts"),
         ],
     },
 ]
@@ -79,7 +76,7 @@ const config = (
         devtool: "source-map",
         context: path.join(__dirname, "assets"),
         entry: {
-            "serviceworker.js": "./serviceworker.js",
+            "serviceworker.js": "./serviceworker.ts",
         },
         output: {
             path: path.join(__dirname, "dist"),
