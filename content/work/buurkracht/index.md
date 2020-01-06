@@ -5,7 +5,7 @@ description = "A prototype for an energy initiative that brings neighborhoods to
 draft = false
 +++
 
-{{% article-intro title="Buurkracht" %}}
+{{< article-intro title="Buurkracht" >}}
 
 Buurkracht is an energy initiative that brings neighborhoods together in order
 to save energy. I made a low-fidelity prototype that was supposed to encourage
@@ -14,7 +14,7 @@ children to learn more about renewables and how they can save energy.
 The prototype did great, which sparked my interest and encouraged me to learn
 about what turning it into a high-fidelity prototype would entail.
 
-{{% /article-intro %}}
+{{< /article-intro >}}
 
 ---
 
