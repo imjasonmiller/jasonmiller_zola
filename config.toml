@@ -6,7 +6,35 @@ languageLang = "en"
 author = "Jason Miller"
 title = "Jason Miller"
 
-disableKinds = ["RSS", "sitemap", "taxonomy", "taxonomyTerm"]
+disableKinds = [ "sitemap", "taxonomy", "taxonomyTerm"]
+
+enableRobotsTXT = true
+
+[markup]
+    [markup.tableOfContents]
+        startLevel = 3
+        endLevel = 3
+        ordered = true
+    [markup.goldmark]
+        [markup.goldmark.renderer]
+            unsafe = true
+        [markup.goldmark.extensions]
+            definitionList = true
+            footnote = true
+            linkify = true
+            strikethrough = true
+            table = true
+            taskList = true
+            typographer = true
+    [markup.highlight]
+        codeFences = true
+        guessSyntax = false
+        hl_Lines = ""
+        lineNoStart = 1
+        lineNos = false
+        lineNumbersInTable = true
+        noClasses = false
+        tabWidth = 4
 
 ignoreFiles = [
   "README",
