@@ -2,13 +2,13 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/node:10.11.0-stretch
+      - image: circleci/node:13.5
     working_directory: ~/repo
     steps:
       - checkout
       - run:
           name: Install hugo
-          command: wget https://github.com/gohugoio/hugo/releases/download/v0.49/hugo_extended_0.49_Linux-64bit.deb -O /tmp/hugo.deb && sudo dpkg -i /tmp/hugo.deb
+          command: wget https://github.com/gohugoio/hugo/releases/download/v0.62.2/hugo_0.62.2_Linux-64bit.deb -O /tmp/hugo.deb && sudo dpkg -i /tmp/hugo.deb
       - restore_cache:
           key: npm-cache-{{ .Branch }}-{{ checksum "package.json" }}
       - run: npm install
