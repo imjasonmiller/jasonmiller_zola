@@ -7,21 +7,12 @@
         "esModuleInterop": true,
         "sourceMap": true,
         "allowJs": true,
-        "lib": [
-            "esnext",
-            "dom",
-            "webworker"
-        ],
+        "lib": ["esnext", "dom", "dom.iterable", "webworker"],
         "rootDir": "assets",
         "strict": true,
         "noImplicitReturns": true,
         "noImplicitAny": true
     },
-    "include": [
-        "assets/**/*"
-    ],
-    "exclude": [
-        "node_modules",
-        "**/*.spec.ts"
-    ]
+    "include": ["assets/**/*"],
+    "exclude": ["node_modules", "**/*.spec.ts"]
 }
