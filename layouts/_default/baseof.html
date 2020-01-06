@@ -51,11 +51,11 @@
   
   {{ if and (fileExists ( replace ( printf "assets/js/%smain.js" .File.Dir ) "\\" "/" ) ) .IsPage }}
 
-    <script type="text/javascript" src="/{{ printf "js%smain.js" .RelPermalink }}"></script>
+    <script src="/{{ printf "js%smain.js" .RelPermalink }}"></script>
 
   {{ end }}
   
-  <script type="text/javascript" src="/js/main.js"></script>
+  <script src="/js/main.js"></script>
   
 </body>
 </html>
