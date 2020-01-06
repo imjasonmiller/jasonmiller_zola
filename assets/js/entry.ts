@@ -27,7 +27,7 @@ const videos = (): void => {
 
 const logo = (): void => {
     const logo = new LogoAnimation(
-        document.querySelector(".logo__link") as HTMLElement,
+        document.querySelector("#logo__canvas") as HTMLCanvasElement,
     )
 
     let hasLeft = false

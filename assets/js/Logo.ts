@@ -83,12 +83,17 @@ class Logo {
 
     timeline: TimelineLite
 
-    constructor(container: HTMLElement) {
+    constructor(container: HTMLCanvasElement) {
         this.scene = new Scene()
+
+        if (!(container.parentNode instanceof HTMLElement)) {
+            throw new Error("canvas should be wrapped in a node")
+        }
 
         // Isometric camera
         const frustumSize = 7
-        const aspectRatio = container.offsetWidth / container.offsetHeight
+        const aspectRatio =
+            container.parentNode.offsetWidth / container.parentNode.offsetHeight
 
         // prettier-ignore
         this.camera = new OrthographicCamera(
@@ -106,9 +111,12 @@ class Logo {
         )
         this.camera.lookAt(this.scene.position)
 
-        this.renderer = new WebGLRenderer({ alpha: true, antialias: true })
+        this.renderer = new WebGLRenderer({
+            alpha: true,
+            antialias: true,
+            canvas: container,
+        })
         this.renderer.setPixelRatio(2)
-        container.appendChild(this.renderer.domElement)
 
         this.drawGrid()
 
