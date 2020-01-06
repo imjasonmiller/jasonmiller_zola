@@ -2,11 +2,11 @@
 
   <hr>
 
-  <ul class="footer__list">
+  <ul class="footer__list" itemscope itemtype="http://schema.org/Person" >
 
-    <li itemprop="email">
+    <li>
 
-      <a class="footer__link" href="mailto:{{ .Site.Params.email }}">
+      <a class="footer__link" href="mailto:{{ .Site.Params.email }}" itemprop="email">
 
         <svg class="footer__icon"><use xlink:href="/img/footer__icons.svg#email" /></svg>
 
