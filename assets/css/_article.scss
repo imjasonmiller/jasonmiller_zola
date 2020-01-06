@@ -233,6 +233,9 @@
 
 .article > table {
     grid-column: 1 / -1;
+
+    width: 100%;
+
     border: 1px solid #1a1a1a;
     border-collapse: collapse;
 
@@ -261,12 +264,10 @@
 
     box-sizing: border-box;
     width: 100%;
+
     margin: 0 0 1.5em 0;
-    // padding: 1em;
 
     text-align: justify;
-
-    // background: #181818;
 }
 
 .article pre code {
@@ -278,7 +279,8 @@
     line-height: $mono-line-height;
 }
 
-.article p code {
+.article p code,
+.article__note code {
     font: {
         family: $font-family-mono;
         size: 0.875em;

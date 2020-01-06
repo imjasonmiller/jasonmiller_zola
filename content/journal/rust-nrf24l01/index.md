@@ -45,11 +45,10 @@ short the {{< abbr title="Ground" >}}GND{{< /abbr >}} and {{< abbr title="Switch
 pin on the module in order to switch it from receive to transmit and vice
 versa. 
 
-I contacted the manufacturer of the module and they were kind enough to send
-the code for the drivers. The comments were all in Chinese, but considering we
-can all read code, I did manage to extract the settings by referencing the
-registers in the code with the manufacturer's documentation for the
-`nRF24L01+`. Here's a small snippet:
+I contacted the manufacturer of said module and they were kind enough to send
+the code and schematic. The comments were all in Chinese, but I managed to
+extract the settings by referencing the registers in the code with the
+manufacturer's documentation for the `nRF24L01+`. Here's a small snippet:
 
 {{< highlight rust "hl_lines=8 15-17,linenostart=199" >}}
 //该函数初始化NRF24L01到TX模式
@@ -80,8 +79,8 @@ of the `STM8S103F MCU`, while the chip I received is fitted with the
 `N76E003AT20 MCU`. I was told that this simply was a newer module and
 everything should still work --- except it didn't. Considering that the {{< abbr title="Transmit">}}TX{{< /abbr >}} and 
 {{< abbr title="Receive" >}}RX{{< /abbr >}} addresses were hard coded, they might
-simply differ on the module I received. Instead of going through $2^{40} \cdot 125$
-potential addresses or learning about logic analyzers, I decided to back out of this
+simply differ on the module I received. Instead of going through the billions of
+potential configurations or learning about logic analyzers, I decided to back out of this
 rabbit hole and use an Arduino instead.
 
 ### Connecting the devices
