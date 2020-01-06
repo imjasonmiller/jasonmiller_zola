@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /img
+Disallow: /work/*/img/*
+Disallow: /work/*/vid/*
+Disallow: /*.xml
+

@@ -1,3 +1,23 @@
+.articles__list {
+    grid-column: 1 / -1;
+
+    list-style: none;
+
+    padding: 0;
+
+    @include xl {
+        grid-column: 5 / span 8;
+    }
+
+    li {
+        margin-bottom: 2em;
+    }
+
+    li a {
+        text-decoration: none;
+    }
+}
+
 .article {
     display: grid;
 
@@ -12,13 +32,140 @@
     }
 }
 
-.article h2 {
-    display: inline;
+.article ul {
+    grid-column: 1 / -1;
 
-    grid-column: 5 / span 8;
+    margin-top: 0;
+
+    list-style: square;
 
     @include xl {
-        font-size: 3em;
+        grid-column: 5 / span 8;
+    }
+}
+
+.article figure {
+    grid-column: 1 / -1;
+
+    @include xl {
+        grid-column: 5 / span 8;
+    }
+
+    img {
+        display: block;
+
+        width: 100%;
+    }
+
+    figcaption p:first-child {
+        margin: 1em 0;
+    }
+}
+
+.article__note {
+    grid-column: 1 / -1;
+
+    margin: 0 0 1em 0;
+
+    @include xl {
+        grid-column: 5 / span 8;
+    }
+}
+
+.note__icon {
+    float: left;
+
+    box-sizing: content-box;
+
+    width: 2em;
+
+    padding: 0.5em 1em 0.5em 0em;
+}
+
+.article__toc {
+    display: none;
+
+    position: sticky;
+    top: 2em;
+
+    grid-column: 1 / span 3;
+
+    // TODO: Make table of contents span to end of grid without this hack, see:
+    // https://stackoverflow.com/q/44052336/1113913
+    grid-row: 2 / span 100;
+
+    color: var(--color-primary-1);
+
+    @include xl {
+        display: block;
+    }
+
+    .article__toc-title {
+        font-size: var(--font-size-sm);
+        font-variant-caps: all-small-caps;
+        font-weight: 700;
+    }
+
+    ol {
+        padding: 0;
+
+        list-style: none;
+
+        li {
+            margin: 0 0 0.5em;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: none;
+
+            &:hover {
+                color: var(--color-secondary-2);
+            }
+        }
+
+        .toc__link--active {
+            color: var(--color-secondary-2);
+        }
+    }
+}
+
+.article__header {
+    grid-column: 1 / -1;
+    margin-bottom: 2em;
+
+    @include xl {
+        grid-column: 5 / span 8;
+    }
+}
+
+.article__details {
+    display: flex;
+    justify-content: space-between;
+
+    color: var(--color-primary-1);
+}
+
+.article__time {
+    margin-right: 1em;
+}
+
+.article__details-pattern {
+    width: 252px;
+    height: 52px;
+    color: var(--color-primary-3);
+}
+
+.article h3 {
+    margin: 1em 0 0;
+}
+
+.article .player {
+    grid-column: 1 / -1;
+
+    @include xl {
+        grid-column: 5 / span 8;
     }
 }
 
@@ -115,20 +262,20 @@
     box-sizing: border-box;
     width: 100%;
     margin: 0 0 1.5em 0;
-    padding: 1em;
+    // padding: 1em;
 
     text-align: justify;
 
-    background: #181818;
+    // background: #181818;
 }
 
 .article pre code {
     font: {
         family: $font-family-mono;
-        size: 0.75em;
+        size: 0.875em;
         weight: 400;
     }
-    line-height: $base-line-height;
+    line-height: $mono-line-height;
 }
 
 .article p code {

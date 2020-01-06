@@ -1,5 +1,23 @@
 {{ define "main" }}
 
-  {{ .Content }}
+    <ul class="articles__list">
+
+    {{ range .Pages.ByPublishDate.Reverse }}
+
+        <li>
+            <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2, 2006" }}</time>
+            <a href="{{.Permalink | relURL }}">
+                <h3>
+                    {{ .Title }}
+                </h3>
+            </a>
+
+            {{ .Summary }}
+
+        </li>
+
+    {{ end }}
+    
+    </ul>
 
 {{ end }}

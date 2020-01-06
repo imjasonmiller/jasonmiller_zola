@@ -46,6 +46,38 @@ const logo = (): void => {
     })
 }
 
+const tableOfContents = (): void => {
+    const toc = [...document.querySelectorAll("#TableOfContents li a")]
+
+    if (!toc.length) return
+
+    const headings = document.querySelectorAll("h3")
+
+    const handleIntersect: Handler = ({ enterUp, leaveUp }): void => {
+        toc.forEach(item => item.classList.remove("toc__link--active"))
+
+        const topHeading = [...headings].reduce((a, b) => {
+            // Calculate the real distance to the top of the viewport by adding
+            // the element's height, depending on which way we scroll
+            const f = enterUp || leaveUp ? 1 : -1
+            const topA = a.getBoundingClientRect().top + a.offsetHeight * f
+            const topB = b.getBoundingClientRect().top + b.offsetHeight * f
+
+            if (topA < topB && topA > 0) {
+                return a
+            }
+
+            return b
+        })
+
+        toc[[...headings].indexOf(topHeading)].classList.add(
+            "toc__link--active",
+        )
+    }
+
+    new ScrollIO(headings, handleIntersect, { range: { steps: 0 } })
+}
+
 const features = (): void => {
     const swipes = document.querySelectorAll(
         ".feature .feature__swipe",
@@ -88,6 +120,7 @@ const main = (): void => {
     serviceWorker()
     logo()
     features()
+    tableOfContents()
     videos()
 }
 

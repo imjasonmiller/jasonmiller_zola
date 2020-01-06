@@ -1,9 +1,7 @@
 <div class="article__introduction">
-  <h2 id="">
-    <span class="underline-gradient">
-      {{ cond ( isset .Params "title" ) .Params.title "Untitled" }}
-    </span>
-  </h2>
+    <h2 id="">
+        {{ cond ( isset .Params "title" ) .Params.title "Untitled" }}
+    </h2>
 
-  {{ .Inner | markdownify }}
+    {{ .Inner | markdownify }}
 </div>
