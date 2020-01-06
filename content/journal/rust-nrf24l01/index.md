@@ -228,7 +228,6 @@ fn nrf24_rx() -> ! {
 
 ### Closing words
 
-I hope you enjoyed reading this journey so far and that it might have been of
-use. If you have any additions or tips, feel free to reach out via twitter or
-e-mail.
+I hope you enjoyed reading this journey so far and that it was of interest. If
+you have any additions or tips, please do reach out via twitter or e-mail.
 
