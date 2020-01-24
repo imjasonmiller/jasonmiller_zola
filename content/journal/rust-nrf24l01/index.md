@@ -129,7 +129,8 @@ fn nrf24_rx() -> ! {
     // See: https://blog.japaric.io/itm/
     let stim = &mut cp.ITM.stim[0];
 
-    // Why is this necessary?
+    // Split RCC and Flash into different functionalities
+    // See: https://blog.japaric.io/brave-new-io/#freezing-the-clock-configuration
     let mut flash = dp.FLASH.constrain();
     let mut rcc = dp.RCC.constrain();
 
