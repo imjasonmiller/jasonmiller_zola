@@ -6,7 +6,7 @@ languageLang = "en"
 author = "Jason Miller"
 title = "Jason Miller"
 
-disableKinds = [ "sitemap", "taxonomy", "taxonomyTerm"]
+disableKinds = [ "taxonomy", "taxonomyTerm"]
 
 enableRobotsTXT = true
 
