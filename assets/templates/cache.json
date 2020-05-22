@@ -1,0 +1,24 @@
+{
+    "data": { 
+        "pages": [
+            "/",
+    {{- range $index, $section := $.ctx.Site.Sections -}}
+        {{- if ne (add $index 1) (len $.ctx.Site.Sections ) }}
+            {{ printf "\"%s\"," $section.RelPermalink }}
+                {{- else }}
+            {{ printf "\"%s\"" $section.RelPermalink }}
+        {{- end -}}
+    {{- end }}
+        ],
+        "files": [
+            "/js/main.js",
+            "/js/vendor.js",
+            {{ printf "\"%s\"" $.styleMain.RelPermalink }},
+            "/fonts/CircularStd-Book.woff2",
+            "/fonts/CircularStd-Bold.woff2",
+            "/fonts/Larsseit-Bold.woff2", 
+            "/img/footer__icons.svg",
+            "/favicon.ico"
+        ]
+    }
+}

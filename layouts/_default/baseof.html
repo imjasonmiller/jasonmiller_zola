@@ -24,6 +24,10 @@
 
     {{ $stylePage := resources.Get ( replace ( printf "css/%smain.scss" .File.Dir  ) "\\" "/" ) | toCSS $cssOptsMain | postCSS | minify | fingerprint }}
 
+    {{ $cacheTemplate := resources.Get "templates/cache.json" }}
+    {{ $cache := $cacheTemplate | resources.ExecuteAsTemplate "./../cache.json" (dict "styleMain" $styleMain "ctx" $) }}
+    {{- substr $cache.Permalink 0 0 -}}
+
     <link rel="stylesheet" href="{{ $stylePage.RelPermalink }}">
 
   {{ end }}
