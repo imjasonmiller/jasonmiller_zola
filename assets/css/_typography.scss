@@ -62,6 +62,23 @@ h3 {
     }
 }
 
+.heading__link {
+    margin-left: 0.25em;
+
+    color: var(--color-primary-2);
+
+    transition: color 0.25s $easeOutQuint;
+
+    &:hover {
+        fill: var(--color-secondary-2);
+    }
+
+    svg {
+        width: 1ch;
+        vertical-align: middle;
+    }
+}
+
 p {
     margin: 0 0 1em;
 }
