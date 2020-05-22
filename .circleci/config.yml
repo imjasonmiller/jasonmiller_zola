@@ -8,7 +8,7 @@ jobs:
       - checkout
       - run:
           name: Install hugo
-          command: wget https://github.com/gohugoio/hugo/releases/download/v0.62.2/hugo_extended_0.62.2_Linux-64bit.deb -O /tmp/hugo.deb && sudo dpkg -i /tmp/hugo.deb
+          command: wget https://github.com/gohugoio/hugo/releases/download/v0.71.0/hugo_extended_0.71.0_Linux-64bit.deb -O /tmp/hugo.deb && sudo dpkg -i /tmp/hugo.deb
       - restore_cache:
           key: npm-cache-{{ .Branch }}-{{ checksum "package.json" }}
       - run: npm install
