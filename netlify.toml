@@ -1,0 +1,5 @@
+# For configuration options, see:
+# https://docs.netlify.com/configure-builds/file-based-configuration/ 
+[build.environment]
+  HUGO_VERSION = "0.80.0"
+
