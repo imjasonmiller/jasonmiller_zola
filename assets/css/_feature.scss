@@ -131,7 +131,10 @@
 .feature img {
     position: relative;
     display: block;
+
     width: 100%;
+    height: auto;
+
     transition: transform 2s $easeOutQuint;
     transform: scale(1.25);
 }
