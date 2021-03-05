@@ -1,7 +1,5 @@
 ### Hugo with Webpack 📦 and Gulp 🥤
 
-[![CircleCI](https://circleci.com/gh/imjasonmiller/jasonmiller_hugo.svg?style=shield)](https://circleci.com/gh/imjasonmiller/jasonmiller_hugo)
-
 #### Install
 
 ```shell
