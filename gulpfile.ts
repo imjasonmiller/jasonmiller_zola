@@ -23,7 +23,7 @@ const buildHugo = ({ env = "development", options = [] } = {}): TaskFunction =>
 
             return spawn("hugo", args, { stdio: "inherit" }).on(
                 "close",
-                code => {
+                (code: any) => {
                     if (code === 0) {
                         browserSync.reload()
                         done()
@@ -42,7 +42,7 @@ const buildWebpack = ({
 }: { env?: Configuration["mode"] } = {}): TaskFunction =>
     Object.assign(
         (done: Function): void => {
-            webpack(webpackConfig(env), (err, stats) => {
+            webpack(webpackConfig(env), (err: any, stats: any) => {
                 if (err) throw new Error(err.message)
 
                 console.log(

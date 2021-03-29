@@ -32,7 +32,7 @@
 
   {{ end }}
 
-  <script async defer src="/js/vendor.js"></script>
+  <script async defer src="/js/shared.js"></script>
 
   <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{if .IsPage}}{{ .Summary }}{{ else }}{{ with .Site.Params.description }}{{ . }}{{ end }}{{ end }}{{ end }}">
 

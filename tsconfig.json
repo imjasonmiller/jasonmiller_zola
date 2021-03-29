@@ -1,17 +1,18 @@
 {
     "compilerOptions": {
-        "target": "es2017",
+        "target": "es2018",
         "moduleResolution": "node",
         "module": "commonjs",
         "jsx": "preserve",
         "esModuleInterop": true,
         "sourceMap": true,
+        "rootDir": "./assets/",
         "allowJs": true,
         "lib": ["esnext", "dom", "dom.iterable", "webworker"],
-        "rootDir": "assets",
         "strict": true,
         "noImplicitReturns": true,
-        "noImplicitAny": true
+        "noImplicitAny": true,
+        "typeRoots": ["assets/js/types/", "node_modules/@types"]
     },
     "include": ["assets/**/*"],
     "exclude": ["node_modules", "**/*.spec.ts"]

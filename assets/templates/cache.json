@@ -12,7 +12,7 @@
         ],
         "files": [
             "/js/main.js",
-            "/js/vendor.js",
+            "/js/shared.js",
             {{ printf "\"%s\"" $.styleMain.RelPermalink }},
             "/fonts/CircularStd-Book.woff2",
             "/fonts/CircularStd-Bold.woff2",
