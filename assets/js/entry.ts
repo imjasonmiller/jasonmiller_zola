@@ -1,8 +1,5 @@
 import Logo from "./Logo";
 import { Player } from "./Video";
-/* eslint-disable */
-// @ts-ignore
-import IntersectionObserver from "intersection-observer";
 /* eslint-enable */
 import { ScrollIO, Handler } from "@imjasonmiller/scroll-io";
 
