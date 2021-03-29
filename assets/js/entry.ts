@@ -1,6 +1,5 @@
 import Logo from "./Logo";
 import { Player } from "./Video";
-/* eslint-enable */
 import { ScrollIO, Handler } from "@imjasonmiller/scroll-io";
 
 function registerServiceWorker(): void {

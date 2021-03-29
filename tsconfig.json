@@ -1,19 +1,18 @@
 {
-    "compilerOptions": {
-        "target": "es2018",
-        "moduleResolution": "node",
-        "module": "commonjs",
-        "jsx": "preserve",
-        "esModuleInterop": true,
-        "sourceMap": true,
-        "rootDir": "./assets/",
-        "allowJs": true,
-        "lib": ["esnext", "dom", "dom.iterable", "webworker"],
-        "strict": true,
-        "noImplicitReturns": true,
-        "noImplicitAny": true,
-        "typeRoots": ["assets/js/types/", "node_modules/@types"]
-    },
-    "include": ["assets/**/*"],
-    "exclude": ["node_modules", "**/*.spec.ts"]
+  "compilerOptions": {
+    "target": "es2020",
+    "moduleResolution": "node",
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "sourceMap": true,
+    "rootDir": "./assets/",
+    "allowJs": true,
+    "lib": ["esnext", "dom", "dom.iterable", "webworker"],
+    "strict": true,
+    "noImplicitReturns": true,
+    "noImplicitAny": true,
+    "typeRoots": ["assets/js/types/", "node_modules/@types"]
+  },
+  "include": ["assets/**/*"],
+  "exclude": ["node_modules", "**/*.spec.ts"]
 }
