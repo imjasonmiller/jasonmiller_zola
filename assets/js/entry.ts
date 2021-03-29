@@ -112,8 +112,8 @@ const features = (): void => {
   new ScrollIO(".feature", handleIntersect, { range: { steps: 50 } });
 };
 
-// registerServiceWorker();
+registerServiceWorker();
+initLogo();
 features();
 tableOfContents();
 initVideos();
-initLogo();
