@@ -24,6 +24,8 @@ jobs:
         run: |
           npm ci
           npm run webpack-prod
+          
+      - run: ls -a /static/js/
 
       # This uses a forked version of Zola that includes support for the `webp` and `avif` image formats.
       - name: Build site
