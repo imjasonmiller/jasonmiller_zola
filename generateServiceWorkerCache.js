@@ -3,7 +3,6 @@ import fs from "fs";
 
 // As Zola does not support custom output formats,
 // we generate the `serviceworker-cache.json` via Node.
-
 function getChecksum(path) {
   return new Promise(function (resolve, reject) {
     const hash = crypto.createHash("sha256");

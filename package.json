@@ -12,9 +12,10 @@
   },
   "scripts": {
     "watch": "node watch.js",
-    "build": "zola build && rm ./public/assets/css/critical.css",
-    "js:dev": "webpack --node-env development && node ./generateServiceWorkerCache.js",
-    "js:prod": "webpack --node-env production && node ./generateServiceWorkerCache.js",
+    "build": "zola build",
+    "js:dev": "webpack --node-env development",
+    "js:prod": "webpack --node-env production",
+    "serviceworker-cache": "node ./generateServiceWorkerCache.js",
     "analyze": "webpack --profile --json > stats.json && webpack-bundle-analyzer stats.json ./static/js/",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

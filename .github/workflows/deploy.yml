@@ -15,23 +15,26 @@ jobs:
       # Check-out repository under $GITHUB_WORKSPACE
       - uses: actions/checkout@v2
       
+      - name: Use Node 15.14.0
+        uses: actions/setup-node@v1
+        with:
+          node-version: 15.14.0
+
+      - name: Install npm dependencies
+        run: |
+          npm ci
+          npm run build:prod
+
       # This uses a forked version of Zola that includes support for the `webp` and `avif` image formats.
       - name: Build site
         uses: docker://imjasonmiller/zola:latest
         with:
           args: build
-        
-      - name: Use Node 15.14.0
-        uses: actions/setup-node@v1
-        with:
-          node-version: 15.14.0
-          
-      - name: Install npm dependencies
-        run: |
-          npm i
-          npm run js:prod
-          npm run build
-    
+
+      # Build the service worker cache
+      - name: Build Service Worker cache
+        run: npm run serviceworker-cache
+         
       - name: Deploy to Netlify
         run: |
           zip -r website.zip public
