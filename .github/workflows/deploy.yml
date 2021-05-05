@@ -11,10 +11,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    container:
-      # This uses a forked version of Zola that includes support for the `webp`
-      # and `avif` image formats.
-      image: docker://imjasonmiller/zola:latest
     steps:
       # Check-out repository under $GITHUB_WORKSPACE
       - uses: actions/checkout@v2
@@ -30,8 +26,9 @@ jobs:
           npm run js:prod
           npm run build
       
+      # This uses a forked version of Zola that includes support for the `webp` and `avif` image formats.
       - name: Build site
-        run: zola build
+        uses: docker://imjasonmiller/zola:latest
     
       - name: Deploy to Netlify
         run: |
