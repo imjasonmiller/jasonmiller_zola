@@ -62,4 +62,4 @@ const cache = {
   },
 };
 
-fs.writeFileSync("static/serviceworker-cache.json", JSON.stringify(cache));
+fs.writeFileSync("public/serviceworker-cache.json", JSON.stringify(cache));
