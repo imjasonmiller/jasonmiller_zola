@@ -1,4 +1,4 @@
-# zola + webpack 📦
+# zola 🦀 + webpack 📦
 
 A static website built with [Zola](https://github.com/getzola/zola).
 
