@@ -1,0 +1,84 @@
+@import "../../mediaqueries";
+
+.avatar {
+  display: grid;
+
+  grid-column: 1 / -1;
+  grid-template-columns: inherit;
+  grid-gap: inherit;
+
+  align-items: center;
+
+  margin-bottom: var(--spacer-lg);
+
+  @include xl {
+    margin: var(--spacer-xl) 0;
+  }
+}
+
+.avatar__video {
+  grid-column: -1 / 1;
+
+  @include xl {
+    grid-column: 3 / span 7;
+  }
+}
+
+.avatar__text {
+  grid-column: -1 / 1;
+
+  @include xl {
+    grid-column: 10 / span 5;
+  }
+}
+
+.preloader__video {
+  grid-column: -1 / 1;
+
+  @include xl {
+    grid-column: 6 / span 6;
+  }
+}
+
+.settings {
+  display: grid;
+
+  grid-column: 1 / -1;
+  grid-template-columns: inherit;
+  grid-gap: inherit;
+
+  align-items: center;
+
+  margin-bottom: var(--spacer-lg);
+
+  @include xl {
+    margin: var(--spacer-xl) 0;
+  }
+}
+
+.settings__text {
+  grid-column: -1 / 1;
+
+  @include xl {
+    grid-column: 3 / span 5;
+  }
+}
+
+.settings__video {
+  grid-column: -1 / 1;
+
+  @include xl {
+    grid-column: 8 / span 7;
+  }
+}
+
+.result {
+  grid-column: -1 / 1;
+
+  margin-bottom: var(--spacer-lg);
+
+  @include xl {
+    grid-column: 2 / 16;
+    margin: var(--spacer-lg) 0;
+  }
+}

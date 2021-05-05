@@ -1,0 +1,445 @@
+.articles__list {
+  grid-column: 1 / -1;
+
+  list-style: none;
+
+  padding: 0;
+
+  @include xl {
+    grid-column: 5 / span 8;
+  }
+
+  li {
+    margin-bottom: var(--spacer-lg);
+  }
+
+  li a {
+    /* Without this the tab-focus does not wrap around the inner heading */
+    display: inline-block;
+
+    text-decoration: none;
+  }
+}
+
+.article {
+  display: grid;
+
+  align-items: start;
+
+  grid-column: 1/ -1;
+  grid-template-columns: inherit;
+
+  @include xl {
+    grid-template-columns: inherit;
+    grid-gap: 0 var(--spacer-lg);
+  }
+}
+
+.article ul {
+  grid-column: 1 / -1;
+
+  margin-top: 0;
+
+  list-style: square;
+
+  @include xl {
+    grid-column: 5 / span 8;
+  }
+}
+
+.article figure {
+  grid-column: 1 / -1;
+
+  @include xl {
+    grid-column: 5 / span 8;
+  }
+
+  img {
+    display: block;
+
+    width: 100%;
+    height: auto;
+  }
+
+  figcaption p:first-child {
+    margin: var(--spacer-md) 0;
+  }
+}
+
+.article__note {
+  grid-column: 1 / -1;
+
+  margin: 0 0 var(--spacer-md) 0;
+
+  @include xl {
+    grid-column: 5 / span 8;
+  }
+}
+
+.note__icon {
+  float: left;
+
+  fill: var(--note);
+
+  box-sizing: content-box;
+
+  width: var(--spacer-lg);
+
+  padding: var(--spacer-sm) var(--spacer-md) var(--spacer-sm) 0;
+}
+
+.article__toc {
+  display: none;
+
+  position: sticky;
+  top: var(--spacer-lg);
+
+  grid-column: 1 / span 3;
+
+  // TODO: Make table of contents span to end of grid without this hack, see:
+  // https://stackoverflow.com/q/44052336/1113913
+  grid-row: 2 / span 100;
+
+  color: var(--text-primary);
+
+  @include xl {
+    display: block;
+  }
+
+  .article__toc-title {
+    color: var(--text-tertiary);
+
+    font-size: var(--font-size-sm);
+    font-variant-caps: all-small-caps;
+    font-weight: 700;
+  }
+
+  ol {
+    padding: 0;
+
+    list-style: none;
+
+    li {
+      margin: 0 0 var(--spacer-sm);
+    }
+
+    a {
+      text-decoration: none;
+      color: var(--text-tertiary);
+      transition: none;
+
+      &:hover {
+        color: var(--text-secondary);
+      }
+    }
+
+    .toc__link--active {
+      color: var(--text-secondary);
+    }
+  }
+}
+
+.article__header {
+  grid-column: 1 / -1;
+  margin-bottom: var(--spacer-lg);
+
+  @include lg {
+    grid-column: 5 / span 8;
+  }
+}
+
+.article__details {
+  display: grid;
+  grid-template-areas:
+    "article-date pattern"
+    "reading-time pattern"
+    "save-offline .";
+  grid-column-gap: var(--spacer-md);
+  grid-template-columns: minmax(0, max-content) 1fr;
+  grid-template-rows: min-content min-content 1fr;
+}
+
+.article__details-pattern {
+  grid-area: pattern;
+
+  height: var(--spacer-xl);
+
+  color: var(--base);
+}
+
+.btn--save-article {
+  position: relative;
+
+  grid-area: save-offline;
+
+  width: max-content;
+}
+
+.btn__icon-download,
+.btn__icon-downloaded {
+  position: relative;
+  /* Align icon with text baseline */
+  top: var(--spacer-xxs);
+
+  width: 1.25ch;
+
+  margin: 0 var(--spacer-sm) 0 var(--spacer-xs);
+
+  fill: none;
+
+  stroke: var(--text-primary);
+}
+
+.btn--save-article:disabled .btn__icon-download {
+  opacity: 0;
+}
+
+.btn--save-article:disabled .btn__icon-downloaded {
+  stroke: var(--soft);
+
+  opacity: 1;
+}
+
+.btn__icon-downloaded {
+  opacity: 0;
+
+  position: absolute;
+
+  top: var(--spacer-sm);
+  left: var(--spacer-sm);
+
+  transform: translateY(50%);
+}
+
+.btn--saving-article .btn__icon-download {
+  animation: 1.5s ease-out -0.75s infinite animateIcon;
+}
+
+@keyframes animateIcon {
+  0% {
+    transform: translateY(-50%);
+  }
+  100% {
+    transform: translateY(50%);
+    opacity: 0;
+  }
+}
+
+.article h3 {
+  margin: var(--spacer-md) 0 0;
+}
+
+.article .player {
+  grid-column: 1 / -1;
+
+  @include xl {
+    grid-column: 5 / span 8;
+  }
+}
+
+.article > h3 {
+  display: inline;
+
+  grid-column: 1 / -1;
+
+  @include lg {
+    grid-column: 5 / span 8;
+  }
+}
+
+.article > p {
+  grid-column: 1 / -1;
+
+  @include lg {
+    grid-column: 5 / span 8;
+  }
+}
+
+// Blockquote <svg> triangle
+%svgTriangle {
+  position: absolute;
+
+  display: block;
+
+  width: 1.5em;
+  height: 1.125em; // This is made up, fix the aspect ratio and get the correct width-height
+
+  content: "";
+  pointer-events: none;
+
+  opacity: 0.25;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130 100"><path fill="none" stroke="#fff" stroke-width="2.5" d="m130,50l-86.66,-50l0,100z"></path></svg>');
+}
+
+.article blockquote {
+  margin: 0 0 1.5em;
+
+  grid-column: 13 / span 3;
+
+  & p {
+    position: relative;
+
+    margin: 0 1.5em;
+
+    &:first-child::after {
+      @extend %svgTriangle;
+      right: -1.125em;
+      bottom: 0.125em;
+    }
+
+    // Mirror the triangle
+    &:last-child::before {
+      @extend %svgTriangle;
+      top: 0.125em;
+      right: auto;
+      left: -1.5em;
+
+      transform: scaleX(-1);
+    }
+  }
+}
+
+.article > table {
+  grid-column: 1 / -1;
+
+  width: 100%;
+
+  border: 1px solid var(--base);
+  border-collapse: collapse;
+
+  margin-bottom: var(--spacer-lg);
+
+  @include xl {
+    grid-column: 5 / span 8;
+  }
+}
+
+.article > table th {
+  background: var(--base);
+  color: var(--text-primary);
+}
+
+.article > table th,
+.article > table td {
+  padding: var(--spacer-sm);
+  text-align: left;
+  vertical-align: top;
+  border: 1px solid var(--base);
+}
+
+.article pre {
+  grid-column: 1 / -1;
+
+  overflow-x: auto;
+
+  background: var(--body) !important;
+
+  width: 100%;
+
+  @include lg {
+    grid-column: 5 / span 8;
+  }
+
+  margin: 0 0 var(--spacer-lg) 0;
+
+  text-align: justify;
+}
+
+.article pre code {
+  font: {
+    family: var(--font-family-mono);
+    size: var(--font-size-sm);
+    weight: 400;
+  }
+
+  // filter: var(--syntax-highlight-hack);
+
+  // will-change: filter;
+  transform: translateZ(0);
+
+  line-height: var(--font-mono-line-height);
+}
+
+.article p code,
+.article__note code {
+  font: {
+    family: var(--font-family-mono);
+    size: 0.875em;
+    weight: 400;
+  }
+  line-height: var(--font-mono-line-height);
+  border-bottom: 1px solid var(--base);
+}
+
+.article__figure {
+  position: relative;
+
+  margin: 0 0 var(--spacer-lg) 0;
+}
+
+.article__figure__img {
+  display: inline-block;
+
+  width: 100%;
+
+  vertical-align: text-top;
+}
+
+.article__video {
+  position: relative;
+
+  height: 0;
+  margin: 0 0 2em 0;
+  padding: 0 0 56.25% 0;
+}
+
+.article__video__frame iframe {
+  position: absolute;
+
+  width: 100%;
+  height: 100%;
+}
+
+.article__video__image {
+  position: relative;
+
+  cursor: pointer;
+
+  & img {
+    display: block;
+    width: 100%;
+  }
+}
+
+.article__video__swipe {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+
+  transition: transform 0.5s 1s;
+  transform: scaleX(0);
+  transform-origin: left;
+
+  background: var(--body);
+}
+
+.article__introduction {
+  position: relative;
+
+  grid-column: 1 / -1;
+
+  @include md {
+    grid-column: 1 / 10;
+  }
+
+  @include lg {
+    grid-column: 1 / 9;
+  }
+
+  @include xl {
+    grid-column: 1 / span 8;
+  }
+}

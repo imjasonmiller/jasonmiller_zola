@@ -1,0 +1,170 @@
+:root {
+  /* Spacing */
+  --spacer-xxs: 0.125rem;
+  --spacer-xs: 0.25rem;
+  --spacer-sm: 0.5rem;
+  --spacer-md: 1rem;
+  --spacer-lg: 2rem;
+  --spacer-xl: 4rem;
+  --spacer-xxl: 8rem;
+
+  /* Font families */
+  --font-family-head: Larsseit, sans-serif;
+  --font-family-body: Circular, sans-serif;
+  --font-family-mono: "Fira Code", monospace;
+
+  --font-weight-regular: 400;
+  --font-weight-bold: 700;
+
+  /* Sizing */
+  --font-base: 1rem;
+  --font-scale: 1.2;
+
+  /* Scale up the base font-size for larger devices */
+  @include lg {
+    --font-base: 1.125rem;
+  }
+
+  --font-size-xs: calc(var(--font-size-sm) / var(--font-scale));
+  --font-size-sm: calc(var(--font-size-md) / var(--font-scale));
+  --font-size-md: var(--font-base);
+  --font-size-lg: calc(var(--font-size-md) * var(--font-scale));
+  --font-size-xl: calc(var(--font-size-lg) * var(--font-scale));
+  --font-size-xxl: calc(var(--font-size-xl) * var(--font-scale));
+  --font-size-xxxl: calc(var(--font-size-xxl) * var(--font-scale));
+  --font-size-xxxxl: calc(var(--font-size-xxxl) * var(--font-scale));
+  --font-size-xxxxxl: calc(var(--font-size-xxxxl) * var(--font-scale));
+
+  /* Heading sizes */
+  --font-size-h1: var(--font-size-xxxxl);
+  --font-size-h2: var(--font-size-xxxl);
+  --font-size-h3: var(--font-size-xxl);
+  --font-size-h4: var(--font-size-xl);
+  --font-size-h5: var(--font-size-lg);
+  --font-size-h6: var(--font-size-md);
+
+  /* Line height */
+  --font-body-line-height: 1.5;
+  --font-mono-line-height: 2;
+
+  /* Easings */
+  --ease-out-circ: cubic-bezier(0, 0.55, 0.45, 1);
+  --ease-out-quint: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-inout-back: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  --ease-inout-quart: cubic-bezier(0.77, 0, 0.175, 1);
+
+  /* Media controls */
+  --play-icon-primary-color: hsl(0, 0%, 100%);
+  --play-icon-secondary-color: hsla(0, 0%, 5%, 0.5);
+}
+
+/* Default theme if the user has no preference */
+:root[data-theme="dark"] {
+  --base: hsl(0, 0%, 10%);
+  --body: hsl(0, 0%, 5%);
+  --soft: hsl(0, 0%, 30%);
+
+  --text-primary: hsl(0, 0%, 55%);
+  --text-secondary: hsl(0, 0%, 95%);
+  --text-tertiary: hsl(0, 0%, 30%);
+
+  --text-selection-fg: hsla(0, 0%, 100%, 1);
+  --text-selection-bg: hsla(230, 100%, 50%, 0.95);
+
+  --logo-monogram: hsl(0, 0%, 95%);
+  --logo-grid: hsl(0, 0%, 10%);
+
+  --media-border-thickness: 1px;
+  --media-border-color: hsla(0, 0%, 47.5%, 0.25);
+
+  --outline: hsl(45, 100%, 40%);
+
+  --note: hsl(45, 100%, 40%);
+
+  --scrollbar-thumb: hsl(0, 0%, 30%);
+}
+
+/* Prevent a flash of unstyled content (FOUC) if the user's 
+ * operating system or agent string prefers a dark theme by default.
+ */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --base: hsl(0, 0%, 10%);
+    --body: hsl(0, 0%, 5%);
+    --soft: hsl(0, 0%, 30%);
+
+    --text-primary: hsl(0, 0%, 55%);
+    --text-secondary: hsl(0, 0%, 95%);
+    --text-tertiary: hsl(0, 0%, 30%);
+
+    --text-selection-fg: hsla(0, 0%, 100%, 1);
+    --text-selection-bg: hsla(230, 100%, 50%, 0.95);
+
+    --logo-monogram: hsl(0, 0%, 95%);
+    --logo-grid: hsl(0, 0%, 10%);
+
+    --media-border-thickness: 1px;
+    --media-border-color: hsla(0, 0%, 47.5%, 0.25);
+
+    --outline: hsl(45, 100%, 40%);
+
+    --note: hsl(45, 100%, 40%);
+
+    --scrollbar-thumb: hsl(0, 0%, 30%);
+  }
+}
+
+:root[data-theme="light"] {
+  --base: hsl(0, 0%, 90%);
+  --body: hsl(0, 0%, 95%);
+  --soft: hsl(0, 0%, 70%);
+
+  --text-primary: hsl(0, 0%, 30%);
+  --text-secondary: hsl(0, 0%, 10%);
+  --text-tertiary: hsl(0, 0%, 70%);
+
+  --text-selection-fg: hsla(0, 0%, 100%, 1);
+  --text-selection-bg: hsla(230, 100%, 50%, 0.95);
+
+  --logo-monogram: hsl(0, 0%, 10%);
+  --logo-grid: hsl(0, 0%, 90%);
+
+  --media-border-thickness: 1px;
+  --media-border-color: hsla(0, 0%, 47.5%, 0.25);
+
+  --outline: hsl(230, 100%, 40%);
+
+  --note: hsl(40, 80%, 50%);
+
+  --scrollbar-thumb: hsl(0, 0%, 70%);
+}
+
+/* Prevent a flash of unstyled content (FOUC) if the user's 
+ * operating system or agent string prefers a light theme by default.
+ */
+@media (prefers-color-scheme: light) {
+  :root {
+    --base: hsl(0, 0%, 90%);
+    --body: hsl(0, 0%, 95%);
+    --soft: hsl(0, 0%, 70%);
+
+    --text-primary: hsl(0, 0%, 30%);
+    --text-secondary: hsl(0, 0%, 10%);
+    --text-tertiary: hsl(0, 0%, 70%);
+
+    --text-selection-fg: hsla(0, 0%, 100%, 1);
+    --text-selection-bg: hsla(230, 100%, 50%, 0.95);
+
+    --logo-monogram: hsl(0, 0%, 10%);
+    --logo-grid: hsl(0, 0%, 90%);
+
+    --media-border-thickness: 1px;
+    --media-border-color: hsla(0, 0%, 47.5%, 0.25);
+
+    --outline: hsl(230, 100%, 40%);
+
+    --note: hsl(40, 80%, 50%);
+
+    --scrollbar-thumb: hsl(0, 0%, 70%);
+  }
+}

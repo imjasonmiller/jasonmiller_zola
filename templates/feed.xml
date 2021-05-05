@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>{{ config.extra.author }}</title>
+    <link>{{ config.base_url }}</link>
+    <description>{{ config.extra.description }}</description>
+    <language>en-us</language>
+    <lastBuildDate>{{ last_updated }}</lastBuildDate>
+    <atom:link href="{{ feed_url }}" rel="self" type="application/rss+xml"/>
+
+    {% set journal = get_section(path="journal/_index.md") %}
+
+    {% for article in journal.pages | sort(attribute="date") | reverse %}
+
+    <item>
+
+      <title>{{ article.title }}</title>
+
+      <link>{{ article.permalink }}</link>
+
+      <pubDate>
+
+        {{ article.date | date(format="%a, %d %b %Y %T %z") }}
+
+      </pubDate>
+
+      <guid>{{ article.permalink }}</guid>
+
+      <description>{{ article.summary | safe | striptags }}</description>
+
+    </item>
+
+    {% endfor %}
+
+  </channel>
+</rss>

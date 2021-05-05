@@ -11,8 +11,8 @@
     "strict": true,
     "noImplicitReturns": true,
     "noImplicitAny": true,
-    "typeRoots": ["assets/js/types/", "node_modules/@types"]
+    "typeRoots": ["js/types/", "node_modules/@types"]
   },
-  "include": ["assets/**/*"],
+  "include": ["js/**/*"],
   "exclude": ["node_modules", "**/*.spec.ts"]
 }

@@ -1,0 +1,149 @@
+@import "mediaqueries";
+@import "variables";
+@import "typography";
+
+@import "header";
+@import "featured";
+@import "mediaborders";
+@import "footer";
+@import "video";
+@import "article";
+@import "not-found";
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+
+  background: var(--base);
+
+  scroll-behavior: smooth;
+
+  scrollbar-color: var(--scrollbar-thumb) var(--base);
+}
+
+html,
+body {
+  min-height: 100%;
+
+  margin: 0;
+}
+
+body {
+  margin: var(--spacer-md);
+
+  font: var(--font-weight-regular) var(--font-size-md) var(--font-family-body);
+
+  line-height: var(--font-body-line-height);
+
+  color: var(--text-primary);
+
+  background: var(--body);
+}
+
+main {
+  display: grid;
+
+  width: 100%;
+  max-width: 1340px;
+
+  margin: 0 auto;
+  padding: 0 var(--spacer-md);
+
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: var(--spacer-md);
+
+  @include sm {
+    grid-template-columns: repeat(10, 1fr);
+  }
+
+  @include md {
+    grid-template-columns: repeat(12, 1fr);
+  }
+
+  @include lg {
+    grid-template-columns: repeat(14, 1fr);
+  }
+
+  @include xl {
+    padding: 0 var(--spacer-lg);
+
+    grid-template-columns: repeat(16, 1fr);
+    grid-gap: 0 var(--spacer-lg);
+  }
+}
+
+hr {
+  width: 100%;
+  height: 1px;
+  margin: var(--spacer-md) 0;
+
+  border: 0;
+  background: var(--base);
+
+  grid-column: 1 / -1;
+
+  @include md {
+    margin: var(--spacer-md) 0;
+  }
+}
+
+figure {
+  margin: 0;
+}
+
+button,
+.btn {
+  padding: var(--spacer-sm);
+
+  border: 1px solid var(--base);
+
+  cursor: pointer;
+
+  color: var(--text-primary);
+
+  background: var(--body);
+}
+
+button:disabled,
+.btn:disabled {
+  color: var(--soft);
+
+  cursor: not-allowed;
+}
+
+/* Show focus styles when the button receives focus */
+button:focus,
+.btn:focus {
+  outline: var(--spacer-xxs) solid var(--outline);
+}
+
+/* Hide focus styles for mouse users */
+button:focus:not(:focus-visible),
+.btn:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* This allows us to hide content, but still make it avaialble to screen readers.
+ * See: https://www.sarasoueidan.com/blog/inclusively-hiding-and-styling-checkboxes-and-radio-buttons
+ */
+.sr-only {
+  position: absolute;
+
+  width: 1px;
+  height: 1px;
+
+  overflow: hidden;
+
+  clip: rect(0 0 0 0);
+  clip-path: inset(100%);
+
+  white-space: nowrap;
+}
+
+::selection {
+  color: var(--text-selection-fg);
+  background: var(--text-selection-bg);
+}

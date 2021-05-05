@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+  <ul class="articles__list">
+
+    {% set journal = get_section(path="journal/_index.md") %}
+
+    {% for article in journal.pages | sort(attribute="date") | reverse %}
+
+      <li>
+
+        <time datetime="{{ article.date | date }}">
+
+          {{ article.date | date(format="%b %-d, %-Y") }}
+
+        </time>
+
+        <a href="{{ article.permalink }}">
+
+          <h2 class="h3">
+
+            {{ article.title }}
+
+          </h2>
+
+        </a>
+
+        {{ article.summary | markdown | safe }}
+        
+      </li>
+
+    {% endfor %}
+
+  </ul>
+
+{% endblock %}

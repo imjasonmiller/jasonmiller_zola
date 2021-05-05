@@ -1,0 +1,111 @@
+.media-border {
+  position: absolute;
+  top: var(--spacer-md);
+
+  &.media-border--left {
+    left: var(--spacer-md);
+  }
+
+  &.media-border--right {
+    right: var(--spacer-md);
+  }
+
+  width: 100%;
+  height: 100%;
+
+  pointer-events: none;
+}
+
+/* Animated border lines surrounding featured items and certain media in articles */
+.media-border__line {
+  /* prettier-ignore */
+  $borders: (
+    ( id: top,    origin: left    ),
+    ( id: right,  origin: top     ),
+    ( id: bottom, origin: right   ),
+    ( id: left,   origin: bottom  )
+  );
+
+  /* Animation time (ms) for each edge of the border */
+  $step: 500;
+  /* Total animation time */
+  $time: $step * 4;
+
+  position: absolute;
+
+  transition: transform #{$step}ms var(--ease-out-quint);
+
+  background: var(--media-border-color);
+
+  @for $i from 0 to length($borders) {
+    $border: nth($borders, $i + 1);
+
+    &.media-border__line--#{map-get($border, id)} {
+      transform-origin: map-get($border, origin);
+      /* Delay this border edge animation until previous animation has completed. */
+      transition-delay: #{$step * $i}ms;
+
+      /* Depending on the n-th border, set the `top`, `right`, `bottom` or
+       * `left` position to `0`.
+       * This also sets the `origin` property to either `left`, `top`,
+       * `right` or `bottom`.
+       */
+      #{map-get($border, id)}: 0;
+      #{map-get($border, origin)}: var(--media-border-thickness);
+
+      /* Width and height for either the top and bottom border or the
+       * left and right border.
+       */
+      @if map-get($border, id) == top or map-get($border, id) == bottom {
+        width: calc(100% - var(--media-border-thickness));
+        height: var(--media-border-thickness);
+      } @else {
+        width: var(--media-border-thickness);
+        height: calc(100% - var(--media-border-thickness));
+      }
+
+      &.media-border__line--hidden {
+        transition-delay: #{$time - $step * $i - $step}ms;
+
+        @if map-get($border, id) == top or map-get($border, id) == bottom {
+          transform: scaleX(0);
+        } @else {
+          transform: scaleY(0);
+        }
+      }
+    }
+  }
+}
+
+/* TODO: Is this even used anywhere? */
+.media-border__play {
+  width: 3em;
+  margin: auto;
+
+  grid-area: mid-mid;
+
+  stroke: var(--play-icon-primary-color);
+  stroke-width: 5;
+  stroke-dasharray: 323.61;
+
+  fill: none;
+}
+
+.article__video__image:hover .media-border__play path {
+  animation: playHover 1s var(--ease-inout-quart) forwards;
+}
+
+@keyframes playHide {
+  to {
+    stroke-dashoffset: calc(323.61);
+  }
+}
+
+@keyframes playHover {
+  from {
+    stroke-dashoffset: 0;
+  }
+  to {
+    stroke-dashoffset: calc(323.61 * 2);
+  }
+}

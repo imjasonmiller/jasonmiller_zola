@@ -1,0 +1,9 @@
+.not-found {
+  grid-column: 1 / -1;
+
+  text-align: center;
+
+  @include md {
+    margin: var(--spacer-md) 0;
+  }
+}

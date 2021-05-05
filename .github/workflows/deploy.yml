@@ -1,0 +1,43 @@
+name: Deploy
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # Check-out repository under $GITHUB_WORKSPACE
+      - uses: actions/checkout@v2
+      
+      # This uses a forked version of Zola that includes support for the `webp`
+      # and `avif` image formats.
+      - name: Use Docker image
+        uses: docker://imjasonmiller/zola:latest
+
+      - name: Use Node 15.14.0
+        uses: actions/setup-node@v1
+        with:
+          node-version: 15.14.0
+          
+      - name: Install npm dependencies
+        run: |
+          npm ci
+          npm run js:prod
+          npm run build
+      
+      - name: Build site
+        run: zola build
+    
+      - name: Deploy to Netlify
+        run: |
+          zip -r website.zip public
+          curl -H "Content-Type: application/zip" \
+            -H "Authorization: Bearer ${{ secrets.NETLIFY_TOKEN }}" \
+            --data-binary "@website.zip" \
+            https://api.netlify.com/api/v1/sites/imjasonmiller.netlify.com/deploys

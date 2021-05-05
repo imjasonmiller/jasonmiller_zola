@@ -1,0 +1,82 @@
+<footer class="footer" role="contentinfo"> 
+
+  <hr>
+
+  <ul class="footer__list">
+
+    <li>
+
+      <a title="E-mail" class="footer__link" href="mailto:{{ config.extra.social.email }}" itemprop="email" rel="me noopener">
+
+        <svg class="footer__icon"><use xlink:href="/img/footer__icons.svg#email" /></svg>
+ 
+      </a>
+
+    </li>
+
+    <li>
+
+      <a title="GitHub" class="footer__link" href="{{ config.extra.social.github }}" target="_blank" rel="me noopener">
+
+        <svg class="footer__icon"><use xlink:href="/img/footer__icons.svg#github" /></svg>
+
+      </a>
+
+    </li>
+
+    <li>
+
+      <a title="Twitter" class="footer__link" href="{{ config.extra.social.twitter }}" target="_blank" rel="me noopener">
+
+        <svg class="footer__icon"><use xlink:href="/img/footer__icons.svg#twitter" /></svg>
+      
+      </a>
+
+    </li>
+
+    <li>
+
+      <a title="RSS" class="footer__link" href="{{ config.base_url }}/feed.xml" target="_blank" rel="me noopener">
+
+        <svg class="footer__icon"><use xlink:href="/img/footer__icons.svg#rss" /></svg>
+
+      </a>
+
+    </li>
+  
+    <li>
+
+      <label class="theme-checkbox" for="theme-checkbox" title="Change theme">
+
+        <input type="checkbox" id="theme-checkbox" class="sr-only" />
+
+        <svg class="theme-checkbox__icon" viewBox="0 0 100 100">
+          <mask id="mask--inner">
+            <circle class="mask--inner" cx="50" cy="50" r="25" fill="white" stroke-width="5" stroke="white"></circle>
+          </mask>
+
+          <mask id="mask--outer">
+            <rect width="100" height="100" fill="white"></rect>
+            <circle class="mask--outer" cx="67.67" cy="32.33" fill="black" r="25"></circle>
+          </mask>
+
+          <circle class="circle--inner" cx="50" cy="50" r="25" mask="url(#mask--outer)"></circle>
+          <circle class="circle--outer" cx="67.67" cy="32.33" r="25" mask="url(#mask--inner)"></circle>
+          <line class="line line--1" x1="50" y1="23" x2="50" y2="28" />
+          <line class="line line--2" x1="50" y1="23" x2="50" y2="28" />
+          <line class="line line--3" x1="50" y1="23" x2="50" y2="28" />
+          <line class="line line--4" x1="50" y1="23" x2="50" y2="28" />
+          <line class="line line--5" x1="50" y1="23" x2="50" y2="28" />
+          <line class="line line--6" x1="50" y1="23" x2="50" y2="28" />
+          <line class="line line--7" x1="50" y1="23" x2="50" y2="28" />
+          <line class="line line--8" x1="50" y1="23" x2="50" y2="28" />
+
+        </svg>
+
+      </label>
+
+    </li>
+
+  </ul>
+
+</footer>

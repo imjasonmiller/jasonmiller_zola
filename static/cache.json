@@ -1,0 +1,27 @@
+{
+  "data": {
+    "pages": ["/", "/work", "/journal"],
+    "files": [
+      "/favicon.ico",
+      "manifest.json",
+      "/js/main.mjs",
+      "/js/shared.js",
+      "/css/main.css",
+      "/fonts/CircularStd-Book.woff2",
+      "/fonts/CircularStd-Bold.woff2",
+      "/fonts/Larsseit-Bold.woff2",
+      "/img/footer__icons.svg",
+      "/img/icons-36.png",
+      "/img/icons-48.png",
+      "/img/icons-60.png",
+      "/img/icons-72.png",
+      "/img/icons-76.png",
+      "/img/icons-96.png",
+      "/img/icons-120.png",
+      "/img/icons-152.png",
+      "/img/icons-180.png",
+      "/img/icons-192.png",
+      "/img/icons-512.png"
+    ]
+  }
+}

@@ -1,0 +1,54 @@
+<figure>
+
+  {% set asset_path = page.path ~ src | trim_start_matches(pat='/') %}
+
+  {% set img_meta = get_image_metadata(path=asset_path) %}
+
+  {% set img_jpg_480 = resize_image(path=asset_path, format="jpg", quality=75, width=480, op="fit_width") %}
+  {% set img_jpg_680 = resize_image(path=asset_path, format="jpg", quality=75, width=680, op="fit_width") %}
+  {% set img_jpg_1360 = resize_image(path=asset_path, format="jpg", quality=75, width=1360, op="fit_width") %}
+
+  {% set img_avif_480 = resize_image(path=asset_path, format="avif", quality=75, width=480, op="fit_width") %}
+  {% set img_avif_680 = resize_image(path=asset_path, format="avif", quality=75, width=680, op="fit_width") %}
+  {% set img_avif_1360 = resize_image(path=asset_path, format="avif", quality=75, width=1360, op="fit_width") %}
+
+  {% set img_webp_480 = resize_image(path=asset_path, format="webp", quality=75, width=480, op="fit_width") %}
+  {% set img_webp_680 = resize_image(path=asset_path, format="webp", quality=75, width=680, op="fit_width") %}
+  {% set img_webp_1360 = resize_image(path=asset_path, format="webp", quality=75, width=1360, op="fit_width") %}
+
+  <picture> 
+
+    <source media="(min-width: 1020px)" srcset="{{ img_avif_1360 }} 1360w">
+    <source media="(min-width: 580px)" srcset="{{ img_avif_680 }} 680w">
+    <source srcset="{{ img_avif_480 }} 480w">
+
+    <source media="(min-width: 1020px)" srcset="{{ img_webp_1360 }} 1360w">
+    <source media="(min-width: 580px)" srcset="{{ img_webp_680 }} 680w">
+    <source srcset="{{ img_webp_480 }} 480w">
+
+    <source media="(min-width: 1020px)" srcset="{{ img_jpg_1360 }} 1360w">
+    <source media="(min-width: 580px)" srcset="{{ img_jpg_680 }} 680w">
+    <source srcset="{{ img_jpg_480 }} 480w">
+
+    <img
+      src="{{ img_jpg_680 }}"
+      alt="{{ alt | default(value = "") }}"
+      width="{{ img_meta.width }}"
+      height="{{ img_meta.height }}"
+      loading="lazy"
+      decoding="async"
+    >
+
+  </picture>
+
+  {% if caption %}
+
+  <figcaption>
+
+    {{ caption | markdown | safe }}
+
+  </figcaption>
+
+  {% endif %}
+
+</figure>

@@ -1,0 +1,188 @@
+.feature {
+  display: grid;
+
+  grid-column: 1 / -1;
+  grid-gap: inherit;
+  grid-template-columns: inherit;
+
+  margin: 0 0 var(--spacer-lg) 0;
+
+  @include xl {
+    margin: 0 0 var(--spacer-xl) 0;
+  }
+}
+
+.feature > div {
+  grid-row: 1;
+}
+
+.feature h2 {
+  @include md {
+    font-size: 1.5em;
+  }
+}
+
+.feature--left > div {
+  position: relative;
+
+  grid-column: 1 / -1;
+
+  margin: 0 var(--spacer-md) var(--spacer-md) 0;
+
+  @include md {
+    grid-column: 1 / 8;
+  }
+
+  @include lg {
+    grid-column: 2 / 10;
+  }
+
+  @include xl {
+    grid-column: 2 / span 9;
+  }
+}
+
+.feature--right > div {
+  position: relative;
+
+  grid-column: 1 / -1;
+
+  margin: 0 0 var(--spacer-md) var(--spacer-md);
+
+  @include md {
+    grid-column: 6 / 13;
+  }
+
+  @include lg {
+    grid-column: 6 / 14;
+  }
+
+  @include xl {
+    grid-column: 7 / span 9;
+  }
+}
+
+/* We use `top: -2.5%` and a `height: 105%` to remove a visual artifact that
+ * occurs during the animatino in Firefox, only while scrolling.
+ */
+.feature__swipe {
+  position: absolute;
+  top: -2.5%;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  margin: auto;
+
+  width: 100%;
+  height: 105%;
+
+  transform: scaleX(1);
+  transition: transform 1.5s var(--ease-out-quint);
+
+  background: var(--body);
+
+  pointer-events: none;
+}
+
+.feature--left .feature__swipe {
+  transform-origin: right;
+}
+
+.feature--right .feature__swipe {
+  transform-origin: left;
+}
+
+.feature__caption {
+  content-visibility: auto;
+
+  transform: translateY(50%);
+
+  opacity: 0;
+
+  @include xl {
+    margin-top: var(--spacer-lg);
+  }
+}
+
+.feature--left .feature__caption {
+  grid-column: 1 / -1;
+
+  @include md {
+    grid-column: 8 / 13;
+  }
+
+  @include lg {
+    grid-column: 10 / 14;
+  }
+
+  @include xl {
+    grid-column: 11 / span 5;
+  }
+}
+
+.feature--right .feature__caption {
+  grid-column: 1 / -1;
+
+  @include md {
+    grid-column: 1 / 6;
+  }
+
+  @include lg {
+    grid-column: 2 / 6;
+  }
+
+  @include xl {
+    grid-column: 2 / span 5;
+  }
+}
+
+.feature__image picture {
+  position: relative;
+  display: block;
+
+  width: 100%;
+  height: auto;
+
+  transition: transform 2s var(--ease-out-quint);
+  transform: scale(1.25);
+}
+
+.feature source,
+.feature img {
+  display: block;
+
+  width: 100%;
+  height: auto;
+}
+
+.feature__link {
+  text-decoration: none;
+
+  color: var(--text-secondary);
+}
+
+.feature__link:hover .feature__link-arrow {
+  transform: translateX(50%);
+}
+
+.feature__link-arrow {
+  width: var(--spacer-md);
+
+  fill: none;
+  stroke: currentColor;
+
+  vertical-align: middle;
+
+  transition: transform 0.5s var(--ease-inout-back);
+
+  stroke-width: 10;
+}
+
+.feature__image {
+  position: relative;
+
+  content-visibility: auto;
+
+  overflow: hidden;
+}

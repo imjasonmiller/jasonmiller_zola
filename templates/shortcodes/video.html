@@ -1,0 +1,45 @@
+{% if type == "local" %}
+
+  <div class="player">
+
+    <video class="player__video"
+      {% if mute %} muted {% endif %}
+      {% if loop %} loop {% endif %}
+      {% if autoplay %} autoplay {% endif %}
+      {% if poster %} poster = "{{ poster }}" {% endif %}
+    >
+
+      {% if av1 %} <source src="{{ av1 }}" type="video/mp4"> {% endif %}
+      {% if vp9 %} <source src="{{ vp9 }}" type="video/webm"> {% endif %}
+      {% if hevc %} <source src="{{ hevc }}" type="video/mp4"> {% endif %}
+      {% if h264 %} <source src="{{ h264 }}" type="video/mp4"> {% endif %}
+
+    </video>
+
+    <div class="player__control"> 
+
+      <svg class="player__control-play" viewBox="0 0 64 64">
+
+        <path class="play" d="M22 32V20L42 32L22 44Z" />
+        <path class="pause--l" d="M22.5,46V18" />
+        <path class="pause--r" d="M41.5,46V18" />
+
+      </svg>
+
+      <div class="player__progress">
+
+        <div class="player__progress-play"></div>
+
+          {# <div class="player__progress-load"></div> #}
+
+      </div>
+
+    </div>
+
+  </div>
+
+{% elif type == "vimeo" %}
+  <!-- TODO -->
+{% elif type == "youtube" %}
+  <!-- TODO -->
+{% endif %}

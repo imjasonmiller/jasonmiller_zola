@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="{{ lang }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="
+      {%- if section.description -%}
+
+        {{ section.description }}
+
+      {%- elif page.description -%}
+
+        {{ page.description }}
+
+      {%- else -%}
+
+        {{ config.extra.description }}
+
+      {%- endif %}
+    ">
+    <meta name="color-scheme" content="dark light">
+
+    {# https://developer.mozilla.org/en-US/docs/Web/HTML/Preloading_content #}
+    <link rel="preload" href="/fonts/Larsseit-Bold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+    <link rel="preload" href="/fonts/CircularStd-Book.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+    <link rel="preload" href="/fonts/CircularStd-Bold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+    <link rel="preload" href="/fonts/FiraCode-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+    <style>{{ load_data(path="public/css/critical.css") | safe | trim }}</style>
+    <link rel="stylesheet" href="{{ get_url(path="/css/main.css", cachebust = true) }}">
+
+    {%- if page.extra and page.extra.styles -%}
+
+      {%- for style in page.extra.styles -%}
+
+      <link rel="stylesheet" href="
+
+          {{ get_url(path='/css' ~ current_path ~ 'main.css', cachebust = true) }}
+
+      ">
+
+      {%- endfor -%}
+
+    {%- endif -%}
+
+    {% if page.title %}
+
+    <title>{{ page.title }} – {{ config.extra.author  }}</title>
+
+    {% else %}
+
+      <title>{{ config.extra.author }}</title>
+
+    {% endif %}
+
+    <script type="module">let t=localStorage.getItem("theme");if(t)document.documentElement.setAttribute("data-theme",t);</script>
+
+    <meta name="theme-color" content="#1a1a1a">
+    <link rel="manifest" href="/manifest.json">
+  </head>
+  <body>
+
+    {% include "header.html" %}
+
+    <main class="main" role="main">
+
+      {% block content %} {% endblock content %}
+
+    </main>
+
+    {% include "footer.html" %}
+
+    <script type="module" src="{{ get_url(path="/js/main.mjs", cachebust = true) }}"></script>
+    <script nomodule defer src="{{ get_url(path="/js/main.bundle.js", cachebust = true) }}"></script>
+    <!-- For those that disable JavaScript -->
+    <noscript><style>{{ load_data(path="public/css/noscript.css") | safe | trim }}</style></noscript>
+  </body>
+
+</html>

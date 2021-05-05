@@ -1,0 +1,155 @@
+.footer {
+  max-width: 1340px;
+
+  margin: 0 auto;
+  padding: 0 var(--spacer-md);
+}
+
+.footer__list {
+  display: flex;
+
+  margin: 0;
+  padding: var(--spacer-md) 0;
+
+  list-style: none;
+
+  grid-column: 1 / -1;
+  justify-content: space-between;
+
+  @include lg {
+    padding: 0 var(--spacer-xl) var(--spacer-xl);
+  }
+}
+
+.footer__link {
+  display: flex;
+
+  transition: color 0.2s;
+
+  align-items: center;
+}
+
+.footer__icon {
+  width: var(--spacer-lg);
+  height: var(--spacer-lg);
+}
+
+.theme-checkbox__icon {
+  width: var(--spacer-lg);
+
+  cursor: pointer;
+}
+
+.circle--inner,
+.circle--outer {
+  fill: none;
+
+  stroke: currentColor;
+  stroke-width: 6;
+
+  transition: all 0.5s ease-in-out;
+}
+
+.mask--outer,
+.mask--inner {
+  transition: all 0.5s ease-in-out;
+}
+
+.line {
+  stroke: currentColor;
+  stroke-width: 6;
+  stroke-linecap: round;
+
+  transform-origin: center;
+  transition: all 0.5s ease-in-out;
+
+  opacity: 0;
+}
+
+.line--1 {
+  transform: rotate(0deg) scaleY(0);
+}
+
+.line--2 {
+  transform: rotate(45deg) scaleY(0);
+}
+
+.line--3 {
+  transform: rotate(90deg) scaleY(0);
+}
+
+.line--4 {
+  transform: rotate(135deg) scaleY(0);
+}
+
+.line--5 {
+  transform: rotate(180deg) scaleY(0);
+}
+
+.line--6 {
+  transform: rotate(225deg) scaleY(0);
+}
+
+.line--7 {
+  transform: rotate(270deg) scaleY(0);
+}
+
+.line--8 {
+  transform: rotate(315deg) scaleY(0);
+}
+
+#theme-checkbox:checked + svg .circle--outer,
+#theme-checkbox:checked + svg .mask--outer {
+  r: 0%;
+}
+
+#theme-checkbox:checked + svg .circle--inner,
+#theme-checkbox:checked + svg .mask--inner {
+  r: 12.5%;
+}
+
+#theme-checkbox:checked + svg .line {
+  opacity: 1;
+}
+
+#theme-checkbox:checked + svg .line--1 {
+  transform: rotate(0deg) scaleY(1);
+}
+
+#theme-checkbox:checked + svg .line--2 {
+  transform: rotate(45deg) scaleY(1);
+}
+
+#theme-checkbox:checked + svg .line--3 {
+  transform: rotate(90deg) scaleY(1);
+}
+
+#theme-checkbox:checked + svg .line--4 {
+  transform: rotate(135deg) scaleY(1);
+}
+
+#theme-checkbox:checked + svg .line--5 {
+  transform: rotate(180deg) scaleY(1);
+}
+
+#theme-checkbox:checked + svg .line--6 {
+  transform: rotate(225deg) scaleY(1);
+}
+
+#theme-checkbox:checked + svg .line--7 {
+  transform: rotate(270deg) scaleY(1);
+}
+
+#theme-checkbox:checked + svg .line--8 {
+  transform: rotate(315deg) scaleY(1);
+}
+
+/* Show focus styles when the SVG receives focus */
+.theme-checkbox input[type="checkbox"]:focus + svg {
+  outline: var(--spacer-xxs) solid var(--outline);
+}
+
+/* Hide focus styles for mouse users */
+.theme-checkbox input[type="checkbox"]:focus:not(:focus-visible) + svg {
+  outline: none;
+}

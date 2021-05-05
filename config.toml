@@ -1,68 +1,54 @@
-baseURL = "https://jasonmiller.nl/"
+base_url = "https://jasonmiller.nl"
 
-languageCode = "en-us"
-languageLang = "en"
-
-author = "Jason Miller"
 title = "Jason Miller"
+description = "Work and blog of Jason Miller"
 
-disableKinds = [ "taxonomy", "taxonomyTerm"]
+default_language = "en"
 
-enableRobotsTXT = true
+generate_feed = true
+feed_filename = "feed.xml"
 
-[markup]
-    [markup.tableOfContents]
-        startLevel = 3
-        endLevel = 3
-        ordered = true
-    [markup.goldmark]
-        [markup.goldmark.renderer]
-            unsafe = true
-        [markup.goldmark.extensions]
-            definitionList = true
-            footnote = true
-            linkify = true
-            strikethrough = true
-            table = true
-            taskList = true
-            typographer = true
-    [markup.highlight]
-        codeFences = true
-        guessSyntax = false
-        hl_Lines = ""
-        lineNoStart = 1
-        lineNos = false
-        lineNumbersInTable = true
-        noClasses = false
-        tabWidth = 4
+compile_sass = true
+minify_html = true
 
-ignoreFiles = [
-  "README",
-  "node_modules",
-  "package.json",
-  "package-lock.json",
-]
+[markdown]
+# Highlighting is disabled for now as Zola adds color styles and not classes.
+# This means we can not change styles on a theme-by-theme basis.
+#
+# NOTE: Using the hack below also does not work, as it causes the browser to
+# lock up during theme switch due to expensive layout repaints.
+#
+# pre code {
+#   `filter: var(--syntax-highlight-hack) /* invert(x) hue-rotate(y-deg) saturate(z)` */
+# }
+#
+# highlight_code = true
+# highlight_theme = "inspired-github"
 
-[params]
+external_links_target_blank = true
+
+smart_punctuation = true
+render_emoji = false
+
+[extra]
+author = "Jason Miller"
+description = "Work and blog of Jason Miller"
+
+  [extra.social]
   email = "contact@jasonmiller.nl"
   dribbble = "https://dribbble.com/imjasonmiller"
   twitter = "https://twitter.com/imjasonmiller"
   github = "https://github.com/imjasonmiller"
 
-[[menu.main]]
-  identifier = "work"
-  name = "Work"
-  url = "/"
-  weight = "2"
-
-[[menu.main]]
+  # Weight is used as a key for the sort order of the navigational items
+  [[extra.menu.main]]
   parent = "work"
   name = "Work"
-  url = "/work/"
-  weight = "1"
+  url = "/"
+  weight = 0
 
-[[menu.main]]
+  [[extra.menu.main]]
   identifier = "journal"
   name = "Journal"
   url = "/journal/"
-  weight = "0"
+  weight = 1

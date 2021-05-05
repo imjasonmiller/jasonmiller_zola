@@ -1,0 +1,105 @@
+{% set work = get_section(path="work/_index.md") %}
+
+{% for case in work.pages %}
+
+  {% if loop.index0 is even %}
+    {% set align_class = "left" %}
+  {% else %}
+    {% set align_class = "right" %}
+  {% endif %}
+
+  <figure class="feature feature--{{ align_class }}">
+
+    <div>
+
+    {% for asset_path in case.assets %}
+
+      {% if asset_path is matching("thumb\.(jpg|png)$") %}
+        {% set img_meta = get_image_metadata(path=asset_path) %}
+
+        {% set img_jpg_480 = resize_image(path=asset_path, format="jpg", quality=75, width=480, op="fit_width") %}
+        {% set img_jpg_680 = resize_image(path=asset_path, format="jpg", quality=75, width=680, op="fit_width") %}
+        {% set img_jpg_1360 = resize_image(path=asset_path, format="jpg", quality=75, width=1360, op="fit_width") %}
+
+        {% set img_avif_480 = resize_image(path=asset_path, format="avif", quality=75, width=480, op="fit_width") %}
+        {% set img_avif_680 = resize_image(path=asset_path, format="avif", quality=75, width=680, op="fit_width") %}
+        {% set img_avif_1360 = resize_image(path=asset_path, format="avif", quality=75, width=1360, op="fit_width") %}
+
+        {% set img_webp_480 = resize_image(path=asset_path, format="webp", quality=75, width=480, op="fit_width") %}
+        {% set img_webp_680 = resize_image(path=asset_path, format="webp", quality=75, width=680, op="fit_width") %}
+        {% set img_webp_1360 = resize_image(path=asset_path, format="webp", quality=75, width=1360, op="fit_width") %}
+
+        <div class="feature__image">
+
+          <picture> 
+            <source media="(min-width: 1020px)" srcset="{{ img_avif_1360 }} 1360w">
+            <source media="(min-width: 580px)" srcset="{{ img_avif_680 }} 680w">
+            <source srcset="{{ img_avif_480 }} 480w">
+
+            <source media="(min-width: 1020px)" srcset="{{ img_webp_1360 }} 1360w">
+            <source media="(min-width: 580px)" srcset="{{ img_webp_680 }} 680w">
+            <source srcset="{{ img_webp_480 }} 480w">
+
+            <source media="(min-width: 1020px)" srcset="{{ img_jpg_1360 }} 1360w">
+            <source media="(min-width: 580px)" srcset="{{ img_jpg_680 }} 680w">
+            <source srcset="{{ img_jpg_480 }} 480w">
+            <img
+              src="{{ img_jpg_680 }}"
+              alt="{{ case.extra.thumb_alt | default(value = "") }}"
+              width="{{ img_meta.width }}"
+              height="{{ img_meta.height }}"
+              loading="lazy"
+              decoding="async"
+            >
+          </picture>
+
+          <div class="feature__swipe"></div>
+
+        </div>
+
+        {% break %}
+
+      {% endif %}
+
+    {% endfor %}
+
+      <div class="media-border media-border--{{ align_class }}">
+        <div
+            class="media-border__line media-border__line--top media-border__line--hidden"
+        ></div>
+
+        <div
+            class="media-border__line media-border__line--right media-border__line--hidden"
+        ></div>
+
+        <div
+            class="media-border__line media-border__line--bottom media-border__line--hidden"
+        ></div>
+
+        <div
+            class="media-border__line media-border__line--left media-border__line--hidden"
+        ></div>
+      </div>
+
+    </div>
+
+    <figcaption class="feature__caption">
+
+      <h3>{{ case.title }}</h3>
+
+      {{ case.description | markdown | safe }}    
+    
+      <a class="feature__link" href="{{ case.permalink }}">
+        Case study
+
+        <svg viewBox="0 0 130 100" class="feature__link-arrow">
+            <path d="m130,50l-86.66,-50l0,100z"></path>
+        </svg>
+      </a>
+
+    </figcaption>
+
+
+  </figure>
+
+{% endfor %}

@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<article class="article" itemscope itemtype="http://schema.org/BlogPosting">
+
+  {{ page.content | safe }}
+
+</article>
+{% endblock %}
+

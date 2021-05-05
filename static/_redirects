@@ -1,0 +1,3 @@
+# Netlify redirect to 404.html
+# See https://docs.netlify.com/routing/redirects/
+/*  /404.html  404

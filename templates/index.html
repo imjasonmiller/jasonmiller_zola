@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+  {{ section.content | safe }}
+
+  <hr>
+
+  {% include "partials/featured.html" %}
+
+{% endblock %}

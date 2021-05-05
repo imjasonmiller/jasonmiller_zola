@@ -1,8 +1,9 @@
 +++
 title = "Learning embedded Rust with the nRF24L01+ 2.4 Ghz"
 date = 2020-01-01T18:53:51+02:00
+updated = 2021-01-06T18:53:51+02:00
 description = "Using Rust to transmit and receive data with the nRF24L01+ 2.4 Ghz wireless module for embedded devices"
-draft = false
+template = "journal_page.html"
 +++
 
 I've been meaning to learn a system programming language and learn about
@@ -11,7 +12,7 @@ support for WebAssembly and helpful and growing community. It seems like a
 promising language and a great fit for a beginner with a JavaScript or
 TypeScript background.
 
-<!--more-->
+<!-- more -->
 
 ### Discovery
 I started by going through the [Discovery
@@ -25,23 +26,23 @@ in the book will introduce you to working
 with many of its components such as the magnetometer, accelerometer,
 gyroscope and LEDs. 
 
-### NRF24L01+
+### nRF24L01+
 Upon finishing the aforementioned book, there's a list a of suggestions on what
 you might want to explore next. I opted for wireless communication.
 
 One of the more popular consumer devices for this seems to be the `nRF24L01+`.
 It has a version with an internal and external antenna, the latter having a much
-greater range --- claiming up to 800--1000 meter. I ended up getting them both,
+greater range --- claiming up to 800--1000 meters. I ended up getting them both,
 as they're quite cheap. 
 
 I wanted to communicate between the embedded device and my computer, so I ended
 up ordering a third party device that should have allowed me to transmit or receive
-the data sent by the `nRF24L01+` over {{< abbr title="Universal Serial Bus" >}}USB{{< /abbr >}}.
+the data sent by the `nRF24L01+` over {% abbr(title="Universal Serial Bus") %}USB{% end %}.
 
-{{< figure src="img/nrf24l01-usb.jpg" alt="NRF24L01 USB TTY module" caption="The NRF24L01 to USB module" >}}
+{{ figure(src="nrf24l01-usb.jpg", caption="The NRF24L01 to USB module") }}
 
 It didn't entirely pan out the way I thought it would. Supposedly, one needs to
-short the {{< abbr title="Ground" >}}GND{{< /abbr >}} and {{< abbr title="Switch Matrix" >}}SWM{{< /abbr >}}
+short the {% abbr(title="Ground") %}GND{% end %} and {% abbr(title="Switch Matrix") %}SWM{% end %}
 pin on the module in order to switch it from receive to transmit and vice
 versa. 
 
@@ -50,17 +51,11 @@ the code and schematic. The comments were all in Chinese, but I managed to
 extract the settings by referencing the registers in the code with the
 manufacturer's documentation for the `nRF24L01+`. Here's a small snippet:
 
-{{< highlight rust "hl_lines=8 15-17,linenostart=199" >}}
-//该函数初始化NRF24L01到TX模式
-//设置TX地址,写TX数据宽度,设置RX自动应答的地址,填充TX发送数据,选择RF频道,波特率和LNA HCURR
-//PWR_UP,CRC使能
-//当CE变高后,即进入RX模式,并可以接收数据了
-//CE为高大于10us,则启动发送.	 
+```c
 void NRF24L01_TX_Mode(void)
 {														 
 	NRF24L01_CE_LOW;
 
-	NRF24L01_Write_Buf(NRF_WRITE_REG+TX_ADDR,(u8*)TX_ADDRESS,TX_ADR_WIDTH);   //写TX节点地址 
 	NRF24L01_Write_Buf(NRF_WRITE_REG+RX_ADDR_P0,(u8*)RX_ADDRESS,RX_ADR_WIDTH);//设置TX节点地址,主要为了使能ACK	  
 	NRF24L01_Write_Reg(NRF_WRITE_REG+EN_AA,0x01);     //使能通道0的自动应答    
 	NRF24L01_Write_Reg(NRF_WRITE_REG+EN_RXADDR,0x01); //使能通道0的接收地址  
@@ -72,22 +67,23 @@ void NRF24L01_TX_Mode(void)
 	NRF24L01_CE_HIGH;
 	delay_10us(5);
 }
-{{< /highlight >}}
+```
 
 To my surprise, the included schematic and firmware I was sent mentions the use
 of the `STM8S103F MCU`, while the chip I received is fitted with the
 `N76E003AT20 MCU`. I was told that this simply was a newer module and
-everything should still work --- except it didn't. Considering that the {{< abbr title="Transmit">}}TX{{< /abbr >}} and 
-{{< abbr title="Receive" >}}RX{{< /abbr >}} addresses were hard coded, they might
+everything should still work --- except it didn't. Considering that the {% abbr(title="Transmit") %}TX{% end %} and 
+{% abbr(title="Receive") %}RX{% end %} addresses were hard coded, they might
 simply differ on the module I received. Instead of going through the billions of
 potential configurations or learning about logic analyzers, I decided to back out of this
 rabbit hole and use an Arduino instead.
+
 
 ### Connecting the devices
  
 To connect either of the two to the development board, you'll need at least 7
 female to female jumper cables, as the device uses 
-{{< abbr title="Serial Peripheral Interface" >}}SPI{{< /abbr >}} to communicate.
+{% abbr(title="Serial Peripheral Interface") %}SPI{% end %} to communicate.
 
 When connecting the device, you'll become accustomed to looking through the
 datasheet of the board. To find out which pins on the board will fit our cables,
@@ -96,9 +92,10 @@ Connectors](https://www.st.com/content/ccc/resource/technical/document/user_manu
 of the user manual for the `STM32F3DISCOVERY`. I ended up picking following
 pins:
 
-
-{{< note >}}Do not connect the device to 5V on the `STM32F3DISCOVERY`, as it is
-only rated for 3V and might be damaged otherwise.{{< /note >}}
+{% note() %}
+Do not connect the device to 5V on the `STM32F3DISCOVERY`, as it is
+only rated for 3V and might be damaged otherwise.
+{% end %}
 
 Color | Pin | Pinout | Base address 
 ------|-----|--------|--------------------------
@@ -115,11 +112,11 @@ Orange| PB0 | CSN    | `0x4800 1000 - 0x4800 17FF`
 Before we end up looking at the code, I can not stress this enough, in order to
 save you the headache of not receiving data, make sure that:
 
-* The {{< abbr title="Receive">}}RX{{< /abbr >}} and {{< abbr title="Transmit">}}TX{{< /abbr >}} address differ
-* The {{< abbr title="Receive">}}RX{{< /abbr >}} and {{< abbr title="Transmit">}}TX{{< /abbr >}} addresses are the same on both devices
+* The {% abbr(title="Receive") %}RX{% end %} and {% abbr(title="Transmit") %}TX{% end %} address differ
+* The {% abbr(title="Receive") %}RX{% end %} and {% abbr(title="Transmit") %}TX{% end %} addresses are the same on both devices
 * The payload type or size matches on both devices
 
-{{< highlight rust "hl_lines=8 15-17,linenostart=199" >}}
+```rust
 fn nrf24_rx() -> ! {
     // Cortex and device peripherals
     let mut cp = cortex_m::Peripherals::take().unwrap();
@@ -225,7 +222,7 @@ fn nrf24_rx() -> ! {
         leds[Direction::North].off();
     }
 }
-{{< / highlight >}}
+```
 
 ### Closing words
 

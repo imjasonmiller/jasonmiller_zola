@@ -1,7 +1,0 @@
-<div class="article__introduction">
-    <h2 id="">
-        {{ cond ( isset .Params "title" ) .Params.title "Untitled" }}
-    </h2>
-
-    {{ .Inner | markdownify }}
-</div>
