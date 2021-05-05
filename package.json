@@ -12,8 +12,8 @@
   },
   "scripts": {
     "watch": "node watch.js",
-    "webpack-dev": "webpack --node-env development",
-    "webpack-prod": "webpack --node-env production",
+    "webpack-dev": "rm -rf ./static/js/** && webpack --node-env development",
+    "webpack-prod": "rm -rf ./static/js/** && webpack --node-env production",
     "webpack-analyze": "webpack --profile --json > stats.json && webpack-bundle-analyzer stats.json ./static/js/",
     "sw-cache": "node ./generateServiceWorkerCache.js",
     "test": "echo \"Error: no test specified\" && exit 1"

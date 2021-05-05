@@ -76,7 +76,6 @@ export default [
       path: path.resolve(__dirname, "static", "js"),
       filename: "[name].bundle.js",
       publicPath: "/js/",
-      clean: true,
     },
     module: {
       rules: [
