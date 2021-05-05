@@ -42,7 +42,9 @@ jobs:
 
       # Build the service worker cache
       - name: Build Service Worker cache
-        run: npm run sw-cache
+        run: |
+          chmod +w public
+          npm run sw-cache
          
       - name: Deploy to Netlify
         run: |
