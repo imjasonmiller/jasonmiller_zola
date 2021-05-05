@@ -12,9 +12,9 @@
   },
   "scripts": {
     "watch": "node watch.js",
-    "dev": "webpack --node-env development && zola build",
-    "prod": "webpack --node-env production && zola build",
-    "analyze": "webpack --profile --json > stats.json && webpack-bundle-analyzer stats.json ./static/js/",
+    "webpack-dev": "webpack --node-env development",
+    "webpack-prod": "webpack --node-env production",
+    "webpack-analyze": "webpack --profile --json > stats.json && webpack-bundle-analyzer stats.json ./static/js/",
     "sw-cache": "node ./generateServiceWorkerCache.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
