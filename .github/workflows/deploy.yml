@@ -23,7 +23,7 @@ jobs:
       - name: Install npm dependencies
         run: |
           npm ci
-          npm run build:prod
+          npm run webpack-prod
 
       # This uses a forked version of Zola that includes support for the `webp` and `avif` image formats.
       - name: Build site
@@ -33,7 +33,7 @@ jobs:
 
       # Build the service worker cache
       - name: Build Service Worker cache
-        run: npm run serviceworker-cache
+        run: npm run sw-cache
          
       - name: Deploy to Netlify
         run: |
