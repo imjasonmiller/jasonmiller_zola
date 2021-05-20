@@ -18,10 +18,14 @@ class Theme {
       "#theme-checkbox",
     ) as HTMLInputElement;
 
+    console.info("Theme Constructor:", this.query, this.checkbox);
+
     this.getInitialState();
 
     // Update state if the user globally changes theme via their system.
     this.query.addEventListener("change", (event: MediaQueryListEvent) => {
+      console.info("Theme query.addEventListener");
+
       // Return early if the user has already set a preference manually.
       if (document.documentElement?.dataset?.theme) return;
 
@@ -34,11 +38,13 @@ class Theme {
       window.dispatchEvent(new ThemeEvent(state));
     });
 
+    console.info("Theme checkbox.addEventListener:", this.checkbox);
     // Update state if the user locally changes theme via checkbox.
     this.checkbox.addEventListener("change", this.setState.bind(this));
   }
 
   getInitialState() {
+    console.info("Theme getInitialState");
     // The default theme
     let theme = "light";
 
@@ -59,6 +65,7 @@ class Theme {
   }
 
   setState() {
+    console.info("Theme setState");
     const state: ActiveTheme = this.checkbox.checked ? "light" : "dark";
 
     // Add `data-theme` with `light` or `dark` value to <html> tag
@@ -81,6 +88,7 @@ class Featured {
   isMobile = false;
 
   constructor() {
+    console.info("Featured Constructor");
     this.captions = document.querySelectorAll(
       ".feature .feature__caption",
     ) as NodeListOf<HTMLElement>;
@@ -94,7 +102,17 @@ class Featured {
       ".feature .feature__swipe",
     ) as NodeListOf<HTMLElement>;
 
+    console.info(
+      "Featured",
+      this.captions,
+      this.borders,
+      this.images,
+      this.masks,
+    );
+
     new ScrollIO(".feature", this.handleIntersection, { range: { steps: 50 } });
+
+    console.info("Added scrollIO", this.handleIntersection);
 
     window.addEventListener("ismobile", this.handleMobile);
   }
