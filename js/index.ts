@@ -9,33 +9,33 @@ import {
 } from "./Actions";
 
 class Theme {
-  #query: MediaQueryList;
-  #checkbox: HTMLInputElement;
+  query: MediaQueryList;
+  checkbox: HTMLInputElement;
 
   constructor() {
-    this.#query = window.matchMedia("(prefers-color-scheme: light)");
-    this.#checkbox = document.querySelector(
-      "#theme-checkbox"
+    this.query = window.matchMedia("(prefers-color-scheme: light)");
+    this.checkbox = document.querySelector(
+      "#theme-checkbox",
     ) as HTMLInputElement;
 
     this.getInitialState();
 
     // Update state if the user globally changes theme via their system.
-    this.#query.addEventListener("change", (event: MediaQueryListEvent) => {
+    this.query.addEventListener("change", (event: MediaQueryListEvent) => {
       // Return early if the user has already set a preference manually.
       if (document.documentElement?.dataset?.theme) return;
 
       const state: ActiveTheme = event.matches ? "light" : "dark";
 
       // The checkbox should match the preferred theme.
-      this.#checkbox.checked = state === "light";
+      this.checkbox.checked = state === "light";
 
       // Notify listeners of theme change.
       window.dispatchEvent(new ThemeEvent(state));
     });
 
     // Update state if the user locally changes theme via checkbox.
-    this.#checkbox.addEventListener("change", this.setState.bind(this));
+    this.checkbox.addEventListener("change", this.setState.bind(this));
   }
 
   getInitialState() {
@@ -55,11 +55,11 @@ class Theme {
       theme = document.documentElement.dataset.theme;
     }
 
-    this.#checkbox.checked = theme === "light";
+    this.checkbox.checked = theme === "light";
   }
 
   setState() {
-    const state: ActiveTheme = this.#checkbox.checked ? "light" : "dark";
+    const state: ActiveTheme = this.checkbox.checked ? "light" : "dark";
 
     // Add `data-theme` with `light` or `dark` value to <html> tag
     document.documentElement.setAttribute("data-theme", state);
@@ -73,25 +73,25 @@ class Theme {
 }
 
 class Featured {
-  #captions: NodeListOf<HTMLElement>;
-  #borders: NodeListOf<HTMLElement>;
-  #images: NodeListOf<HTMLElement>;
-  #masks: NodeListOf<HTMLElement>;
+  captions: NodeListOf<HTMLElement>;
+  borders: NodeListOf<HTMLElement>;
+  images: NodeListOf<HTMLElement>;
+  masks: NodeListOf<HTMLElement>;
 
-  #isMobile = false;
+  isMobile = false;
 
   constructor() {
-    this.#captions = document.querySelectorAll(
-      ".feature .feature__caption"
+    this.captions = document.querySelectorAll(
+      ".feature .feature__caption",
     ) as NodeListOf<HTMLElement>;
-    this.#borders = document.querySelectorAll(
-      ".feature .media-border"
+    this.borders = document.querySelectorAll(
+      ".feature .media-border",
     ) as NodeListOf<HTMLElement>;
-    this.#images = document.querySelectorAll(
-      ".feature .feature__image picture"
+    this.images = document.querySelectorAll(
+      ".feature .feature__image picture",
     ) as NodeListOf<HTMLElement>;
-    this.#masks = document.querySelectorAll(
-      ".feature .feature__swipe"
+    this.masks = document.querySelectorAll(
+      ".feature .feature__swipe",
     ) as NodeListOf<HTMLElement>;
 
     new ScrollIO(".feature", this.handleIntersection, { range: { steps: 50 } });
@@ -100,22 +100,22 @@ class Featured {
   }
 
   handleMobile = (event: any): void => {
-    this.#isMobile = event.isMobile;
+    this.isMobile = event.isMobile;
   };
 
   handleIntersection: Handler = (
     { index, enterDown, enterUp },
-    { isIntersecting, intersectionRatio: ratio }
+    { isIntersecting, intersectionRatio: ratio },
   ): void => {
     // Use a smaller offset on mobile to prevent the caption overlapping with the thumbnail.
-    const offset = this.#isMobile ? 25 : 50;
+    const offset = this.isMobile ? 25 : 50;
 
     // Caption animations that are tied to scrolling position.
     if (isIntersecting) {
-      this.#captions[index].style.transform = `translateY(${
+      this.captions[index].style.transform = `translateY(${
         offset * (1 - ratio)
       }%)`;
-      this.#captions[index].style.opacity = ratio.toString();
+      this.captions[index].style.opacity = ratio.toString();
     }
 
     // Start featured image animations once one of the following conditions are
@@ -125,12 +125,12 @@ class Featured {
     // - More than half is visible
     if (enterDown || enterUp || ratio > 0.5) {
       // Animated zoom out of image.
-      this.#images[index].style.transform = "scale(1)";
+      this.images[index].style.transform = "scale(1)";
       // Remove mask that hides image.
-      this.#masks[index].style.transform = "scaleX(0)";
+      this.masks[index].style.transform = "scaleX(0)";
 
       // Animate the borders around the image.
-      Array.from(this.#borders[index].children).forEach((border) => {
+      Array.from(this.borders[index].children).forEach((border) => {
         border.classList.remove("media-border__line--hidden");
       });
     }
@@ -143,7 +143,7 @@ new Featured();
 const mobileQuery = window.matchMedia("(max-width: 480px)");
 
 mobileQuery.addEventListener("change", (event: MediaQueryListEvent) =>
-  window.dispatchEvent(new MobileEvent(event.matches))
+  window.dispatchEvent(new MobileEvent(event.matches)),
 );
 
 // Dispatch initial state to listening components
@@ -156,7 +156,7 @@ async function initVideos() {
         for (const video of document.querySelectorAll(".player")) {
           new VideoPlayer.default(video);
         }
-      }
+      },
     );
   } catch (err) {
     console.error(`could not instantiate VideoPlayer: ${err}`);
@@ -204,7 +204,7 @@ async function initSaveArticle(): Promise<void> {
   }
 
   const button = document.querySelector(
-    ".btn--save-article"
+    ".btn--save-article",
   ) as HTMLInputElement;
 
   if (button?.disabled) return;
@@ -250,7 +250,7 @@ async function initSaveArticle(): Promise<void> {
         });
       }
     },
-    { once: true }
+    { once: true },
   );
 }
 
@@ -263,7 +263,7 @@ async function tableOfContents(): Promise<void> {
   await import(/* webpackPreload: true */ "./TableOfContents").then(
     (module) => {
       module.default();
-    }
+    },
   );
 }
 
@@ -272,7 +272,7 @@ async function initLogo(): Promise<void> {
 
   try {
     const logo = await import(/* webpackPreload: true */ "./AnimatedLogo").then(
-      (AnimatedLogo) => new AnimatedLogo.default(container)
+      (AnimatedLogo) => new AnimatedLogo.default(container),
     );
 
     const handleIntersect: Handler = ({ enterUp, leaveDown }): void => {
