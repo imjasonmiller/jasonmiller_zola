@@ -1,6 +1,6 @@
 import { ScrollIO, Handler } from "@imjasonmiller/scroll-io";
 
-import { ActiveTheme, ThemeEvent, MobileEvent } from "./Events";
+import { ThemeEvent, MobileEvent } from "./Events";
 
 import {
   ARTICLE_SAVE,
@@ -8,47 +8,17 @@ import {
   ARTICLE_SAVE_SUCCESS,
 } from "./Actions";
 
-class Theme {
-  query: MediaQueryList;
-  checkbox: HTMLInputElement;
+function Theme() {
+  const mediaQuery = window.matchMedia("(prefers-color-scheme: light)");
+  const checkbox = document.querySelector(
+    "#theme-checkbox",
+  ) as HTMLInputElement;
 
-  constructor() {
-    this.query = window.matchMedia("(prefers-color-scheme: light)");
-    this.checkbox = document.querySelector(
-      "#theme-checkbox",
-    ) as HTMLInputElement;
-
-    console.info("Theme Constructor:", this.query, this.checkbox);
-
-    this.getInitialState();
-
-    // Update state if the user globally changes theme via their system.
-    this.query.addEventListener("change", (event: MediaQueryListEvent) => {
-      console.info("Theme query.addEventListener");
-
-      // Return early if the user has already set a preference manually.
-      if (document.documentElement?.dataset?.theme) return;
-
-      const state: ActiveTheme = event.matches ? "light" : "dark";
-
-      // The checkbox should match the preferred theme.
-      this.checkbox.checked = state === "light";
-
-      // Notify listeners of theme change.
-      window.dispatchEvent(new ThemeEvent(state));
-    });
-
-    console.info("Theme checkbox.addEventListener:", this.checkbox);
-    // Update state if the user locally changes theme via checkbox.
-    this.checkbox.addEventListener("change", this.setState.bind(this));
-  }
-
-  getInitialState() {
-    console.info("Theme getInitialState");
+  function getInitialState() {
     // The default theme
     let theme = "light";
 
-    // Derive initial state from the user possibly having a global preference
+    // Derive initial state from the user possibly having a system preference.
     if (window.matchMedia("(prefers-color-scheme: light)").matches) {
       theme = "light";
     }
@@ -56,84 +26,84 @@ class Theme {
     // Override derived state if the user manually selected a preferred theme.
     //
     // NOTE: The script responsible for setting the `data-theme` attribute on
-    // the <html> element lives in the page's <head>.
+    // the <html> element is inside the page's <head>.
     if (document.documentElement?.dataset?.theme) {
       theme = document.documentElement.dataset.theme;
     }
 
-    this.checkbox.checked = theme === "light";
+    // Set checkbox state to match theme.
+    checkbox.checked = theme === "light";
   }
 
-  setState() {
-    console.info("Theme setState");
-    const state: ActiveTheme = this.checkbox.checked ? "light" : "dark";
+  function handleCheckbox() {
+    const state = checkbox.checked ? "light" : "dark";
 
-    // Add `data-theme` with `light` or `dark` value to <html> tag
+    // Add `data-theme` with `light` or `dark` value to <html> tag.
     document.documentElement.setAttribute("data-theme", state);
-
-    // Persist selected theme using the localStorage API
+    // Persist selected theme using the localStorage API.
     localStorage.setItem("theme", state);
-
-    // Notify listeners of theme changes
+    // Notify listeners of theme changes.
     window.dispatchEvent(new ThemeEvent(state));
   }
-}
 
-class Featured {
-  captions: NodeListOf<HTMLElement>;
-  borders: NodeListOf<HTMLElement>;
-  images: NodeListOf<HTMLElement>;
-  masks: NodeListOf<HTMLElement>;
+  function handleMediaQuery(event: MediaQueryListEvent) {
+    // Return early if the user has explicitly set a theme.
+    if (document.documentElement?.dataset?.theme) return;
 
-  isMobile = false;
-
-  constructor() {
-    console.info("Featured Constructor");
-    this.captions = document.querySelectorAll(
-      ".feature .feature__caption",
-    ) as NodeListOf<HTMLElement>;
-    this.borders = document.querySelectorAll(
-      ".feature .media-border",
-    ) as NodeListOf<HTMLElement>;
-    this.images = document.querySelectorAll(
-      ".feature .feature__image picture",
-    ) as NodeListOf<HTMLElement>;
-    this.masks = document.querySelectorAll(
-      ".feature .feature__swipe",
-    ) as NodeListOf<HTMLElement>;
-
-    console.info(
-      "Featured",
-      this.captions,
-      this.borders,
-      this.images,
-      this.masks,
-    );
-
-    new ScrollIO(".feature", this.handleIntersection, { range: { steps: 50 } });
-
-    console.info("Added scrollIO", this.handleIntersection);
-
-    window.addEventListener("ismobile", this.handleMobile);
+    const state = event.matches ? "light" : "dark";
+    // Set checkbox state to match theme.
+    checkbox.checked = state === "light";
+    // Notify listeners of theme change.
+    window.dispatchEvent(new ThemeEvent(state));
   }
 
-  handleMobile = (event: any): void => {
-    this.isMobile = event.isMobile;
-  };
+  getInitialState();
 
-  handleIntersection: Handler = (
+  // Update state if the user locally changes theme via checkbox.
+  try {
+    mediaQuery.addEventListener("change", handleMediaQuery);
+  } catch {
+    try {
+      // @ts-ignore: iOS Safari < 14 support
+      // See: https://developer.mozilla.org/en-US/docs/Web/API/MediaQueryList/addListener
+      mediaQuery.addListener("change", handleMediaQuery);
+    } catch (err) {
+      console.error(
+        "could not attach event listener to theme media query",
+        err,
+      );
+    }
+  }
+
+  checkbox.addEventListener("change", handleCheckbox);
+}
+
+function Featured() {
+  const captions = document.querySelectorAll(
+    ".feature .feature__caption",
+  ) as NodeListOf<HTMLElement>;
+  const borders = document.querySelectorAll(
+    ".feature .media-border",
+  ) as NodeListOf<HTMLElement>;
+  const images = document.querySelectorAll(
+    ".feature .feature__image picture",
+  ) as NodeListOf<HTMLElement>;
+  const masks = document.querySelectorAll(
+    ".feature .feature__swipe",
+  ) as NodeListOf<HTMLElement>;
+  let isMobile = false;
+
+  const handleIntersection: Handler = (
     { index, enterDown, enterUp },
     { isIntersecting, intersectionRatio: ratio },
-  ): void => {
+  ) => {
     // Use a smaller offset on mobile to prevent the caption overlapping with the thumbnail.
-    const offset = this.isMobile ? 25 : 50;
+    const offset = isMobile ? 25 : 50;
 
     // Caption animations that are tied to scrolling position.
     if (isIntersecting) {
-      this.captions[index].style.transform = `translateY(${
-        offset * (1 - ratio)
-      }%)`;
-      this.captions[index].style.opacity = ratio.toString();
+      captions[index].style.transform = `translateY(${offset * (1 - ratio)}%)`;
+      captions[index].style.opacity = ratio.toString();
     }
 
     // Start featured image animations once one of the following conditions are
@@ -143,31 +113,53 @@ class Featured {
     // - More than half is visible
     if (enterDown || enterUp || ratio > 0.5) {
       // Animated zoom out of image.
-      this.images[index].style.transform = "scale(1)";
+      images[index].style.transform = "scale(1)";
       // Remove mask that hides image.
-      this.masks[index].style.transform = "scaleX(0)";
+      masks[index].style.transform = "scaleX(0)";
 
       // Animate the borders around the image.
-      Array.from(this.borders[index].children).forEach((border) => {
+      Array.from(borders[index].children).forEach((border) => {
         border.classList.remove("media-border__line--hidden");
       });
     }
   };
+
+  function handleMobile(event: any): void {
+    isMobile = event.isMobile;
+  }
+
+  new ScrollIO(".feature", handleIntersection, { range: { steps: 50 } });
+
+  window.addEventListener("ismobile", handleMobile);
 }
 
-new Theme();
-new Featured();
+function DeviceDetector() {
+  const mobileQuery = window.matchMedia("(max-width: 480px)");
 
-const mobileQuery = window.matchMedia("(max-width: 480px)");
+  try {
+    mobileQuery.addEventListener("change", (event: MediaQueryListEvent) =>
+      window.dispatchEvent(new MobileEvent(event.matches)),
+    );
+  } catch {
+    try {
+      // @ts-ignore: iOS Safari < 14 support
+      // See: https://developer.mozilla.org/en-US/docs/Web/API/MediaQueryList/addListener
+      mobileQuery.addListener("change", (event: MediaQueryListEvent) =>
+        window.dispatchEvent(new MobileEvent(event.matches)),
+      );
+    } catch (err) {
+      console.error(
+        "could not attach event listener to mobile media query",
+        err,
+      );
+    }
+  }
 
-mobileQuery.addEventListener("change", (event: MediaQueryListEvent) =>
-  window.dispatchEvent(new MobileEvent(event.matches)),
-);
+  // Dispatch initial state to listening components
+  window.dispatchEvent(new MobileEvent(mobileQuery.matches));
+}
 
-// Dispatch initial state to listening components
-window.dispatchEvent(new MobileEvent(mobileQuery.matches));
-
-async function initVideos() {
+async function Videos() {
   try {
     await import(/* webpackPreload: true */ "./VideoPlayer").then(
       (VideoPlayer) => {
@@ -215,7 +207,7 @@ function sendMessage(message: Message) {
 const delay = (duration: number): Promise<void> =>
   new Promise((resolve, _) => setTimeout(resolve, duration));
 
-async function initSaveArticle(): Promise<void> {
+async function SaveArticle(): Promise<void> {
   // Return early if we're not on a `/journal/` page.
   if (!/^\/journal\/[a-zA-Z0-9-._~]+/.test(window.location.pathname)) {
     return;
@@ -272,7 +264,7 @@ async function initSaveArticle(): Promise<void> {
   );
 }
 
-async function tableOfContents(): Promise<void> {
+async function TableOfContents(): Promise<void> {
   // Return early if we're not on a `/journal/` page.
   if (!/^\/journal\/[a-zA-Z0-9-._~]+/.test(window.location.pathname)) {
     return;
@@ -285,7 +277,7 @@ async function tableOfContents(): Promise<void> {
   );
 }
 
-async function initLogo(): Promise<void> {
+async function Logo(): Promise<void> {
   const container = document.querySelector(".logo__link") as HTMLElement;
 
   try {
@@ -309,7 +301,7 @@ async function initLogo(): Promise<void> {
   }
 }
 
-function initServiceWorker(): void {
+function ServiceWorker(): void {
   if ("serviceWorker" in navigator) {
     window.addEventListener("load", () => {
       navigator.serviceWorker
@@ -320,8 +312,11 @@ function initServiceWorker(): void {
   }
 }
 
-initLogo();
-tableOfContents();
-initVideos();
-initServiceWorker();
-initSaveArticle();
+Theme();
+Featured();
+DeviceDetector();
+Logo();
+TableOfContents();
+Videos();
+ServiceWorker();
+SaveArticle();
