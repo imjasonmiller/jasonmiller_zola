@@ -6,7 +6,7 @@
 
     {% set journal = get_section(path="journal/_index.md") %}
 
-    {% for article in journal.pages | sort(attribute="date") | reverse %}
+    {% for article in journal.pages | sort(attribute="date")  %}
 
       <li>
 

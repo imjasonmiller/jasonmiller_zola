@@ -1,6 +1,6 @@
 {% set work = get_section(path="work/_index.md") %}
 
-{% for case in work.pages %}
+{% for case in work.pages | sort(attribute="date") %}
 
   {% if loop.index0 is even %}
     {% set align_class = "left" %}
