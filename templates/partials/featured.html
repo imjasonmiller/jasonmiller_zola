@@ -21,9 +21,15 @@
         {% set img_jpg_680 = resize_image(path=asset_path, format="jpg", quality=75, width=680, op="fit_width") %}
         {% set img_jpg_1360 = resize_image(path=asset_path, format="jpg", quality=75, width=1360, op="fit_width") %}
 
+        {# 
+
+        FIXME: We'll disable AVIF for now due to compliance issues, see: https://github.com/image-rs/image/issues/1504
+
         {% set img_avif_480 = resize_image(path=asset_path, format="avif", quality=75, width=480, op="fit_width") %}
         {% set img_avif_680 = resize_image(path=asset_path, format="avif", quality=75, width=680, op="fit_width") %}
         {% set img_avif_1360 = resize_image(path=asset_path, format="avif", quality=75, width=1360, op="fit_width") %}
+
+        #}
 
         {% set img_webp_480 = resize_image(path=asset_path, format="webp", quality=75, width=480, op="fit_width") %}
         {% set img_webp_680 = resize_image(path=asset_path, format="webp", quality=75, width=680, op="fit_width") %}
@@ -32,19 +38,23 @@
         <div class="feature__image">
 
           <picture> 
-            <source type="image/avif" media="(min-width: 1020px)" srcset="{{ img_avif_1360 }} 1360w">
-            <source type="image/avif" media="(min-width: 580px)" srcset="{{ img_avif_680 }} 680w">
-            <source type="image/avif" srcset="{{ img_avif_480 }} 480w">
+            {#
 
-            <source type="image/webp" media="(min-width: 1020px)" srcset="{{ img_webp_1360 }} 1360w">
-            <source type="image/webp" media="(min-width: 580px)" srcset="{{ img_webp_680 }} 680w">
-            <source type="image/webp" srcset="{{ img_webp_480 }} 480w">
+            <source type="image/avif" media="(min-width: 1020px)" srcset="{{ img_avif_1360.url }} 1360w">
+            <source type="image/avif" media="(min-width: 580px)" srcset="{{ img_avif_680.url }} 680w">
+            <source type="image/avif" srcset="{{ img_avif_480.url }} 480w">
 
-            <source media="(min-width: 1020px)" srcset="{{ img_jpg_1360 }} 1360w">
-            <source media="(min-width: 580px)" srcset="{{ img_jpg_680 }} 680w">
-            <source srcset="{{ img_jpg_480 }} 480w">
+            #}
+
+            <source type="image/webp" media="(min-width: 1020px)" srcset="{{ img_webp_1360.url }} 1360w">
+            <source type="image/webp" media="(min-width: 580px)" srcset="{{ img_webp_680.url }} 680w">
+            <source type="image/webp" srcset="{{ img_webp_480.url }} 480w">
+
+            <source media="(min-width: 1020px)" srcset="{{ img_jpg_1360.url }} 1360w">
+            <source media="(min-width: 580px)" srcset="{{ img_jpg_680.url }} 680w">
+            <source srcset="{{ img_jpg_480.url }} 480w">
             <img
-              src="{{ img_jpg_680 }}"
+              src="{{ img_jpg_680.url }}"
               alt="{{ case.extra.thumb_alt | default(value = "") }}"
               width="{{ img_meta.width }}"
               height="{{ img_meta.height }}"
