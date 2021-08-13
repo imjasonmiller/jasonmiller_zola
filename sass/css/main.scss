@@ -32,7 +32,7 @@ body {
 }
 
 body {
-  margin: var(--spacer-md);
+  margin: var(--spacer-sm);
 
   font: var(--font-weight-regular) var(--font-size-md) var(--font-family-body);
 
@@ -41,6 +41,10 @@ body {
   color: var(--text-primary);
 
   background: var(--body);
+
+  @include sm {
+    margin: var(--spacer-md);
+  }
 }
 
 main {
@@ -126,7 +130,7 @@ button:focus:not(:focus-visible),
   outline: none;
 }
 
-/* This allows us to hide content, but still make it avaialble to screen readers.
+/* This allows us to hide content, but still make it available to screen readers.
  * See: https://www.sarasoueidan.com/blog/inclusively-hiding-and-styling-checkboxes-and-radio-buttons
  */
 .sr-only {

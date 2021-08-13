@@ -192,6 +192,12 @@
 
 .intro__title {
   font: {
-    size: var(--font-size-xxxxxl);
+    size: var(--font-size-xxxxl);
+  }
+
+  @include sm {
+    font: {
+      size: var(--font-size-xxxxxl);
+    }
   }
 }
