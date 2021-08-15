@@ -55,6 +55,11 @@
       c0.62,0.35,1.06,0.97,1.19,1.68c0.13,0.71-0.09,1.46-0.57,1.99C38.89,65.84,35.53,69.51,29.25,71.23z"/>
   </symbol>
 
+  <symbol id="stackoverflow" viewBox="0 0 100 100">
+    <path d="M68 70V53h5v22H24V53h6v17h38z" fill="currentColor"/>
+    <path d="M36 52l26 5 1-5-26-6-1 6zm3-13l25 11 2-5-25-11-2 5zm7-12l21 17 3-4-21-18-3 5zm14-13l-5 3 16 22 5-3-16-22zM35 64h27v-5H35v5z" fill="currentColor"/>
+  </symbol>
+
   <symbol id="rss" viewBox="0 0 100 100">
     <circle cx="33" cy="67" r="6" fill="currentColor"/>
     <path fill="currentColor" d="M58 73c0-17-14-31-31-31v6c14 0 25 11 25 25h6z" />

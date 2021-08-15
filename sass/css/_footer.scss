@@ -6,15 +6,20 @@
 }
 
 .footer__list {
-  display: flex;
+  display: grid;
+  grid-template-areas: ". . ." ". . .";
+  grid-row-gap: var(--spacer-md);
+
+  justify-content: space-between;
 
   margin: 0;
   padding: var(--spacer-md) 0;
 
   list-style: none;
 
-  grid-column: 1 / -1;
-  justify-content: space-between;
+  @include sm {
+    grid-template-areas: ". . . . . .";
+  }
 
   @include lg {
     padding: 0 var(--spacer-xl) var(--spacer-xl);

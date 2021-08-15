@@ -38,6 +38,7 @@ description = "Work and blog of Jason Miller"
   email = "contact@jasonmiller.nl"
   dribbble = "https://dribbble.com/imjasonmiller"
   twitter = "https://twitter.com/imjasonmiller"
+  stackoverflow = "https://stackoverflow.com/users/1113913"
   github = "https://github.com/imjasonmiller"
 
   # Weight is used as a key for the sort order of the navigational items
